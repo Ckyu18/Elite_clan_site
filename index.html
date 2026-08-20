@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Elite Clan</title>
+<title>Forge Master Clan Viewer</title>
 
 <style>
 * {
@@ -13,104 +13,63 @@
 
 body {
     margin: 0;
-    background: #0f172a;
-    color: white;
+    background: #080d18;
+    color: #f8fafc;
     font-family: Arial, sans-serif;
 }
 
 .container {
-    max-width: 700px;
+    width: 100%;
+    max-width: 900px;
     margin: auto;
-    padding: 30px 20px;
+    padding: 20px;
+}
+
+/* 상단 */
+.header {
+    text-align: center;
+    padding: 25px 10px;
+}
+
+.logo {
+    font-size: 38px;
 }
 
 h1 {
-    text-align: center;
-    font-size: 32px;
+    margin: 8px 0;
+    font-size: 28px;
 }
 
 .subtitle {
-    text-align: center;
     color: #94a3b8;
+    margin: 0;
 }
 
-.card {
-    background: #1e293b;
-    padding: 20px;
-    margin-top: 20px;
-    border-radius: 16px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+/* 통계 */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 15px 0;
 }
 
-.card h2 {
-    margin-top: 0;
-    color: #60a5fa;
+.stat {
+    background: #111a2b;
+    border: 1px solid #263550;
+    border-radius: 14px;
+    padding: 15px 8px;
+    text-align: center;
 }
 
-.member {
-    background: #334155;
-    padding: 12px;
-    margin-top: 8px;
-    border-radius: 10px;
+.stat-icon {
+    font-size: 22px;
 }
 
-button {
-    width: 100%;
-    padding: 14px;
-    margin-top: 20px;
-    border: none;
-    border-radius: 10px;
-    background: #3b82f6;
-    color: white;
-    font-size: 16px;
+.stat-number {
+    display: block;
+    font-size: 20px;
     font-weight: bold;
+    margin-top: 5px;
 }
 
-button:active {
-    background: #2563eb;
-}
-</style>
-</head>
-
-<body>
-
-<div class="container">
-
-    <h1>🔥 Elite Clan</h1>
-
-    <p class="subtitle">
-        우리 클랜 정보
-    </p>
-
-    <div class="card">
-        <h2>📊 클랜 정보</h2>
-
-        <p>클랜 레벨 : <strong>10</strong></p>
-        <p>클랜원 : <strong>25명</strong></p>
-        <p>클랜 포인트 : <strong>125,000</strong></p>
-    </div>
-
-    <div class="card">
-        <h2>👥 클랜원</h2>
-
-        <div class="member">김철수</div>
-        <div class="member">홍길동</div>
-        <div class="member">이영희</div>
-        <div class="member">박민수</div>
-    </div>
-
-    <div class="card">
-        <h2>🏆 클랜 상태</h2>
-
-        <p>현재 상태 : 🟢 활동 중</p>
-        <p>이번 주 순위 : 12위</p>
-    </div>
-
-    <button onclick="location.reload()">
-        🔄 새로고침
-    </button>
-
-</div>
-
-</body>
-</html>
+.stat-name {
