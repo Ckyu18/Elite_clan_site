@@ -259,7 +259,12 @@ function createTable(){
 
     tr.innerHTML=`
 
-      <td>${member.name}</td>
+      <td>
+  <input
+    id="name-${index}"
+    value="${member.name}"
+    disabled>
+</td>
 
       <td>
         <input
