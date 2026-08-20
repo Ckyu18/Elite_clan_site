@@ -3,104 +3,165 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Forge Master Clan Viewer</title>
 
 <style>
-* {
-    box-sizing: border-box;
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:#080d18;
+  color:#f8fafc;
+  font-family:Arial,sans-serif;
 }
 
-body {
-    margin: 0;
-    background: #080d18;
-    color: white;
-    font-family: Arial, sans-serif;
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:18px;
 }
 
-.container {
-    max-width: 700px;
-    margin: auto;
-    padding: 25px 18px;
+.header{
+  text-align:center;
+  padding:10px 0 20px;
 }
 
-h1 {
-    text-align: center;
-    margin-bottom: 8px;
+.logo{font-size:34px}
+
+h1{
+  margin:5px 0;
+  font-size:25px;
 }
 
-.subtitle {
-    text-align: center;
-    color: #9aa8bd;
-    margin-bottom: 30px;
+.subtitle{
+  color:#94a3b8;
+  margin:0;
 }
 
-.card {
-    background: #111a2b;
-    border: 1px solid #263550;
-    border-radius: 16px;
-    padding: 20px;
-    margin-bottom: 18px;
+.notice{
+  background:#111a2b;
+  border:1px solid #263550;
+  border-radius:12px;
+  padding:12px;
+  margin-bottom:15px;
+  color:#aebbd0;
+  font-size:13px;
 }
 
-label {
-    display: block;
-    margin-bottom: 8px;
-    color: #b8c5d8;
+.table-wrap{
+  overflow-x:auto;
+  background:#111a2b;
+  border:1px solid #263550;
+  border-radius:14px;
 }
 
-input {
-    width: 100%;
-    padding: 15px;
-    border-radius: 10px;
-    border: 1px solid #34445e;
-    background: #080d18;
-    color: white;
-    font-size: 16px;
-    outline: none;
+table{
+  border-collapse:collapse;
+  width:100%;
+  min-width:1050px;
 }
 
-button {
-    width: 100%;
-    margin-top: 12px;
-    padding: 15px;
-    border: 0;
-    border-radius: 10px;
-    background: #3478f6;
-    color: white;
-    font-size: 17px;
-    font-weight: bold;
+th{
+  background:#18243a;
+  color:#c8d8ef;
+  padding:12px 8px;
+  font-size:13px;
+  white-space:nowrap;
+  position:sticky;
+  top:0;
+  z-index:2;
 }
 
-button:active {
-    background: #245bc0;
+td{
+  padding:9px 7px;
+  border-top:1px solid #263550;
+  text-align:center;
+  white-space:nowrap;
+  font-size:13px;
 }
 
-.result {
-    display: none;
+td:first-child{
+  text-align:left;
+  font-weight:bold;
+  position:sticky;
+  left:0;
+  background:#111a2b;
+  z-index:1;
 }
 
-.info {
-    display: flex;
-    justify-content: space-between;
-    padding: 13px 0;
-    border-bottom: 1px solid #263550;
+input{
+  width:75px;
+  padding:8px 5px;
+  border:1px solid #334155;
+  border-radius:7px;
+  background:#080d18;
+  color:white;
+  text-align:center;
+  font-size:13px;
 }
 
-.info:last-child {
-    border-bottom: 0;
+input:focus{
+  outline:none;
+  border-color:#3b82f6;
 }
 
-.value {
-    color: #6fa8ff;
-    font-weight: bold;
+.edit-btn{
+  border:0;
+  border-radius:7px;
+  padding:8px 10px;
+  background:#2563eb;
+  color:white;
+  font-weight:bold;
 }
 
-.footer {
-    text-align: center;
-    color: #66758c;
-    margin-top: 30px;
-    font-size: 13px;
+.save-btn{
+  display:none;
+  border:0;
+  border-radius:7px;
+  padding:8px 10px;
+  background:#16a34a;
+  color:white;
+  font-weight:bold;
+}
+
+.red{
+  color:#ff4d4d !important;
+  font-weight:bold;
+}
+
+.total{
+  background:#1d293d;
+  font-weight:bold;
+}
+
+.total td{
+  color:#f8fafc;
+  font-size:13px;
+}
+
+.footer{
+  text-align:center;
+  color:#64748b;
+  font-size:12px;
+  padding:18px;
+}
+
+@media(max-width:600px){
+  .container{
+    padding:10px;
+  }
+
+  h1{
+    font-size:22px;
+  }
+
+  .notice{
+    font-size:12px;
+  }
+
+  th,td{
+    font-size:12px;
+  }
 }
 </style>
 </head>
@@ -109,104 +170,384 @@ button:active {
 
 <div class="container">
 
-    <h1>⚔️ Forge Master</h1>
+  <div class="header">
+    <div class="logo">⚒️</div>
+    <h1>Forge Master</h1>
+    <p class="subtitle">GOOD 클랜 재화 현황</p>
+  </div>
 
-    <div class="subtitle">
-        Clan Viewer
-    </div>
+  <div class="notice">
+    💡 재화값은 k / m 단위로 입력할 수 있습니다.
+    스킬 50k 이상, 알껍질 50k 이상, 탈것 30k 이상은 빨간색으로 표시됩니다.
+  </div>
 
-    <div class="card">
+  <div class="table-wrap">
 
-        <label>플레이어 닉네임</label>
+    <table>
 
-        <input
-            id="nickname"
-            type="text"
-            placeholder="닉네임을 입력하세요"
-        >
+      <thead>
+        <tr>
+          <th>닉네임</th>
+          <th>초물</th>
+          <th>스킬</th>
+          <th>알껍질</th>
+          <th>알합치기</th>
+          <th>탈것</th>
+          <th>탈것합치기</th>
+          <th>골드</th>
+          <th>망치</th>
+          <th>관리</th>
+        </tr>
+      </thead>
 
-        <button onclick="searchPlayer()">
-            🔎 조회하기
-        </button>
+      <tbody id="members"></tbody>
 
-    </div>
+      <tfoot>
+        <tr class="total">
+          <td>합계</td>
+          <td id="total-chomul">0</td>
+          <td id="total-skill">0</td>
+          <td id="total-eggshell">0</td>
+          <td id="total-eggmerge">0개</td>
+          <td id="total-mount">0</td>
+          <td id="total-mountmerge">0개</td>
+          <td id="total-gold">0</td>
+          <td id="total-hammer">0</td>
+          <td>-</td>
+        </tr>
+      </tfoot>
 
-    <div id="result" class="card result">
+    </table>
 
-        <h2>👤 플레이어 정보</h2>
+  </div>
 
-        <div class="info">
-            <span>닉네임</span>
-            <span class="value" id="playerName">-</span>
-        </div>
-
-        <div class="info">
-            <span>레벨</span>
-            <span class="value">125</span>
-        </div>
-
-        <div class="info">
-            <span>점수</span>
-            <span class="value">125,000</span>
-        </div>
-
-        <div class="info">
-            <span>클랜</span>
-            <span class="value">Elite Clan</span>
-        </div>
-
-        <div class="info">
-            <span>상태</span>
-            <span class="value">온라인</span>
-        </div>
-
-    </div>
-
-    <div class="card">
-
-        <h2>🏆 클랜 정보</h2>
-
-        <div class="info">
-            <span>클랜명</span>
-            <span class="value">Elite Clan</span>
-        </div>
-
-        <div class="info">
-            <span>클랜 레벨</span>
-            <span class="value">10</span>
-        </div>
-
-        <div class="info">
-            <span>클랜원</span>
-            <span class="value">25명</span>
-        </div>
-
-    </div>
-
-    <div class="footer">
-        Forge Master Clan Viewer
-    </div>
+  <div class="footer">
+    Forge Master Clan Viewer
+  </div>
 
 </div>
 
 <script>
 
-function searchPlayer() {
+const members = [];
 
-    const nickname =
-        document.getElementById("nickname").value.trim();
+for(let i=1;i<=50;i++){
 
-    if (nickname === "") {
-        alert("닉네임을 입력해주세요.");
-        return;
-    }
+  members.push({
+    name:"클랜원"+String(i).padStart(2,"0"),
+    chomul:"",
+    skill:"",
+    eggshell:"",
+    eggmerge:0,
+    mount:"",
+    mountmerge:0,
+    gold:"",
+    hammer:""
+  });
 
-    document.getElementById("playerName").textContent =
-        nickname;
-
-    document.getElementById("result").style.display =
-        "block";
 }
+
+function createTable(){
+
+  const tbody=document.getElementById("members");
+
+  tbody.innerHTML="";
+
+  members.forEach((member,index)=>{
+
+    const tr=document.createElement("tr");
+
+    tr.innerHTML=`
+
+      <td>${member.name}</td>
+
+      <td>
+        <input
+          id="chomul-${index}"
+          value="${member.chomul}"
+          disabled>
+      </td>
+
+      <td>
+        <input
+          id="skill-${index}"
+          value="${member.skill}"
+          disabled
+          oninput="checkColor(this,'skill')">
+      </td>
+
+      <td>
+        <input
+          id="eggshell-${index}"
+          value="${member.eggshell}"
+          disabled
+          oninput="checkColor(this,'eggshell')">
+      </td>
+
+      <td>
+        <input
+          id="eggmerge-${index}"
+          type="number"
+          value="${member.eggmerge}"
+          disabled>
+      </td>
+
+      <td>
+        <input
+          id="mount-${index}"
+          value="${member.mount}"
+          disabled
+          oninput="checkColor(this,'mount')">
+      </td>
+
+      <td>
+        <input
+          id="mountmerge-${index}"
+          type="number"
+          value="${member.mountmerge}"
+          disabled>
+      </td>
+
+      <td>
+        <input
+          id="gold-${index}"
+          value="${member.gold}"
+          disabled>
+      </td>
+
+      <td>
+        <input
+          id="hammer-${index}"
+          value="${member.hammer}"
+          disabled>
+      </td>
+
+      <td>
+        <button
+          class="edit-btn"
+          id="edit-${index}"
+          onclick="editMember(${index})">
+          수정
+        </button>
+
+        <button
+          class="save-btn"
+          id="save-${index}"
+          onclick="saveMember(${index})">
+          저장
+        </button>
+      </td>
+
+    `;
+
+    tbody.appendChild(tr);
+
+  });
+
+  updateTotals();
+
+}
+
+function toNumber(value){
+
+  if(!value) return 0;
+
+  value=String(value)
+    .trim()
+    .toLowerCase()
+    .replace(/,/g,"");
+
+  let number=parseFloat(value);
+
+  if(isNaN(number)) return 0;
+
+  if(value.endsWith("m")){
+    number*=1000000;
+  }
+  else if(value.endsWith("k")){
+    number*=1000;
+  }
+
+  return number;
+
+}
+
+function formatNumber(number){
+
+  if(number===0) return "0";
+
+  if(number>=1000000){
+
+    let value=number/1000000;
+
+    return Number(value.toFixed(2))+"m";
+
+  }
+
+  if(number>=1000){
+
+    let value=number/1000;
+
+    return Number(value.toFixed(2))+"k";
+
+  }
+
+  return Math.round(number).toString();
+
+}
+
+function checkColor(input,type){
+
+  const value=toNumber(input.value);
+
+  input.classList.remove("red");
+
+  if(type==="skill" && value>=50000){
+    input.classList.add("red");
+  }
+
+  if(type==="eggshell" && value>=50000){
+    input.classList.add("red");
+  }
+
+  if(type==="mount" && value>=30000){
+    input.classList.add("red");
+  }
+
+}
+
+function editMember(index){
+
+  const fields=[
+    "chomul",
+    "skill",
+    "eggshell",
+    "eggmerge",
+    "mount",
+    "mountmerge",
+    "gold",
+    "hammer"
+  ];
+
+  fields.forEach(field=>{
+
+    document.getElementById(field+"-"+index)
+      .disabled=false;
+
+  });
+
+  document.getElementById("edit-"+index)
+    .style.display="none";
+
+  document.getElementById("save-"+index)
+    .style.display="inline-block";
+
+}
+
+function saveMember(index){
+
+  const fields=[
+    "chomul",
+    "skill",
+    "eggshell",
+    "eggmerge",
+    "mount",
+    "mountmerge",
+    "gold",
+    "hammer"
+  ];
+
+  fields.forEach(field=>{
+
+    const input=document.getElementById(field+"-"+index);
+
+    members[index][field]=input.value;
+
+    input.disabled=true;
+
+  });
+
+  checkColor(
+    document.getElementById("skill-"+index),
+    "skill"
+  );
+
+  checkColor(
+    document.getElementById("eggshell-"+index),
+    "eggshell"
+  );
+
+  checkColor(
+    document.getElementById("mount-"+index),
+    "mount"
+  );
+
+  document.getElementById("edit-"+index)
+    .style.display="inline-block";
+
+  document.getElementById("save-"+index)
+    .style.display="none";
+
+  updateTotals();
+
+}
+
+function updateTotals(){
+
+  const fields=[
+    "chomul",
+    "skill",
+    "eggshell",
+    "eggmerge",
+    "mount",
+    "mountmerge",
+    "gold",
+    "hammer"
+  ];
+
+  const totals={};
+
+  fields.forEach(field=>{
+    totals[field]=0;
+  });
+
+  members.forEach(member=>{
+
+    fields.forEach(field=>{
+
+      totals[field]+=toNumber(member[field]);
+
+    });
+
+  });
+
+  document.getElementById("total-chomul").textContent=
+    formatNumber(totals.chomul);
+
+  document.getElementById("total-skill").textContent=
+    formatNumber(totals.skill);
+
+  document.getElementById("total-eggshell").textContent=
+    formatNumber(totals.eggshell);
+
+  document.getElementById("total-eggmerge").textContent=
+    Math.round(totals.eggmerge)+"개";
+
+  document.getElementById("total-mount").textContent=
+    formatNumber(totals.mount);
+
+  document.getElementById("total-mountmerge").textContent=
+    Math.round(totals.mountmerge)+"개";
+
+  document.getElementById("total-gold").textContent=
+    formatNumber(totals.gold);
+
+  document.getElementById("total-hammer").textContent=
+    formatNumber(totals.hammer);
+
+}
+
+createTable();
 
 </script>
 
