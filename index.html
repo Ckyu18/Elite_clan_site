@@ -1,38 +1,20 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080d18">
+<meta name="description" content="Forge Master ELITE 클랜 재화 현황">
 
-<meta name="theme-color"
-content="#080d18">
-
-<meta name="description"
-content="Forge Master ELITE 클랜 재화 현황">
-
-<meta property="og:title"
-content="⚒️ Forge Master ELITE 클랜">
-
-<meta property="og:description"
-content="ELITE 클랜원 50명의 재화 현황을 확인하세요.">
-
-<meta property="og:type"
-content="website">
+<meta property="og:title" content="⚒️ Forge Master ELITE 클랜">
+<meta property="og:description" content="ELITE 클랜원 재화 현황">
 
 <title>⚒️ Forge Master ELITE 클랜</title>
 
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-
 <style>
-
-/* =========================
-   기본
-========================= */
 
 *{
   box-sizing:border-box;
@@ -42,375 +24,237 @@ body{
   margin:0;
   background:#080d18;
   color:#f8fafc;
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Arial,
-    sans-serif;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
 }
 
 .container{
   max-width:1200px;
   margin:auto;
-  padding:14px;
+  padding:12px;
 }
-
-
-/* =========================
-   상단
-========================= */
 
 .header{
   text-align:center;
-  padding:12px 0 18px;
+  padding:10px 0 16px;
 }
 
 .logo{
-  font-size:38px;
-  margin-bottom:4px;
+  font-size:36px;
 }
 
 h1{
-  margin:0;
-  font-size:25px;
-  font-weight:800;
+  margin:3px 0;
+  font-size:24px;
 }
 
 .subtitle{
-  margin:5px 0 0;
+  margin:4px 0;
   color:#94a3b8;
-  font-size:14px;
+  font-size:13px;
 }
 
-
-/* =========================
-   안내
-========================= */
-
 .notice{
-  background:
-    linear-gradient(
-      135deg,
-      #111a2b,
-      #0d1525
-    );
-
+  background:#111a2b;
   border:1px solid #263550;
   border-radius:14px;
-
-  padding:13px 14px;
-  margin-bottom:12px;
-
+  padding:12px;
+  margin-bottom:10px;
   color:#cbd5e1;
-  font-size:13px;
+  font-size:12px;
   line-height:1.7;
 }
 
-.notice strong{
+.notice b{
   color:#60a5fa;
 }
 
+.toolbar{
+  display:flex;
+  gap:8px;
+  margin-bottom:10px;
+  flex-wrap:wrap;
+}
 
-/* =========================
-   상태
-========================= */
+.search{
+  flex:1;
+  min-width:180px;
+  padding:11px 12px;
+  border-radius:9px;
+  border:1px solid #334155;
+  background:#111a2b;
+  color:white;
+  font-size:14px;
+}
 
-.status{
-  text-align:center;
-
-  min-height:20px;
-
-  margin:8px 0 12px;
-
-  color:#94a3b8;
-
+.sort{
+  padding:11px 10px;
+  border-radius:9px;
+  border:1px solid #334155;
+  background:#111a2b;
+  color:white;
   font-size:13px;
 }
 
-.status.success{
+.status{
+  text-align:center;
+  min-height:20px;
+  margin:8px 0;
+  color:#94a3b8;
+  font-size:12px;
+}
+
+.success{
   color:#4ade80;
 }
 
-.status.error{
+.error{
   color:#f87171;
 }
 
-
-/* =========================
-   테이블
-========================= */
-
 .table-wrap{
   overflow-x:auto;
-
   background:#111a2b;
-
   border:1px solid #263550;
-
   border-radius:14px;
-
   -webkit-overflow-scrolling:touch;
 }
 
 table{
   border-collapse:collapse;
-
   width:100%;
-
-  min-width:1100px;
+  min-width:1200px;
 }
 
 th{
   background:#18243a;
-
   color:#c8d8ef;
-
-  padding:12px 8px;
-
-  font-size:13px;
-
+  padding:11px 7px;
+  font-size:12px;
   white-space:nowrap;
-
   position:sticky;
-
   top:0;
+  z-index:3;
+  cursor:pointer;
+}
 
-  z-index:2;
+th:hover{
+  background:#20304c;
 }
 
 td{
-  padding:8px 6px;
-
+  padding:7px 6px;
   border-top:1px solid #263550;
-
   text-align:center;
-
   white-space:nowrap;
-
-  font-size:13px;
+  font-size:12px;
 }
 
 td:first-child{
-  text-align:left;
-
-  font-weight:bold;
-
   position:sticky;
-
   left:0;
-
   background:#111a2b;
-
-  z-index:1;
+  z-index:2;
+  text-align:left;
+  font-weight:bold;
 }
-
-
-/* =========================
-   입력창
-========================= */
 
 input{
   width:75px;
-
-  padding:9px 5px;
-
+  padding:8px 5px;
   border:1px solid #334155;
-
-  border-radius:8px;
-
+  border-radius:7px;
   background:#080d18;
-
   color:white;
-
   text-align:center;
-
-  font-size:13px;
-
-  transition:
-    border-color .2s,
-    box-shadow .2s;
+  font-size:12px;
 }
 
 input[id^="name-"]{
-  width:110px;
-
+  width:105px;
   text-align:left;
 }
 
 input:focus{
   outline:none;
-
   border-color:#3b82f6;
-
-  box-shadow:
-    0 0 0 2px
-    rgba(59,130,246,.15);
 }
-
-input:disabled{
-  opacity:1;
-}
-
-
-/* =========================
-   빨간색 조건
-========================= */
 
 .red{
-  color:#ff4d4d !important;
-
+  color:#ff4d4d!important;
   font-weight:800;
-
-  border-color:#7f1d1d !important;
-
-  background:#180d13 !important;
+  background:#180d13!important;
+  border-color:#7f1d1d!important;
 }
-
-
-/* =========================
-   버튼
-========================= */
 
 .edit-btn,
 .save-btn{
-
   border:0;
-
   border-radius:8px;
-
   padding:9px 12px;
-
   color:white;
-
-  font-size:13px;
-
+  font-size:12px;
   font-weight:800;
-
+  min-width:60px;
   cursor:pointer;
-
-  min-width:58px;
-
-  touch-action:manipulation;
 }
 
 .edit-btn{
   background:#2563eb;
 }
 
-.edit-btn:active{
-  background:#1d4ed8;
-}
-
 .save-btn{
   display:none;
-
   background:#16a34a;
 }
 
-.save-btn:active{
-  background:#15803d;
+.rank{
+  color:#fbbf24;
+  font-weight:900;
 }
 
-
-/* =========================
-   합계
-========================= */
+.recent{
+  color:#4ade80;
+  font-size:10px;
+}
 
 .total{
   background:#1d293d;
-
   font-weight:bold;
 }
 
 .total td{
-  color:#f8fafc;
-
-  font-size:13px;
-
+  font-size:12px;
   border-top:2px solid #3b4d6b;
 }
 
-
-/* =========================
-   아래
-========================= */
-
 .footer{
   text-align:center;
-
   color:#64748b;
-
-  font-size:12px;
-
-  padding:18px 0 8px;
+  font-size:11px;
+  padding:16px 0;
 }
-
-
-/* =========================
-   모바일
-========================= */
 
 @media(max-width:600px){
 
   .container{
-    padding:9px;
-  }
-
-  .header{
-    padding-top:8px;
+    padding:8px;
   }
 
   .logo{
-    font-size:32px;
+    font-size:31px;
   }
 
   h1{
-    font-size:22px;
+    font-size:21px;
   }
 
-  .subtitle{
-    font-size:13px;
+  .toolbar{
+    flex-direction:column;
   }
 
-  .notice{
-    font-size:12px;
-    padding:11px;
-  }
-
-  .status{
-    font-size:12px;
-  }
-
-  th{
-    padding:11px 7px;
-  }
-
-  td{
-    padding:7px 5px;
-  }
-
-  input{
-    padding:9px 5px;
-  }
-
-  .edit-btn,
-  .save-btn{
-    padding:10px 13px;
-    min-width:64px;
-  }
-
-}
-
-
-/* =========================
-   아주 작은 화면
-========================= */
-
-@media(max-width:380px){
-
-  h1{
-    font-size:20px;
+  .search,
+  .sort{
+    width:100%;
   }
 
   .notice{
@@ -420,216 +264,159 @@ input:disabled{
 }
 
 </style>
-
 </head>
-
 
 <body>
 
-
 <div class="container">
 
-
-  <!-- =====================
-       상단
-  ====================== -->
-
   <div class="header">
-
-    <div class="logo">
-      ⚒️
-    </div>
-
-    <h1>
-      Forge Master
-    </h1>
-
-    <p class="subtitle">
-      ELITE 클랜 재화 현황
-    </p>
-
+    <div class="logo">⚒️</div>
+    <h1>Forge Master</h1>
+    <p class="subtitle">ELITE 클랜 재화 현황</p>
   </div>
-
-
-  <!-- =====================
-       안내
-  ====================== -->
 
   <div class="notice">
+    <b>📌 재화 입력</b><br>
+    k / m 단위 사용 가능<br>
+    🔴 스킬 50k 이상 · 알껍질 50k 이상 · 탈것 30k 이상<br>
+    알합치기 · 탈것합치기는 개 단위
+  </div>
 
-    <strong>📌 재화 입력 방법</strong>
+  <div class="toolbar">
 
-    <br>
+    <input
+      id="search"
+      class="search"
+      placeholder="🔍 닉네임 검색"
+      oninput="render()">
 
-    k / m 단위를 사용할 수 있습니다.
+    <select
+      id="sort"
+      class="sort"
+      onchange="render()">
 
-    <br>
+      <option value="default">
+        기본 순서
+      </option>
 
-    🔴 스킬 <b>50k 이상</b>
-    · 알껍질 <b>50k 이상</b>
-    · 탈것 <b>30k 이상</b>
+      <option value="skill">
+        스킬 높은순
+      </option>
 
-    <br>
+      <option value="eggshell">
+        알껍질 높은순
+      </option>
 
-    알합치기 · 탈것합치기는
-    <b>개</b> 단위입니다.
+      <option value="mount">
+        탈것 높은순
+      </option>
+
+      <option value="gold">
+        골드 높은순
+      </option>
+
+      <option value="hammer">
+        망치 높은순
+      </option>
+
+      <option value="chomul">
+        초물 높은순
+      </option>
+
+      <option value="eggmerge">
+        알합치기 높은순
+      </option>
+
+      <option value="mountmerge">
+        탈것합치기 높은순
+      </option>
+
+    </select>
 
   </div>
 
-
-  <!-- =====================
-       상태
-  ====================== -->
-
-  <div
-    id="status"
-    class="status">
-
+  <div id="status" class="status">
     데이터를 불러오는 중...
-
   </div>
-
-
-  <!-- =====================
-       테이블
-  ====================== -->
 
   <div class="table-wrap">
 
     <table>
 
-
       <thead>
 
         <tr>
 
-          <th>
-            닉네임
-          </th>
-
-          <th>
-            초물
-          </th>
-
-          <th>
-            스킬
-          </th>
-
-          <th>
-            알껍질
-          </th>
-
-          <th>
-            알합치기
-          </th>
-
-          <th>
-            탈것
-          </th>
-
-          <th>
-            탈것합치기
-          </th>
-
-          <th>
-            골드
-          </th>
-
-          <th>
-            망치
-          </th>
-
-          <th>
-            관리
-          </th>
+          <th>닉네임</th>
+          <th>초물</th>
+          <th>스킬</th>
+          <th>알껍질</th>
+          <th>알합치기</th>
+          <th>탈것</th>
+          <th>탈것합치기</th>
+          <th>골드</th>
+          <th>망치</th>
+          <th>최근 수정</th>
+          <th>관리</th>
 
         </tr>
 
       </thead>
 
-
       <tbody id="members"></tbody>
-
 
       <tfoot>
 
         <tr class="total">
 
-          <td>
-            합계
-          </td>
+          <td>합계</td>
 
-          <td id="total-chomul">
-            0
-          </td>
+          <td id="total-chomul">0</td>
 
-          <td id="total-skill">
-            0
-          </td>
+          <td id="total-skill">0</td>
 
-          <td id="total-eggshell">
-            0
-          </td>
+          <td id="total-eggshell">0</td>
 
-          <td id="total-eggmerge">
-            0개
-          </td>
+          <td id="total-eggmerge">0개</td>
 
-          <td id="total-mount">
-            0
-          </td>
+          <td id="total-mount">0</td>
 
-          <td id="total-mountmerge">
-            0개
-          </td>
+          <td id="total-mountmerge">0개</td>
 
-          <td id="total-gold">
-            0
-          </td>
+          <td id="total-gold">0</td>
 
-          <td id="total-hammer">
-            0
-          </td>
+          <td id="total-hammer">0</td>
 
-          <td>
-            -
-          </td>
+          <td>-</td>
+
+          <td>-</td>
 
         </tr>
 
       </tfoot>
 
-
     </table>
 
   </div>
 
-
   <div class="footer">
-
     ⚒️ Forge Master ELITE
-
   </div>
-
 
 </div>
 
-
-
 <script>
 
-
-/* =========================================
-   Supabase
-========================================= */
+/* =========================
+   SUPABASE
+========================= */
 
 const SUPABASE_URL =
 "https://tsiqozaeoainplwbjocb.supabase.co";
 
-
 const SUPABASE_KEY =
 "sb_publishable_lBWmc1ci2pdmPW_Xr93b5Q_l8U6UM4t";
-
 
 const supabaseClient =
 window.supabase.createClient(
@@ -638,263 +425,48 @@ window.supabase.createClient(
 );
 
 
-/* =========================================
-   데이터
-========================================= */
+/* =========================
+   DATA
+========================= */
 
 let members=[];
 
 
-/* =========================================
-   기본 50명
-========================================= */
-
-function makeDefaultMembers(){
-
-  const result=[];
-
-
-  for(
-    let i=1;
-    i<=50;
-    i++
-  ){
-
-    result.push({
-
-      id:null,
-
-      name:
-        "클랜원"+
-        String(i).padStart(2,"0"),
-
-      chomul:"",
-
-      skill:"",
-
-      eggshell:"",
-
-      eggmerge:0,
-
-      mount:"",
-
-      mountmerge:0,
-
-      gold:"",
-
-      hammer:""
-
-    });
-
-  }
-
-
-  return result;
-
-}
-
-
-/* =========================================
-   상태
-========================================= */
-
-function setStatus(
-  message,
-  type=""
-){
-
-  const element =
-    document.getElementById(
-      "status"
-    );
-
-
-  element.textContent =
-    message;
-
-
-  element.className =
-    "status "+type;
-
-}
-
-
-/* =========================================
-   데이터 불러오기
-========================================= */
+/* =========================
+   LOAD
+========================= */
 
 async function loadMembers(){
 
-  setStatus(
-    "데이터를 불러오는 중..."
-  );
-
+  setStatus("데이터를 불러오는 중...");
 
   const {
     data,
     error
   } =
-    await supabaseClient
-      .from("clan_members")
-      .select("*")
-      .order(
-        "id",
-        {
-          ascending:true
-        }
-      );
-
+  await supabaseClient
+    .from("clan_members")
+    .select("*")
+    .order("id",{ascending:true});
 
   if(error){
 
     console.error(error);
 
     setStatus(
-      "데이터를 불러오지 못했습니다.",
-      "error"
-    );
-
-    members =
-      makeDefaultMembers();
-
-    createTable();
-
-    return;
-
-  }
-
-
-  if(
-    !data ||
-    data.length===0
-  ){
-
-    members =
-      makeDefaultMembers();
-
-    createTable();
-
-    await createInitialMembers();
-
-    return;
-
-  }
-
-
-  members =
-    data.map(row=>({
-
-      id:row.id,
-
-      name:
-        row.nickname || "",
-
-      chomul:
-        row.초물 || "",
-
-      skill:
-        row.스킬 || "",
-
-      eggshell:
-        row.알껍질 || "",
-
-      eggmerge:
-        row.알합치기 ?? 0,
-
-      mount:
-        row.탈것 || "",
-
-      mountmerge:
-        row.탈것합치기 ?? 0,
-
-      gold:
-        row.골드 || "",
-
-      hammer:
-        row.망치 || ""
-
-    }));
-
-
-  createTable();
-
-
-  setStatus(
-    "총 "+
-    members.length+
-    "명 · 최신 데이터",
-    "success"
-  );
-
-}
-
-
-/* =========================================
-   처음 50명 생성
-========================================= */
-
-async function createInitialMembers(){
-
-  setStatus(
-    "클랜원 50명을 준비하는 중..."
-  );
-
-
-  const rows =
-    members.map(member=>({
-
-      nickname:
-        member.name,
-
-      초물:"",
-
-      스킬:"",
-
-      알껍질:"",
-
-      알합치기:0,
-
-      탈것:"",
-
-      탈것합치기:0,
-
-      골드:"",
-
-      망치:""
-
-    }));
-
-
-  const {
-    data,
-    error
-  } =
-    await supabaseClient
-      .from("clan_members")
-      .insert(rows)
-      .select();
-
-
-  if(error){
-
-    console.error(error);
-
-    setStatus(
-      "클랜원 생성 실패",
+      "데이터 불러오기 실패",
       "error"
     );
 
     return;
-
   }
 
-
   members =
-    data.map(row=>({
+    (data || []).map(row => ({
 
       id:row.id,
 
-      name:row.nickname,
+      name:row.nickname || "",
 
       chomul:row.초물 || "",
 
@@ -902,220 +474,228 @@ async function createInitialMembers(){
 
       eggshell:row.알껍질 || "",
 
-      eggmerge:
-        row.알합치기 ?? 0,
+      eggmerge:row.알합치기 ?? 0,
 
       mount:row.탈것 || "",
 
-      mountmerge:
-        row.탈것합치기 ?? 0,
+      mountmerge:row.탈것합치기 ?? 0,
 
       gold:row.골드 || "",
 
-      hammer:row.망치 || ""
+      hammer:row.망치 || "",
+
+      updated_at:
+        row.updated_at || null
 
     }));
 
-
-  createTable();
-
+  render();
 
   setStatus(
-    "50명 준비 완료",
+    "🟢 실시간 연결됨 · "+
+    members.length+
+    "명",
     "success"
   );
 
 }
 
 
-/* =========================================
-   HTML 안전처리
-========================================= */
+/* =========================
+   REALTIME
+========================= */
 
-function escapeHtml(value){
+supabaseClient
+  .channel("clan-members-live")
+  .on(
+    "postgres_changes",
+    {
+      event:"*",
+      schema:"public",
+      table:"clan_members"
+    },
+    payload => {
 
-  return String(
-    value ?? ""
+      console.log(
+        "실시간 변경:",
+        payload
+      );
+
+      loadMembers();
+
+    }
   )
-  .replace(
-    /&/g,
-    "&amp;"
-  )
-  .replace(
-    /"/g,
-    "&quot;"
-  )
-  .replace(
-    /</g,
-    "&lt;"
-  )
-  .replace(
-    />/g,
-    "&gt;"
+  .subscribe(
+    status => {
+
+      console.log(
+        "Realtime:",
+        status
+      );
+
+    }
   );
 
-}
 
+/* =========================
+   RENDER
+========================= */
 
-/* =========================================
-   테이블
-========================================= */
-
-function createTable(){
+function render(){
 
   const tbody =
     document.getElementById(
       "members"
     );
 
-
   tbody.innerHTML="";
 
+  const search =
+    document
+      .getElementById("search")
+      .value
+      .trim()
+      .toLowerCase();
 
-  members.forEach(
+  const sort =
+    document
+      .getElementById("sort")
+      .value;
+
+
+  let list =
+    [...members];
+
+
+  if(search){
+
+    list =
+      list.filter(member =>
+        member.name
+          .toLowerCase()
+          .includes(search)
+      );
+
+  }
+
+
+  if(sort !== "default"){
+
+    list.sort(
+      (a,b) =>
+        toNumber(b[sort]) -
+        toNumber(a[sort])
+    );
+
+  }
+
+
+  list.forEach(
     (member,index)=>{
 
-      const tr =
-        document.createElement(
-          "tr"
+      const originalIndex =
+        members.findIndex(
+          x => x.id === member.id
         );
 
+      const tr =
+        document.createElement("tr");
 
-      tr.innerHTML=`
+
+      tr.innerHTML = `
 
         <td>
 
+          <span class="rank">
+            ${sort !== "default" ? (index+1)+"위 " : ""}
+          </span>
+
           <input
-            id="name-${index}"
+            id="name-${originalIndex}"
             value="${escapeHtml(member.name)}"
             disabled>
 
         </td>
 
-
         <td>
-
           <input
-            id="chomul-${index}"
+            id="chomul-${originalIndex}"
             value="${escapeHtml(member.chomul)}"
             disabled>
-
         </td>
 
-
         <td>
-
           <input
-            id="skill-${index}"
+            id="skill-${originalIndex}"
             value="${escapeHtml(member.skill)}"
             disabled
-            oninput="
-              checkColor(
-                this,
-                'skill'
-              )
-            ">
-
+            oninput="checkColor(this,'skill')">
         </td>
 
-
         <td>
-
           <input
-            id="eggshell-${index}"
+            id="eggshell-${originalIndex}"
             value="${escapeHtml(member.eggshell)}"
             disabled
-            oninput="
-              checkColor(
-                this,
-                'eggshell'
-              )
-            ">
-
+            oninput="checkColor(this,'eggshell')">
         </td>
 
-
         <td>
-
           <input
-            id="eggmerge-${index}"
+            id="eggmerge-${originalIndex}"
             type="number"
             value="${member.eggmerge}"
             disabled>
-
         </td>
 
-
         <td>
-
           <input
-            id="mount-${index}"
+            id="mount-${originalIndex}"
             value="${escapeHtml(member.mount)}"
             disabled
-            oninput="
-              checkColor(
-                this,
-                'mount'
-              )
-            ">
-
+            oninput="checkColor(this,'mount')">
         </td>
 
-
         <td>
-
           <input
-            id="mountmerge-${index}"
+            id="mountmerge-${originalIndex}"
             type="number"
             value="${member.mountmerge}"
             disabled>
-
         </td>
 
-
         <td>
-
           <input
-            id="gold-${index}"
+            id="gold-${originalIndex}"
             value="${escapeHtml(member.gold)}"
             disabled>
-
         </td>
-
 
         <td>
-
           <input
-            id="hammer-${index}"
+            id="hammer-${originalIndex}"
             value="${escapeHtml(member.hammer)}"
             disabled>
-
         </td>
 
+        <td>
+          ${formatUpdated(member.updated_at)}
+        </td>
 
         <td>
 
           <button
             class="edit-btn"
-            id="edit-${index}"
-            onclick="
-              editMember(${index})
-            ">
-
+            id="edit-${originalIndex}"
+            onclick="editMember(${originalIndex})">
             수정
-
           </button>
-
 
           <button
             class="save-btn"
-            id="save-${index}"
-            onclick="
-              saveMember(${index})
-            ">
-
+            id="save-${originalIndex}"
+            onclick="saveMember(${originalIndex})">
             저장
-
           </button>
 
         </td>
@@ -1128,23 +708,21 @@ function createTable(){
 
       checkColor(
         document.getElementById(
-          "skill-"+index
+          "skill-"+originalIndex
         ),
         "skill"
       );
 
-
       checkColor(
         document.getElementById(
-          "eggshell-"+index
+          "eggshell-"+originalIndex
         ),
         "eggshell"
       );
 
-
       checkColor(
         document.getElementById(
-          "mount-"+index
+          "mount-"+originalIndex
         ),
         "mount"
       );
@@ -1158,106 +736,168 @@ function createTable(){
 }
 
 
-/* =========================================
-   숫자 변환
-========================================= */
+/* =========================
+   EDIT
+========================= */
 
-function toNumber(value){
+function editMember(index){
 
-  if(!value)
-    return 0;
+  const fields=[
+
+    "name",
+    "chomul",
+    "skill",
+    "eggshell",
+    "eggmerge",
+    "mount",
+    "mountmerge",
+    "gold",
+    "hammer"
+
+  ];
 
 
-  value =
-    String(value)
-      .trim()
-      .toLowerCase()
-      .replace(
-        /,/g,
-        ""
+  fields.forEach(field=>{
+
+    const input =
+      document.getElementById(
+        field+"-"+index
       );
 
+    if(input)
+      input.disabled=false;
 
-  let number =
-    parseFloat(value);
-
-
-  if(isNaN(number))
-    return 0;
+  });
 
 
-  if(
-    value.endsWith("m")
-  ){
-
-    number *= 1000000;
-
-  }
-
-  else if(
-    value.endsWith("k")
-  ){
-
-    number *= 1000;
-
-  }
+  document.getElementById(
+    "edit-"+index
+  ).style.display="none";
 
 
-  return number;
+  document.getElementById(
+    "save-"+index
+  ).style.display="inline-block";
+
+
+  setStatus(
+    "수정 중입니다..."
+  );
 
 }
 
 
-/* =========================================
-   숫자 표시
-========================================= */
+/* =========================
+   SAVE
+========================= */
 
-function formatNumber(number){
+async function saveMember(index){
 
-  if(
-    number===0
-  )
-    return "0";
+  const member =
+    members[index];
 
 
-  if(
-    number>=1000000
-  ){
+  const get =
+    field =>
+      document
+        .getElementById(
+          field+"-"+index
+        )
+        .value
+        .trim();
 
-    return Number(
-      (
-        number/
-        1000000
-      ).toFixed(2)
-    )+"m";
 
+  const updateData={
+
+    nickname:get("name"),
+
+    초물:get("chomul"),
+
+    스킬:get("skill"),
+
+    알껍질:get("eggshell"),
+
+    알합치기:
+      Number(get("eggmerge")) || 0,
+
+    탈것:get("mount"),
+
+    탈것합치기:
+      Number(get("mountmerge")) || 0,
+
+    골드:get("gold"),
+
+    망치:get("hammer"),
+
+    updated_at:
+      new Date().toISOString()
+
+  };
+
+
+  setStatus(
+    "💾 저장 중..."
+  );
+
+
+  const {
+    error
+  } =
+  await supabaseClient
+    .from("clan_members")
+    .update(updateData)
+    .eq("id",member.id);
+
+
+  if(error){
+
+    console.error(error);
+
+    alert(
+      "저장 실패\n\n"+
+      error.message
+    );
+
+    setStatus(
+      "❌ 저장 실패",
+      "error"
+    );
+
+    return;
   }
 
 
-  if(
-    number>=1000
-  ){
+  Object.assign(
+    member,
+    {
+      name:updateData.nickname,
+      chomul:updateData.초물,
+      skill:updateData.스킬,
+      eggshell:updateData.알껍질,
+      eggmerge:updateData.알합치기,
+      mount:updateData.탈것,
+      mountmerge:updateData.탈것합치기,
+      gold:updateData.골드,
+      hammer:updateData.망치,
+      updated_at:updateData.updated_at
+    }
+  );
 
-    return Number(
-      (
-        number/
-        1000
-      ).toFixed(2)
-    )+"k";
 
-  }
+  render();
 
 
-  return Math.round(
-    number
-  ).toString();
+  setStatus(
+    "✅ 저장 완료 · 실시간 반영됨",
+    "success"
+  );
 
 }
 
 
-/* =========================================
-   빨간색
-========================================= */
+/* =========================
+   COLOR
+========================= */
 
 function checkColor(
   input,
@@ -1269,381 +909,168 @@ function checkColor(
 
 
   const value =
-    toNumber(
-      input.value
-    );
+    toNumber(input.value);
 
 
-  input.classList.remove(
-    "red"
-  );
+  input.classList.remove("red");
 
 
   if(
     type==="skill" &&
     value>=50000
-  ){
-
-    input.classList.add(
-      "red"
-    );
-
-  }
+  )
+    input.classList.add("red");
 
 
   if(
     type==="eggshell" &&
     value>=50000
-  ){
-
-    input.classList.add(
-      "red"
-    );
-
-  }
+  )
+    input.classList.add("red");
 
 
   if(
     type==="mount" &&
     value>=30000
-  ){
-
-    input.classList.add(
-      "red"
-    );
-
-  }
+  )
+    input.classList.add("red");
 
 }
 
 
-/* =========================================
-   수정
-========================================= */
+/* =========================
+   NUMBER
+========================= */
 
-function editMember(index){
+function toNumber(value){
 
-  const fields=[
-
-    "name",
-
-    "chomul",
-
-    "skill",
-
-    "eggshell",
-
-    "eggmerge",
-
-    "mount",
-
-    "mountmerge",
-
-    "gold",
-
-    "hammer"
-
-  ];
+  if(!value)
+    return 0;
 
 
-  fields.forEach(
-    field=>{
-
-      const input =
-        document.getElementById(
-          field+"-"+index
-        );
+  const text =
+    String(value)
+      .trim()
+      .toLowerCase()
+      .replace(/,/g,"");
 
 
-      if(input)
-        input.disabled=false;
-
-    }
-  );
+  let number =
+    parseFloat(text);
 
 
-  document.getElementById(
-    "edit-"+index
-  ).style.display=
-    "none";
+  if(isNaN(number))
+    return 0;
 
 
-  document.getElementById(
-    "save-"+index
-  ).style.display=
-    "inline-block";
+  if(text.endsWith("m"))
+    number*=1000000;
+
+  else if(text.endsWith("k"))
+    number*=1000;
 
 
-  setStatus(
-    "수정 중입니다..."
-  );
+  return number;
 
 }
 
 
-/* =========================================
-   저장
-========================================= */
+/* =========================
+   FORMAT
+========================= */
 
-async function saveMember(index){
+function formatNumber(number){
 
-  const member =
-    members[index];
+  if(number===0)
+    return "0";
 
 
-  const getValue =
-    id =>
-      document
-        .getElementById(
-          id+"-"+index
-        ).value.trim();
+  if(number>=1000000)
+    return Number(
+      (number/1000000).toFixed(2)
+    )+"m";
 
 
-  const name =
-    getValue("name");
+  if(number>=1000)
+    return Number(
+      (number/1000).toFixed(2)
+    )+"k";
 
 
-  const chomul =
-    getValue("chomul");
-
-
-  const skill =
-    getValue("skill");
-
-
-  const eggshell =
-    getValue("eggshell");
-
-
-  const eggmerge =
-    Number(
-      getValue("eggmerge")
-    ) || 0;
-
-
-  const mount =
-    getValue("mount");
-
-
-  const mountmerge =
-    Number(
-      getValue("mountmerge")
-    ) || 0;
-
-
-  const gold =
-    getValue("gold");
-
-
-  const hammer =
-    getValue("hammer");
-
-
-  if(!member.id){
-
-    alert(
-      "클랜원 정보를 찾을 수 없습니다.\n"+
-      "페이지를 새로고침해주세요."
-    );
-
-    return;
-
-  }
-
-
-  setStatus(
-    "💾 저장 중..."
-  );
-
-
-  const {
-    error
-  } =
-    await supabaseClient
-      .from("clan_members")
-      .update({
-
-        nickname:name,
-
-        초물:chomul,
-
-        스킬:skill,
-
-        알껍질:eggshell,
-
-        알합치기:eggmerge,
-
-        탈것:mount,
-
-        탈것합치기:mountmerge,
-
-        골드:gold,
-
-        망치:hammer
-
-      })
-      .eq(
-        "id",
-        member.id
-      );
-
-
-  if(error){
-
-    console.error(error);
-
-    alert(
-      "저장에 실패했습니다.\n\n"+
-      error.message
-    );
-
-
-    setStatus(
-      "❌ 저장 실패",
-      "error"
-    );
-
-    return;
-
-  }
-
-
-  member.name =
-    name;
-
-  member.chomul =
-    chomul;
-
-  member.skill =
-    skill;
-
-  member.eggshell =
-    eggshell;
-
-  member.eggmerge =
-    eggmerge;
-
-  member.mount =
-    mount;
-
-  member.mountmerge =
-    mountmerge;
-
-  member.gold =
-    gold;
-
-  member.hammer =
-    hammer;
-
-
-  const fields=[
-
-    "name",
-
-    "chomul",
-
-    "skill",
-
-    "eggshell",
-
-    "eggmerge",
-
-    "mount",
-
-    "mountmerge",
-
-    "gold",
-
-    "hammer"
-
-  ];
-
-
-  fields.forEach(
-    field=>{
-
-      const input =
-        document.getElementById(
-          field+"-"+index
-        );
-
-
-      if(input)
-        input.disabled=true;
-
-    }
-  );
-
-
-  checkColor(
-    document.getElementById(
-      "skill-"+index
-    ),
-    "skill"
-  );
-
-
-  checkColor(
-    document.getElementById(
-      "eggshell-"+index
-    ),
-    "eggshell"
-  );
-
-
-  checkColor(
-    document.getElementById(
-      "mount-"+index
-    ),
-    "mount"
-  );
-
-
-  document.getElementById(
-    "edit-"+index
-  ).style.display=
-    "inline-block";
-
-
-  document.getElementById(
-    "save-"+index
-  ).style.display=
-    "none";
-
-
-  updateTotals();
-
-
-  setStatus(
-    "✅ 저장 완료",
-    "success"
-  );
+  return Math.round(number)+"";
 
 }
 
 
-/* =========================================
-   합계
-========================================= */
+/* =========================
+   UPDATED TIME
+========================= */
+
+function formatUpdated(value){
+
+  if(!value)
+    return "-";
+
+
+  const date =
+    new Date(value);
+
+
+  const diff =
+    Date.now() -
+    date.getTime();
+
+
+  const minutes =
+    Math.floor(
+      diff/60000
+    );
+
+
+  if(minutes < 1)
+    return `<span class="recent">방금 수정</span>`;
+
+
+  if(minutes < 60)
+    return minutes+"분 전";
+
+
+  const hours =
+    Math.floor(
+      minutes/60
+    );
+
+
+  if(hours < 24)
+    return hours+"시간 전";
+
+
+  const days =
+    Math.floor(
+      hours/24
+    );
+
+
+  return days+"일 전";
+
+}
+
+
+/* =========================
+   TOTAL
+========================= */
 
 function updateTotals(){
 
   const fields=[
 
     "chomul",
-
     "skill",
-
     "eggshell",
-
     "eggmerge",
-
     "mount",
-
     "mountmerge",
-
     "gold",
-
     "hammer"
 
   ];
@@ -1659,22 +1086,18 @@ function updateTotals(){
   );
 
 
-  members.forEach(
-    member=>{
+  members.forEach(member=>{
 
-      fields.forEach(
-        field=>{
+    fields.forEach(field=>{
 
-          totals[field]+=
-            toNumber(
-              member[field]
-            );
+      totals[field]+=
+        toNumber(
+          member[field]
+        );
 
-        }
-      );
+    });
 
-    }
-  );
+  });
 
 
   document.getElementById(
@@ -1743,9 +1166,47 @@ function updateTotals(){
 }
 
 
-/* =========================================
-   시작
-========================================= */
+/* =========================
+   ESCAPE
+========================= */
+
+function escapeHtml(value){
+
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/"/g,"&quot;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;");
+
+}
+
+
+/* =========================
+   STATUS
+========================= */
+
+function setStatus(
+  text,
+  type=""
+){
+
+  const el =
+    document.getElementById(
+      "status"
+    );
+
+
+  el.textContent=text;
+
+  el.className=
+    "status "+type;
+
+}
+
+
+/* =========================
+   START
+========================= */
 
 loadMembers();
 
