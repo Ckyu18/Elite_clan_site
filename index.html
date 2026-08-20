@@ -19,12 +19,7 @@ body{
   margin:0;
   background:#080d18;
   color:#f8fafc;
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Arial,
-    sans-serif;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
 }
 
 .container{
@@ -166,24 +161,26 @@ input{
 input:focus{
   outline:none;
   border-color:#3b82f6;
-  box-shadow:
-    0 0 0 2px
-    rgba(59,130,246,.15);
+  box-shadow:0 0 0 2px rgba(59,130,246,.15);
 }
 
 input:disabled{
   opacity:1;
 }
 
-/* -------------------------
-   LV + 재화
-------------------------- */
+/* LV + 재화 */
 
 .resource-box{
   display:flex;
   align-items:center;
   justify-content:center;
   gap:3px;
+}
+
+.lv-label{
+  color:#94a3b8;
+  font-size:10px;
+  font-weight:800;
 }
 
 .lv-input{
@@ -197,9 +194,7 @@ input:disabled{
   min-width:65px;
 }
 
-/* -------------------------
-   빨간색 기준
-------------------------- */
+/* 빨간색 */
 
 .red{
   color:#ff4d4d !important;
@@ -208,9 +203,7 @@ input:disabled{
   border-color:#7f1d1d !important;
 }
 
-/* -------------------------
-   버튼
-------------------------- */
+/* 버튼 */
 
 .edit-btn,
 .save-btn{
@@ -222,6 +215,7 @@ input:disabled{
   font-weight:800;
   min-width:48px;
   cursor:pointer;
+  touch-action:manipulation;
 }
 
 .edit-btn{
@@ -233,9 +227,7 @@ input:disabled{
   background:#16a34a;
 }
 
-/* -------------------------
-   체크박스
-------------------------- */
+/* 체크 */
 
 .checkbox{
   width:18px;
@@ -245,9 +237,7 @@ input:disabled{
   cursor:pointer;
 }
 
-/* -------------------------
-   마지막 수정
-------------------------- */
+/* 마지막 수정 */
 
 .recent{
   color:#4ade80;
@@ -259,9 +249,7 @@ input:disabled{
   font-weight:900;
 }
 
-/* -------------------------
-   합계
-------------------------- */
+/* 합계 */
 
 .total{
   background:#1d293d;
@@ -273,9 +261,7 @@ input:disabled{
   font-size:11px;
 }
 
-/* -------------------------
-   모바일
-------------------------- */
+/* 모바일 */
 
 @media(max-width:600px){
 
@@ -553,6 +539,14 @@ window.supabase.createClient(
 
 
 /* =========================================
+   자동 임시저장 KEY
+========================================= */
+
+const DRAFT_KEY =
+"elite_clan_draft_v1";
+
+
+/* =========================================
    DATA
 ========================================= */
 
@@ -573,6 +567,166 @@ function setStatus(message,type=""){
 
   element.className =
     "status " + type;
+
+}
+
+
+/* =========================================
+   임시저장 불러오기
+========================================= */
+
+function getDrafts(){
+
+  try{
+
+    const saved =
+      localStorage.getItem(
+        DRAFT_KEY
+      );
+
+    if(!saved)
+      return {};
+
+    return JSON.parse(saved);
+
+  }
+  catch(error){
+
+    console.error(
+      "임시저장 불러오기 실패",
+      error
+    );
+
+    return {};
+
+  }
+
+}
+
+
+/* =========================================
+   임시저장 전체 저장
+========================================= */
+
+function saveDrafts(drafts){
+
+  try{
+
+    localStorage.setItem(
+      DRAFT_KEY,
+      JSON.stringify(drafts)
+    );
+
+  }
+  catch(error){
+
+    console.error(
+      "임시저장 실패",
+      error
+    );
+
+  }
+
+}
+
+
+/* =========================================
+   특정 회원 임시저장
+========================================= */
+
+function saveDraft(index){
+
+  const member =
+    members[index];
+
+  if(!member)
+    return;
+
+
+  const getValue =
+    field => {
+
+      const element =
+        document.getElementById(
+          field+"-"+index
+        );
+
+      return element
+        ? element.value
+        : "";
+
+    };
+
+
+  const checkbox =
+    document.getElementById(
+      "ascension-"+index
+    );
+
+
+  const drafts =
+    getDrafts();
+
+
+  drafts[String(member.id)] = {
+
+    nickname:
+      getValue("name"),
+
+    초물:
+      getValue("chomul"),
+
+    스킬:
+      getValue("skill"),
+
+    스킬_lv:
+      getValue("skill_lv"),
+
+    알껍질:
+      getValue("eggshell"),
+
+    알껍질_lv:
+      getValue("eggshell_lv"),
+
+    알합치기:
+      getValue("eggmerge"),
+
+    탈것:
+      getValue("mount"),
+
+    탈것_lv:
+      getValue("mount_lv"),
+
+    탈것합치기:
+      getValue("mountmerge"),
+
+    승천대기자:
+      checkbox
+      ? checkbox.checked
+      : member.ascension
+
+  };
+
+
+  saveDrafts(drafts);
+
+}
+
+
+/* =========================================
+   임시저장 삭제
+========================================= */
+
+function removeDraft(id){
+
+  const drafts =
+    getDrafts();
+
+
+  delete drafts[String(id)];
+
+
+  saveDrafts(drafts);
 
 }
 
@@ -624,52 +778,137 @@ async function loadMembers(){
   }
 
 
+  const drafts =
+    getDrafts();
+
+
   members =
-    (data || []).map(row => ({
+    (data || []).map(row => {
 
-      id:
-        row.id,
+      const draft =
+        drafts[String(row.id)];
 
-      created_at:
-        row.created_at,
 
-      updated_at:
-        row.updated_at,
+      if(draft){
 
-      name:
-        row.nickname || "",
+        return {
 
-      ascension:
-        row.승천대기자 || false,
+          id:
+            row.id,
 
-      chomul:
-        row.초물 || "",
+          created_at:
+            row.created_at,
 
-      skill:
-        row.스킬 || "",
+          updated_at:
+            row.updated_at,
 
-      skill_lv:
-        row.스킬_lv ?? 0,
+          name:
+            draft.nickname ??
+            row.nickname ??
+            "",
 
-      eggshell:
-        row.알껍질 || "",
+          ascension:
+            draft.승천대기자 ??
+            row.승천대기자 ??
+            false,
 
-      eggshell_lv:
-        row.알껍질_lv ?? 0,
+          chomul:
+            draft.초물 ??
+            row.초물 ??
+            "",
 
-      eggmerge:
-        row.알합치기 ?? 0,
+          skill:
+            draft.스킬 ??
+            row.스킬 ??
+            "",
 
-      mount:
-        row.탈것 || "",
+          skill_lv:
+            Number(
+              draft.스킬_lv
+            ) || 0,
 
-      mount_lv:
-        row.탈것_lv ?? 0,
+          eggshell:
+            draft.알껍질 ??
+            row.알껍질 ??
+            "",
 
-      mountmerge:
-        row.탈것합치기 ?? 0
+          eggshell_lv:
+            Number(
+              draft.알껍질_lv
+            ) || 0,
 
-    }));
+          eggmerge:
+            draft.알합치기 ??
+            row.알합치기 ??
+            0,
+
+          mount:
+            draft.탈것 ??
+            row.탈것 ??
+            "",
+
+          mount_lv:
+            Number(
+              draft.탈것_lv
+            ) || 0,
+
+          mountmerge:
+            draft.탈것합치기 ??
+            row.탈것합치기 ??
+            0
+
+        };
+
+      }
+
+
+      return {
+
+        id:
+          row.id,
+
+        created_at:
+          row.created_at,
+
+        updated_at:
+          row.updated_at,
+
+        name:
+          row.nickname || "",
+
+        ascension:
+          row.승천대기자 || false,
+
+        chomul:
+          row.초물 || "",
+
+        skill:
+          row.스킬 || "",
+
+        skill_lv:
+          row.스킬_lv ?? 0,
+
+        eggshell:
+          row.알껍질 || "",
+
+        eggshell_lv:
+          row.알껍질_lv ?? 0,
+
+        eggmerge:
+          row.알합치기 ?? 0,
+
+        mount:
+          row.탈것 || "",
+
+        mount_lv:
+          row.탈것_lv ?? 0,
+
+        mountmerge:
+          row.탈것합치기 ?? 0
+
+      };
+
+    });
 
 
   render();
@@ -690,13 +929,66 @@ supabaseClient
     schema:"public",
     table:"clan_members"
   },
-  () => {
+  payload => {
+
+    /*
+      내가 저장한 데이터가
+      실시간으로 다시 들어올 때
+      현재 입력 중인 화면을 덮어쓰지 않도록
+      수정 중인 행은 잠시 건너뜀.
+    */
+
+    if(
+      payload.eventType === "UPDATE" ||
+      payload.eventType === "INSERT"
+    ){
+
+      const id =
+        payload.new?.id;
+
+
+      const index =
+        members.findIndex(
+          member =>
+            member.id === id
+        );
+
+
+      if(
+        index !== -1 &&
+        isEditing(index)
+      ){
+
+        return;
+
+      }
+
+    }
+
 
     loadMembers();
 
   }
 )
 .subscribe();
+
+
+/* =========================================
+   수정 중인지 확인
+========================================= */
+
+function isEditing(index){
+
+  const button =
+    document.getElementById(
+      "save-"+index
+    );
+
+
+  return button &&
+    button.style.display !== "none";
+
+}
 
 
 /* =========================================
@@ -771,8 +1063,6 @@ function render(){
 
       tr.innerHTML = `
 
-        <!-- 수정 -->
-
         <td>
 
           <button
@@ -794,8 +1084,6 @@ function render(){
         </td>
 
 
-        <!-- 승천대기 -->
-
         <td>
 
           <input
@@ -808,8 +1096,6 @@ function render(){
 
         </td>
 
-
-        <!-- 닉네임 -->
 
         <td class="name-cell">
 
@@ -833,8 +1119,6 @@ function render(){
         </td>
 
 
-        <!-- 초물 -->
-
         <td>
 
           <input
@@ -847,11 +1131,13 @@ function render(){
         </td>
 
 
-        <!-- 스킬 LV + 스킬 -->
-
         <td>
 
           <div class="resource-box">
+
+            <span class="lv-label">
+              LV
+            </span>
 
             <input
               class="lv-input"
@@ -876,11 +1162,13 @@ function render(){
         </td>
 
 
-        <!-- 알껍질 LV + 알껍질 -->
-
         <td>
 
           <div class="resource-box">
+
+            <span class="lv-label">
+              LV
+            </span>
 
             <input
               class="lv-input"
@@ -905,8 +1193,6 @@ function render(){
         </td>
 
 
-        <!-- 알합치기 -->
-
         <td>
 
           <input
@@ -922,11 +1208,13 @@ function render(){
         </td>
 
 
-        <!-- 탈것 LV + 탈것 -->
-
         <td>
 
           <div class="resource-box">
+
+            <span class="lv-label">
+              LV
+            </span>
 
             <input
               class="lv-input"
@@ -951,8 +1239,6 @@ function render(){
         </td>
 
 
-        <!-- 탈것합치기 -->
-
         <td>
 
           <input
@@ -967,8 +1253,6 @@ function render(){
 
         </td>
 
-
-        <!-- 마지막 수정 -->
 
         <td>
 
@@ -1007,6 +1291,22 @@ function render(){
         "mount"
       );
 
+
+      /*
+        수정 중인 상태라면
+        임시저장된 값은 그대로 입력 가능
+      */
+
+      if(
+        isEditing(originalIndex)
+      ){
+
+        enableFields(
+          originalIndex
+        );
+
+      }
+
     }
   );
 
@@ -1017,10 +1317,120 @@ function render(){
 
 
 /* =========================================
+   입력값 변경 감지
+========================================= */
+
+function enableDraftAutoSave(index){
+
+  const fields = [
+
+    "name",
+    "chomul",
+    "skill_lv",
+    "skill",
+    "eggshell_lv",
+    "eggshell",
+    "eggmerge",
+    "mount_lv",
+    "mount",
+    "mountmerge"
+
+  ];
+
+
+  fields.forEach(
+    field => {
+
+      const element =
+        document.getElementById(
+          field+"-"+index
+        );
+
+
+      if(!element)
+        return;
+
+
+      element.addEventListener(
+        "input",
+        () => {
+
+          saveDraft(index);
+
+          if(
+            field === "skill" ||
+            field === "eggshell" ||
+            field === "mount"
+          ){
+
+            const type =
+              field === "skill"
+              ? "skill"
+              : field === "eggshell"
+              ? "eggshell"
+              : "mount";
+
+
+            checkColor(
+              element,
+              type
+            );
+
+          }
+
+        }
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================================
    EDIT
 ========================================= */
 
 function editMember(index){
+
+  enableFields(index);
+
+
+  document.getElementById(
+    "edit-"+index
+  ).style.display =
+    "none";
+
+
+  document.getElementById(
+    "save-"+index
+  ).style.display =
+    "inline-block";
+
+
+  enableDraftAutoSave(index);
+
+
+  /*
+    수정 버튼을 누르는 순간에도
+    현재값을 임시저장
+  */
+
+  saveDraft(index);
+
+
+  setStatus(
+    "✏️ 수정 중 · 입력값 자동저장"
+  );
+
+}
+
+
+/* =========================================
+   필드 활성화
+========================================= */
+
+function enableFields(index){
 
   const fields = [
 
@@ -1046,30 +1456,15 @@ function editMember(index){
           field+"-"+index
         );
 
+
       if(input){
 
-        input.disabled = false;
+        input.disabled =
+          false;
 
       }
 
     }
-  );
-
-
-  document.getElementById(
-    "edit-"+index
-  ).style.display =
-    "none";
-
-
-  document.getElementById(
-    "save-"+index
-  ).style.display =
-    "inline-block";
-
-
-  setStatus(
-    "✏️ 수정 중..."
   );
 
 }
@@ -1224,6 +1619,16 @@ async function saveMember(index){
   }
 
 
+  /*
+    정식 저장 성공
+    → 휴대폰 임시저장 삭제
+  */
+
+  removeDraft(
+    member.id
+  );
+
+
   members[index] = {
 
     id:
@@ -1302,6 +1707,13 @@ async function toggleAscension(index){
     checkbox.checked;
 
 
+  /*
+    승천대기도 즉시 임시저장
+  */
+
+  saveDraft(index);
+
+
   const {
     error
   } =
@@ -1329,11 +1741,6 @@ async function toggleAscension(index){
     checkbox.checked =
       !checked;
 
-    alert(
-      "승천대기자 저장 실패\n\n"+
-      error.message
-    );
-
     return;
 
   }
@@ -1345,6 +1752,15 @@ async function toggleAscension(index){
 
   members[index].updated_at =
     new Date().toISOString();
+
+
+  /*
+    체크 저장 성공했으므로
+    체크 관련 임시값은 다시 저장
+    다른 입력 중인 값은 유지
+  */
+
+  saveDraft(index);
 
 
   setStatus(
