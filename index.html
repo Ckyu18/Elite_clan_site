@@ -7,7 +7,7 @@
 
 <meta
   name="viewport"
-  content="width=device-width,initial-scale=1,viewport-fit=cover"
+  content="width=device-width,initial-scale=1.0,viewport-fit=cover"
 >
 
 <meta
@@ -43,16 +43,10 @@ body{
     sans-serif;
 }
 
-button,
-input,
-select{
-  font:inherit;
-}
 
-
-/* =====================================================
- LOGIN
-===================================================== */
+/* =========================================================
+   LOGIN
+========================================================= */
 
 #login-screen,
 #admin-login-screen{
@@ -60,7 +54,7 @@ select{
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:20px;
+  padding:18px;
 }
 
 .login-box{
@@ -69,28 +63,28 @@ select{
   background:#111a2b;
   border:1px solid #263550;
   border-radius:18px;
-  padding:25px;
+  padding:24px;
   text-align:center;
-  box-shadow:0 20px 60px rgba(0,0,0,.4);
+  box-shadow:0 20px 60px rgba(0,0,0,.45);
 }
 
 .login-logo{
-  font-size:45px;
+  font-size:43px;
 }
 
 .login-box h2{
-  margin:8px 0 4px;
+  margin:7px 0 4px;
 }
 
 .login-box p{
   color:#94a3b8;
   font-size:12px;
-  margin:0 0 20px;
+  margin:0 0 18px;
 }
 
 .login-box input{
   width:100%;
-  margin-bottom:10px;
+  margin-bottom:9px;
   padding:13px;
   font-size:15px;
   border:1px solid #334155;
@@ -136,34 +130,33 @@ select{
 .login-note{
   color:#64748b;
   font-size:10px;
-  margin-top:15px;
+  margin-top:14px;
 }
 
 
-/* =====================================================
- APP
-===================================================== */
+/* =========================================================
+   APP
+========================================================= */
 
 #app{
   display:none;
 }
 
 .container{
-  width:100%;
   max-width:1500px;
   margin:auto;
   padding:9px;
 }
 
 
-/* =====================================================
- HEADER
-===================================================== */
+/* =========================================================
+   HEADER
+========================================================= */
 
 .header{
   position:relative;
   text-align:center;
-  padding:7px 0 12px;
+  padding:5px 0 13px;
 }
 
 .logo{
@@ -171,7 +164,7 @@ select{
 }
 
 h1{
-  margin:1px 0;
+  margin:2px 0;
   font-size:22px;
 }
 
@@ -185,8 +178,7 @@ h1{
   right:0;
   top:5px;
   display:flex;
-  gap:5px;
-  align-items:center;
+  gap:6px;
 }
 
 .logout-btn,
@@ -210,14 +202,14 @@ h1{
 }
 
 
-/* =====================================================
- NOTICE
-===================================================== */
+/* =========================================================
+   NOTICE
+========================================================= */
 
 .notice{
   background:#111a2b;
   border:1px solid #263550;
-  border-radius:10px;
+  border-radius:11px;
   padding:9px;
   margin-bottom:8px;
   color:#cbd5e1;
@@ -230,9 +222,9 @@ h1{
 }
 
 
-/* =====================================================
- MY INFO
-===================================================== */
+/* =========================================================
+   MY INFO
+========================================================= */
 
 .my-info{
   background:
@@ -241,8 +233,9 @@ h1{
       #172554,
       #111a2b
     );
+
   border:1px solid #334155;
-  border-radius:11px;
+  border-radius:12px;
   padding:11px;
   margin-bottom:8px;
 }
@@ -254,9 +247,9 @@ h1{
 }
 
 .my-name{
-  margin-top:3px;
   font-size:18px;
   font-weight:900;
+  margin-top:3px;
 }
 
 .my-mode{
@@ -266,16 +259,16 @@ h1{
 }
 
 
-/* =====================================================
- ADMIN PASSWORD
-===================================================== */
+/* =========================================================
+   ADMIN PASSWORD
+========================================================= */
 
 .admin-password-box{
   display:none;
   margin-bottom:8px;
-  background:#251341;
-  border:1px solid #7c3aed;
-  border-radius:10px;
+  background:#1b1230;
+  border:1px solid #6d28d9;
+  border-radius:11px;
   padding:10px;
 }
 
@@ -283,39 +276,39 @@ h1{
   color:#d8b4fe;
   font-size:10px;
   font-weight:900;
-  margin-bottom:5px;
 }
 
 .admin-password-value{
   color:#fff;
   font-size:20px;
   font-weight:900;
-  letter-spacing:3px;
+  margin-top:3px;
+  letter-spacing:2px;
 }
 
-.admin-password-week{
+.admin-password-next{
   color:#a78bfa;
   font-size:9px;
-  margin-top:4px;
+  margin-top:3px;
 }
 
 
-/* =====================================================
- VIEW BUTTONS
-===================================================== */
+/* =========================================================
+   VIEW BUTTONS
+========================================================= */
 
 .view-buttons{
   display:flex;
   gap:5px;
   overflow-x:auto;
-  padding-bottom:4px;
+  padding-bottom:5px;
   margin-bottom:7px;
 }
 
 .view-btn{
   flex:0 0 auto;
   border:1px solid #334155;
-  border-radius:7px;
+  border-radius:8px;
   background:#111a2b;
   color:#cbd5e1;
   padding:8px 11px;
@@ -327,13 +320,13 @@ h1{
 .view-btn.active{
   background:#2563eb;
   border-color:#3b82f6;
-  color:#fff;
+  color:white;
 }
 
 
-/* =====================================================
- TOOLBAR
-===================================================== */
+/* =========================================================
+   TOOLBAR
+========================================================= */
 
 .toolbar{
   display:flex;
@@ -345,26 +338,26 @@ h1{
   flex:1;
   min-width:0;
   padding:9px;
-  border-radius:7px;
+  border-radius:8px;
   border:1px solid #334155;
   background:#111a2b;
-  color:#fff;
-  font-size:11px;
+  color:white;
+  font-size:12px;
 }
 
 .sort{
   padding:9px;
-  border-radius:7px;
+  border-radius:8px;
   border:1px solid #334155;
   background:#111a2b;
-  color:#fff;
-  font-size:10px;
+  color:white;
+  font-size:11px;
 }
 
 
-/* =====================================================
- STATUS
-===================================================== */
+/* =========================================================
+   STATUS
+========================================================= */
 
 .status{
   text-align:center;
@@ -383,22 +376,22 @@ h1{
 }
 
 
-/* =====================================================
- TABLE
-===================================================== */
+/* =========================================================
+   TABLE
+========================================================= */
 
 .table-wrap{
   overflow-x:auto;
   background:#111a2b;
   border:1px solid #263550;
-  border-radius:10px;
+  border-radius:11px;
   -webkit-overflow-scrolling:touch;
 }
 
 table{
   border-collapse:collapse;
   width:100%;
-  min-width:980px;
+  min-width:820px;
   table-layout:fixed;
 }
 
@@ -419,149 +412,148 @@ td{
   border-top:1px solid #263550;
   border-right:1px solid #263550;
   text-align:center;
+  vertical-align:middle;
   white-space:nowrap;
   font-size:9px;
-  vertical-align:middle;
 }
 
-th:last-child,
-td:last-child{
-  border-right:0;
+th:nth-child(1),
+td:nth-child(1){
+  width:48px;
 }
 
-
-/* =====================================================
- COLUMN WIDTH
-===================================================== */
-
-.col-edit{
-  width:54px;
+th:nth-child(2),
+td:nth-child(2){
+  width:104px;
 }
 
-.col-ascension{
-  width:245px;
+th:nth-child(3),
+td:nth-child(3){
+  width:78px;
 }
 
-.col-name{
-  width:105px;
-}
-
-.col-chomul{
-  width:80px;
-}
-
-.col-skill{
-  width:85px;
-}
-
-.col-egg{
-  width:100px;
-}
-
-.col-mount{
-  width:100px;
-}
-
-.col-updated{
+th:nth-child(4),
+td:nth-child(4){
   width:75px;
 }
 
-
-/* =====================================================
- ASCENSION
-===================================================== */
-
-.ascension-wrap{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:5px;
+th:nth-child(5),
+td:nth-child(5){
+  width:98px;
 }
 
-.ascension-checks{
-  display:flex;
-  flex-direction:column;
-  gap:3px;
-  align-items:flex-start;
-  min-width:43px;
+th:nth-child(6),
+td:nth-child(6){
+  width:108px;
 }
 
-.check-item{
-  display:flex;
-  align-items:center;
-  gap:3px;
-  cursor:pointer;
-  font-size:9px;
-  font-weight:900;
+th:nth-child(7),
+td:nth-child(7){
+  width:108px;
 }
 
-.checkbox{
-  width:15px;
-  height:15px;
-  margin:0;
-  accent-color:#22c55e;
+th:nth-child(8),
+td:nth-child(8){
+  width:72px;
 }
-
-.ascension-resources{
-  display:flex;
-  gap:4px;
-  align-items:center;
-}
-
-.asc-resource{
-  min-width:58px;
-  padding:4px 4px;
-  border-radius:6px;
-  background:#0b1220;
-  border:1px solid #334155;
-}
-
-.asc-resource-title{
-  color:#94a3b8;
-  font-size:8px;
-  font-weight:900;
-  margin-bottom:2px;
-}
-
-.asc-resource-value{
-  color:#fff;
-  font-size:10px;
-  font-weight:900;
-}
-
-.asc-resource-merge{
-  color:#fbbf24;
-  font-size:8px;
-  font-weight:800;
-}
-
-
-/* =====================================================
- NAME
-===================================================== */
 
 .name-cell{
   text-align:center;
 }
 
-.name-input{
-  width:82px;
-  padding:5px 3px;
-  text-align:center;
+
+/* =========================================================
+   ASCENSION
+========================================================= */
+
+.ascension-cell{
+  min-width:104px;
+}
+
+.ascension-title{
+  color:#fbbf24;
+  font-size:9px;
+  font-weight:900;
+  margin-bottom:3px;
+}
+
+.check-row{
+  display:flex;
+  justify-content:center;
+  gap:5px;
+  margin-bottom:3px;
+}
+
+.check-item{
+  display:flex;
+  align-items:center;
+  gap:2px;
+  cursor:pointer;
+  color:#e2e8f0;
+  font-size:9px;
+  font-weight:800;
+}
+
+.checkbox{
+  width:14px;
+  height:14px;
+  margin:0;
+  accent-color:#22c55e;
+}
+
+.ascension-resources{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:2px;
+  margin-top:3px;
+}
+
+.asc-res{
+  display:none;
+  align-items:center;
+  justify-content:center;
+  gap:3px;
+  padding:2px 3px;
+  border-radius:4px;
+  background:#0c1424;
+  border:1px solid #263550;
+}
+
+.asc-res.active{
+  display:flex;
+}
+
+.asc-res-label{
+  font-size:8px;
+  font-weight:900;
+  color:#fbbf24;
+}
+
+.asc-res-value{
+  font-size:9px;
+  font-weight:900;
+  color:#fff;
 }
 
 
-/* =====================================================
- NORMAL INPUT
-===================================================== */
+/* =========================================================
+   INPUTS
+========================================================= */
 
 input{
+  width:58px;
+  padding:5px 2px;
   border:1px solid #334155;
   border-radius:5px;
   background:#080d18;
   color:white;
   text-align:center;
   font-size:9px;
+}
+
+.name-input{
+  width:69px;
+  text-align:center;
 }
 
 input:focus{
@@ -573,56 +565,65 @@ input:disabled{
   opacity:1;
 }
 
-.resource-input{
-  width:60px;
-  padding:5px 2px;
-}
 
-.lv-input{
-  width:30px;
-  padding:5px 1px;
-}
+/* =========================================================
+   RESOURCE COMBINED
+========================================================= */
 
-
-/* =====================================================
- STACK RESOURCE
- 알껍질/알합치기
- 탈것/탈것합치기
-===================================================== */
-
-.stack-resource{
+.combined-resource{
   display:flex;
   flex-direction:column;
   align-items:center;
-  gap:3px;
+  justify-content:center;
+  gap:2px;
 }
 
-.stack-main{
+.main-resource{
   display:flex;
   align-items:center;
   justify-content:center;
   gap:2px;
 }
 
-.stack-merge{
-  width:60px;
-  padding:4px;
-  border-radius:5px;
-  background:#0b1220;
-  border:1px solid #334155;
-  color:#fbbf24;
+.merge-resource{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:2px;
+  color:#a5b4fc;
   font-weight:900;
 }
 
 .merge-label{
+  color:#818cf8;
   font-size:8px;
+}
+
+.lv-label{
   color:#94a3b8;
+  font-size:8px;
+  font-weight:800;
+}
+
+.lv-input{
+  width:28px;
+  min-width:28px;
+}
+
+.resource-input{
+  width:57px;
+  min-width:57px;
+}
+
+.merge-input{
+  width:48px;
+  min-width:48px;
 }
 
 
-/* =====================================================
- RED
-===================================================== */
+/* =========================================================
+   RED
+========================================================= */
 
 .red{
   color:#ff4d4d !important;
@@ -632,19 +633,19 @@ input:disabled{
 }
 
 
-/* =====================================================
- BUTTONS
-===================================================== */
+/* =========================================================
+   BUTTONS
+========================================================= */
 
 .edit-btn,
 .save-btn{
   border:0;
   border-radius:5px;
-  padding:6px 7px;
+  padding:5px 5px;
   color:white;
   font-size:9px;
   font-weight:900;
-  min-width:42px;
+  min-width:38px;
   cursor:pointer;
 }
 
@@ -658,9 +659,9 @@ input:disabled{
 }
 
 
-/* =====================================================
- TOTAL
-===================================================== */
+/* =========================================================
+   TOTAL ROW
+========================================================= */
 
 .total{
   background:#1d293d;
@@ -668,37 +669,68 @@ input:disabled{
 }
 
 .total td{
-  border-top:2px solid #3b4d6b;
-  padding:8px 3px;
-}
-
-.total-title{
-  color:#60a5fa;
-  font-weight:900;
-}
-
-.total-box{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:2px;
-}
-
-.total-main{
-  font-weight:900;
-  color:#fff;
-}
-
-.total-merge{
-  color:#fbbf24;
-  font-weight:900;
+  border-top:2px solid #4b5f83;
   font-size:9px;
 }
 
+.total-name{
+  color:#fbbf24;
+  font-weight:900;
+}
 
-/* =====================================================
- EMPTY
-===================================================== */
+
+/* =========================================================
+   BOTTOM SUMMARY
+========================================================= */
+
+.summary-box{
+  margin-top:9px;
+  background:#111a2b;
+  border:1px solid #334155;
+  border-radius:11px;
+  padding:9px;
+}
+
+.summary-title{
+  color:#60a5fa;
+  font-size:11px;
+  font-weight:900;
+  margin-bottom:7px;
+  text-align:center;
+}
+
+.summary-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:5px;
+}
+
+.summary-item{
+  background:#0c1424;
+  border:1px solid #263550;
+  border-radius:7px;
+  padding:7px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.summary-label{
+  color:#94a3b8;
+  font-size:9px;
+  font-weight:900;
+}
+
+.summary-value{
+  color:#fff;
+  font-size:12px;
+  font-weight:900;
+}
+
+
+/* =========================================================
+   EMPTY
+========================================================= */
 
 .empty{
   padding:25px !important;
@@ -706,9 +738,36 @@ input:disabled{
 }
 
 
-/* =====================================================
- MOBILE
-===================================================== */
+/* =========================================================
+   ADD MEMBER
+========================================================= */
+
+.admin-add{
+  display:none;
+  margin-bottom:7px;
+  padding:8px;
+  background:#111a2b;
+  border:1px solid #263550;
+  border-radius:9px;
+}
+
+.admin-add input{
+  width:150px;
+}
+
+.admin-add button{
+  border:0;
+  border-radius:6px;
+  padding:7px 10px;
+  background:#16a34a;
+  color:#fff;
+  font-weight:900;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media(max-width:600px){
 
@@ -716,8 +775,12 @@ input:disabled{
     padding:5px;
   }
 
+  .header{
+    padding-top:2px;
+  }
+
   .logo{
-    font-size:27px;
+    font-size:28px;
   }
 
   h1{
@@ -740,31 +803,36 @@ input:disabled{
   }
 
   .my-info{
-    padding:10px;
+    padding:12px;
   }
 
   .my-name{
     font-size:19px;
   }
 
-  .view-btn{
-    padding:9px 11px;
+  .summary-grid{
+    grid-template-columns:1fr;
   }
 
   table{
-    min-width:900px;
+    min-width:760px;
   }
 
-  .col-ascension{
-    width:220px;
+  th,
+  td{
+    font-size:8px;
+  }
+
+  input{
+    font-size:8px;
   }
 
 }
 
 
-/* =====================================================
- HIDDEN
-===================================================== */
+/* =========================================================
+   HIDDEN
+========================================================= */
 
 .hidden{
   display:none !important;
@@ -777,9 +845,9 @@ input:disabled{
 <body>
 
 
-<!-- =====================================================
- LOGIN
-===================================================== -->
+<!-- =========================================================
+     MEMBER LOGIN
+========================================================= -->
 
 <div id="login-screen">
 
@@ -817,7 +885,7 @@ input:disabled{
       class="admin-login-btn"
       onclick="showAdminLogin()"
     >
-      관리자 모드
+      👑 관리자 모드
     </button>
 
     <div
@@ -826,7 +894,7 @@ input:disabled{
     ></div>
 
     <div class="login-note">
-      일반 접속자는 본인의 정보만 표시됩니다.
+      닉네임 + 공동비밀번호로 접속합니다.
     </div>
 
   </div>
@@ -834,9 +902,9 @@ input:disabled{
 </div>
 
 
-<!-- =====================================================
- ADMIN LOGIN
-===================================================== -->
+<!-- =========================================================
+     ADMIN LOGIN
+========================================================= -->
 
 <div
   id="admin-login-screen"
@@ -886,9 +954,9 @@ input:disabled{
 </div>
 
 
-<!-- =====================================================
- APP
-===================================================== -->
+<!-- =========================================================
+     APP
+========================================================= -->
 
 <div id="app">
 
@@ -922,22 +990,20 @@ input:disabled{
 
   <div class="notice">
 
-    <b>📌 안내</b>
+    <b>📌 안내</b><br>
 
-    <br>
+    k / m 단위 사용 가능<br>
 
-    k / m 단위 사용 가능
+    🔴 스킬 50k 이상 · 알껍질 50k 이상 · 탈것 30k 이상<br>
 
-    <br>
-
-    🔴 스킬 50k 이상 · 알껍질 50k 이상 · 탈것 30k 이상
-
-    <br>
-
-    승천대기 체크 → 해당 재화가 바로 표시됩니다.
+    알합치기 · 탈것합치기는 개 단위
 
   </div>
 
+
+  <!-- =====================================================
+       ADMIN PASSWORD
+  ====================================================== -->
 
   <div
     id="admin-password-box"
@@ -945,7 +1011,7 @@ input:disabled{
   >
 
     <div class="admin-password-title">
-      🔐 현재 일반 접속 공동비밀번호
+      🔐 현재 일반 접속 비밀번호
     </div>
 
     <div
@@ -956,8 +1022,8 @@ input:disabled{
     </div>
 
     <div
-      id="admin-password-week"
-      class="admin-password-week"
+      id="admin-password-next"
+      class="admin-password-next"
     >
       -
     </div>
@@ -965,10 +1031,11 @@ input:disabled{
   </div>
 
 
-  <div
-    id="my-info"
-    class="my-info"
-  >
+  <!-- =====================================================
+       MY INFO
+  ====================================================== -->
+
+  <div class="my-info">
 
     <div class="my-title">
       👤 현재 접속자
@@ -991,19 +1058,37 @@ input:disabled{
   </div>
 
 
-  <!-- =================================================
-       VIEW
-  ================================================= -->
+  <!-- =====================================================
+       ADMIN ADD
+  ====================================================== -->
 
   <div
-    id="view-buttons"
-    class="view-buttons"
+    id="admin-add"
+    class="admin-add"
   >
+
+    <input
+      id="new-member-name"
+      placeholder="새 클랜원 닉네임"
+    >
+
+    <button onclick="addMember()">
+      + 클랜원 추가
+    </button>
+
+  </div>
+
+
+  <!-- =====================================================
+       VIEW BUTTONS
+  ====================================================== -->
+
+  <div class="view-buttons">
 
     <button
       class="view-btn active"
       data-view="all"
-      onclick="toggleAllView()"
+      onclick="setView('all')"
     >
       종합
     </button>
@@ -1051,10 +1136,11 @@ input:disabled{
   </div>
 
 
-  <div
-    id="toolbar"
-    class="toolbar"
-  >
+  <!-- =====================================================
+       TOOLBAR
+  ====================================================== -->
+
+  <div class="toolbar">
 
     <input
       id="search"
@@ -1110,42 +1196,19 @@ input:disabled{
   </div>
 
 
-  <!-- =================================================
+  <!-- =====================================================
        TABLE
-  ================================================= -->
+  ====================================================== -->
 
   <div class="table-wrap">
 
     <table>
 
-      <colgroup>
-
-        <col class="col-edit">
-
-        <col class="col-ascension">
-
-        <col class="col-name">
-
-        <col class="col-chomul">
-
-        <col class="col-skill">
-
-        <col class="col-egg">
-
-        <col class="col-mount">
-
-        <col class="col-updated">
-
-      </colgroup>
-
-
       <thead>
 
         <tr>
 
-          <th>
-            수정
-          </th>
+          <th>수정</th>
 
           <th data-column="ascension">
             승천대기
@@ -1164,11 +1227,13 @@ input:disabled{
           </th>
 
           <th data-column="eggshell">
-            알껍질<br>합치기
+            알껍질<br>
+            <small>합치기</small>
           </th>
 
           <th data-column="mount">
-            탈것<br>합치기
+            탈것<br>
+            <small>합치기</small>
           </th>
 
           <th data-column="updated">
@@ -1179,9 +1244,7 @@ input:disabled{
 
       </thead>
 
-
       <tbody id="members"></tbody>
-
 
       <tfoot>
 
@@ -1191,63 +1254,63 @@ input:disabled{
         >
 
           <td>
+            <span class="total-name">
+              합계
+            </span>
+          </td>
+
+          <td data-column="ascension">
             -
           </td>
 
-          <td>
-            합계
+          <td data-column="nickname">
+            -
           </td>
 
-          <td class="total-title">
-            전체
+          <td data-column="chomul">
+            <span id="total-chomul">0</span>
           </td>
 
-          <td id="total-chomul">
-            0
+          <td data-column="skill">
+            <span id="total-skill">0</span>
           </td>
 
-          <td id="total-skill">
-            0
-          </td>
+          <td data-column="eggshell">
 
-          <td>
+            <div class="combined-resource">
 
-            <div class="total-box">
-
-              <div
-                id="total-eggshell"
-                class="total-main"
-              >
-                0
+              <div>
+                <span id="total-eggshell">
+                  0
+                </span>
               </div>
 
-              <div
-                id="total-eggmerge"
-                class="total-merge"
-              >
-                합치기 0개
+              <div class="merge-resource">
+                합치기
+                <span id="total-eggmerge">
+                  0개
+                </span>
               </div>
 
             </div>
 
           </td>
 
-          <td>
+          <td data-column="mount">
 
-            <div class="total-box">
+            <div class="combined-resource">
 
-              <div
-                id="total-mount"
-                class="total-main"
-              >
-                0
+              <div>
+                <span id="total-mount">
+                  0
+                </span>
               </div>
 
-              <div
-                id="total-mountmerge"
-                class="total-merge"
-              >
-                합치기 0개
+              <div class="merge-resource">
+                합치기
+                <span id="total-mountmerge">
+                  0개
+                </span>
               </div>
 
             </div>
@@ -1266,6 +1329,95 @@ input:disabled{
 
   </div>
 
+
+  <!-- =====================================================
+       BOTTOM SUMMARY
+  ====================================================== -->
+
+  <div class="summary-box">
+
+    <div class="summary-title">
+      📊 전체 종합 데이터
+    </div>
+
+    <div class="summary-grid">
+
+      <div class="summary-item">
+        <span class="summary-label">
+          초물
+        </span>
+        <span
+          id="summary-chomul"
+          class="summary-value"
+        >
+          0
+        </span>
+      </div>
+
+      <div class="summary-item">
+        <span class="summary-label">
+          스킬
+        </span>
+        <span
+          id="summary-skill"
+          class="summary-value"
+        >
+          0
+        </span>
+      </div>
+
+      <div class="summary-item">
+        <span class="summary-label">
+          알껍질
+        </span>
+        <span
+          id="summary-eggshell"
+          class="summary-value"
+        >
+          0
+        </span>
+      </div>
+
+      <div class="summary-item">
+        <span class="summary-label">
+          알합치기
+        </span>
+        <span
+          id="summary-eggmerge"
+          class="summary-value"
+        >
+          0개
+        </span>
+      </div>
+
+      <div class="summary-item">
+        <span class="summary-label">
+          탈것
+        </span>
+        <span
+          id="summary-mount"
+          class="summary-value"
+        >
+          0
+        </span>
+      </div>
+
+      <div class="summary-item">
+        <span class="summary-label">
+          탈것합치기
+        </span>
+        <span
+          id="summary-mountmerge"
+          class="summary-value"
+        >
+          0개
+        </span>
+      </div>
+
+    </div>
+
+  </div>
+
 </div>
 
 </div>
@@ -1273,9 +1425,9 @@ input:disabled{
 
 <script>
 
-/* =====================================================
- SUPABASE
-===================================================== */
+/* =========================================================
+   SUPABASE
+========================================================= */
 
 const SUPABASE_URL =
 "https://tsiqozaeoainplwbjocb.supabase.co";
@@ -1290,9 +1442,9 @@ window.supabase.createClient(
 );
 
 
-/* =====================================================
- STATE
-===================================================== */
+/* =========================================================
+   STATE
+========================================================= */
 
 let members = [];
 
@@ -1304,12 +1456,12 @@ let currentNickname = "";
 
 let currentView = "all";
 
-let allExpanded = true;
+let summaryOnly = false;
 
 
-/* =====================================================
- LOGIN
-===================================================== */
+/* =========================================================
+   LOGIN
+========================================================= */
 
 function showMemberLogin(){
 
@@ -1338,14 +1490,16 @@ function showAdminLogin(){
     "admin-login-screen"
   ).classList.remove("hidden");
 
-  setTimeout(
-    () => {
-      document
-        .getElementById("admin-password")
-        .focus();
-    },
-    100
-  );
+  setTimeout(() => {
+
+    const input =
+      document.getElementById(
+        "admin-password"
+      );
+
+    input.focus();
+
+  },100);
 
 }
 
@@ -1357,22 +1511,21 @@ function backToMemberLogin(){
 }
 
 
-/* =====================================================
- MEMBER LOGIN
-===================================================== */
+/* =========================================================
+   MEMBER LOGIN
+========================================================= */
 
 async function memberLogin(){
 
   const nickname =
-    document
-      .getElementById("login-nickname")
-      .value
-      .trim();
+    document.getElementById(
+      "login-nickname"
+    ).value.trim();
 
   const password =
-    document
-      .getElementById("login-password")
-      .value;
+    document.getElementById(
+      "login-password"
+    ).value;
 
   const status =
     document.getElementById(
@@ -1404,9 +1557,9 @@ async function memberLogin(){
     "접속 중...";
 
 
-  const {data,error} =
+  const result =
     await supabaseClient.rpc(
-      "fm_login",
+      "fm2_login",
       {
         p_nickname:nickname,
         p_password:password,
@@ -1415,17 +1568,21 @@ async function memberLogin(){
     );
 
 
-  if(error){
+  if(result.error){
 
-    console.error(error);
+    console.error(result.error);
 
     status.textContent =
       "❌ 접속 실패: " +
-      error.message;
+      result.error.message;
 
     return;
 
   }
+
+
+  const data =
+    result.data;
 
 
   if(
@@ -1449,8 +1606,7 @@ async function memberLogin(){
     Number(data.member_id);
 
   currentNickname =
-    data.nickname ||
-    nickname;
+    data.nickname || nickname;
 
 
   await startApp();
@@ -1458,16 +1614,16 @@ async function memberLogin(){
 }
 
 
-/* =====================================================
- ADMIN LOGIN
-===================================================== */
+/* =========================================================
+   ADMIN LOGIN
+========================================================= */
 
 async function adminLogin(){
 
   const password =
-    document
-      .getElementById("admin-password")
-      .value;
+    document.getElementById(
+      "admin-password"
+    ).value;
 
   const status =
     document.getElementById(
@@ -1489,9 +1645,9 @@ async function adminLogin(){
     "관리자 확인 중...";
 
 
-  const {data,error} =
+  const result =
     await supabaseClient.rpc(
-      "fm_login",
+      "fm2_login",
       {
         p_nickname:"",
         p_password:password,
@@ -1500,17 +1656,21 @@ async function adminLogin(){
     );
 
 
-  if(error){
+  if(result.error){
 
-    console.error(error);
+    console.error(result.error);
 
     status.textContent =
       "❌ 관리자 접속 실패: " +
-      error.message;
+      result.error.message;
 
     return;
 
   }
+
+
+  const data =
+    result.data;
 
 
   if(
@@ -1520,7 +1680,7 @@ async function adminLogin(){
 
     status.textContent =
       data?.message ||
-      "관리자 접속 실패";
+      "관리자 접속에 실패했습니다.";
 
     return;
 
@@ -1542,9 +1702,9 @@ async function adminLogin(){
 }
 
 
-/* =====================================================
- START
-===================================================== */
+/* =========================================================
+   START
+========================================================= */
 
 async function startApp(){
 
@@ -1567,16 +1727,16 @@ async function startApp(){
 
   if(currentMode === "admin"){
 
-    await loadCommonPassword();
+    await loadAdminPassword();
 
   }
 
 }
 
 
-/* =====================================================
- MODE UI
-===================================================== */
+/* =========================================================
+   MODE UI
+========================================================= */
 
 function updateModeUI(){
 
@@ -1595,6 +1755,16 @@ function updateModeUI(){
       "my-mode"
     );
 
+  const adminBox =
+    document.getElementById(
+      "admin-password-box"
+    );
+
+  const addBox =
+    document.getElementById(
+      "admin-add"
+    );
+
 
   if(currentMode === "admin"){
 
@@ -1609,11 +1779,12 @@ function updateModeUI(){
       "전체 클랜원";
 
     myMode.textContent =
-      "전체 인원의 재화를 확인하고 수정할 수 있습니다.";
+      "전체 인원 확인 및 수정 가능";
 
-    document.getElementById(
-      "admin-password-box"
-    ).style.display =
+    adminBox.style.display =
+      "block";
+
+    addBox.style.display =
       "block";
 
   }
@@ -1627,9 +1798,10 @@ function updateModeUI(){
     myMode.textContent =
       "본인의 재화만 표시됩니다.";
 
-    document.getElementById(
-      "admin-password-box"
-    ).style.display =
+    adminBox.style.display =
+      "none";
+
+    addBox.style.display =
       "none";
 
   }
@@ -1637,50 +1809,9 @@ function updateModeUI(){
 }
 
 
-/* =====================================================
- COMMON PASSWORD
-===================================================== */
-
-async function loadCommonPassword(){
-
-  const {data,error} =
-    await supabaseClient.rpc(
-      "fm_get_common_password"
-    );
-
-
-  if(error){
-
-    console.error(error);
-
-    return;
-
-  }
-
-
-  if(!data?.success)
-    return;
-
-
-  document.getElementById(
-    "admin-password-value"
-  ).textContent =
-    data.password;
-
-
-  document.getElementById(
-    "admin-password-week"
-  ).textContent =
-    "현재 주차: " +
-    data.week_key +
-    " · 매주 월요일 오전 9시 갱신";
-
-}
-
-
-/* =====================================================
- LOAD MEMBERS
-===================================================== */
+/* =========================================================
+   LOAD MEMBERS
+========================================================= */
 
 async function loadMembers(){
 
@@ -1689,9 +1820,9 @@ async function loadMembers(){
   );
 
 
-  const {data,error} =
+  const result =
     await supabaseClient.rpc(
-      "fm_get_members",
+      "fm2_get_members",
       {
         p_mode:currentMode,
         p_member_id:currentMemberId
@@ -1699,13 +1830,13 @@ async function loadMembers(){
     );
 
 
-  if(error){
+  if(result.error){
 
-    console.error(error);
+    console.error(result.error);
 
     setStatus(
       "❌ 데이터를 불러오지 못했습니다: " +
-      error.message,
+      result.error.message,
       "error"
     );
 
@@ -1714,24 +1845,9 @@ async function loadMembers(){
   }
 
 
-  let rows = data || [];
-
-  if(typeof rows === "string"){
-
-    try{
-      rows = JSON.parse(rows);
-    }
-    catch{
-      rows = [];
-    }
-
-  }
-
-
   members =
-    rows.map(
-      row => normalizeMember(row)
-    );
+    (result.data || [])
+      .map(normalizeMember);
 
 
   render();
@@ -1747,15 +1863,67 @@ async function loadMembers(){
 }
 
 
-/* =====================================================
- NORMALIZE
-===================================================== */
+/* =========================================================
+   ADMIN PASSWORD
+========================================================= */
+
+async function loadAdminPassword(){
+
+  const result =
+    await supabaseClient.rpc(
+      "fm2_get_password",
+      {
+        p_mode:"admin"
+      }
+    );
+
+
+  if(result.error){
+
+    console.error(result.error);
+
+    return;
+
+  }
+
+
+  const data =
+    result.data;
+
+
+  if(
+    !data ||
+    !data.success
+  )
+    return;
+
+
+  document.getElementById(
+    "admin-password-value"
+  ).textContent =
+    data.password;
+
+
+  document.getElementById(
+    "admin-password-next"
+  ).textContent =
+    "다음 변경: " +
+    formatDateTime(
+      data.next_change
+    );
+
+}
+
+
+/* =========================================================
+   NORMALIZE
+========================================================= */
 
 function normalizeMember(row){
 
   return {
 
-    id:row.id,
+    id:Number(row.id),
 
     created_at:row.created_at,
 
@@ -1767,9 +1935,7 @@ function normalizeMember(row){
 
     skill:row.스킬 || "",
 
-    skill_lv:Number(
-      row.스킬_lv || 0
-    ),
+    skill_lv:Number(row.스킬_lv || 0),
 
     eggshell:row.알껍질 || "",
 
@@ -1802,9 +1968,9 @@ function normalizeMember(row){
 }
 
 
-/* =====================================================
- RENDER
-===================================================== */
+/* =========================================================
+   RENDER
+========================================================= */
 
 function render(){
 
@@ -1812,6 +1978,7 @@ function render(){
     document.getElementById(
       "members"
     );
+
 
   tbody.innerHTML = "";
 
@@ -1842,7 +2009,7 @@ function render(){
     list =
       list.filter(
         m =>
-          String(m.name)
+          m.name
             .toLowerCase()
             .includes(search)
       );
@@ -1852,7 +2019,7 @@ function render(){
 
   /*
     승천대기
-    체크된 사람만
+    체크한 사람만
   */
 
   if(currentView === "ascension"){
@@ -1879,30 +2046,41 @@ function render(){
   }
 
 
-  if(list.length === 0){
+  /*
+    종합 접기
+  */
 
-    if(
-      currentView !== "all" ||
-      allExpanded
-    ){
-
-      tbody.innerHTML =
-        `
-        <tr>
-          <td
-            colspan="8"
-            class="empty"
-          >
-            표시할 클랜원이 없습니다.
-          </td>
-        </tr>
-        `;
-
-    }
+  if(
+    currentView === "all" &&
+    summaryOnly
+  ){
 
     updateTotals();
 
-    applyAllVisibility();
+    applyColumnView();
+
+    return;
+
+  }
+
+
+  if(list.length === 0){
+
+    tbody.innerHTML =
+      `
+      <tr>
+        <td
+          colspan="8"
+          class="empty"
+        >
+          표시할 클랜원이 없습니다.
+        </td>
+      </tr>
+      `;
+
+    updateTotals();
+
+    applyColumnView();
 
     return;
 
@@ -1910,12 +2088,11 @@ function render(){
 
 
   list.forEach(
-    (member) => {
+    (member,displayIndex) => {
 
-      const index =
+      const originalIndex =
         members.findIndex(
-          x =>
-            x.id === member.id
+          x => x.id === member.id
         );
 
 
@@ -1928,32 +2105,12 @@ function render(){
       tr.innerHTML =
         buildRow(
           member,
-          index
+          originalIndex,
+          displayIndex
         );
 
 
       tbody.appendChild(tr);
-
-      checkColor(
-        document.getElementById(
-          "skill-" + index
-        ),
-        "skill"
-      );
-
-      checkColor(
-        document.getElementById(
-          "eggshell-" + index
-        ),
-        "eggshell"
-      );
-
-      checkColor(
-        document.getElementById(
-          "mount-" + index
-        ),
-        "mount"
-      );
 
     }
   );
@@ -1961,18 +2118,19 @@ function render(){
 
   updateTotals();
 
-  applyAllVisibility();
+  applyColumnView();
 
 }
 
 
-/* =====================================================
- BUILD ROW
-===================================================== */
+/* =========================================================
+   BUILD ROW
+========================================================= */
 
 function buildRow(
   member,
-  index
+  index,
+  rank
 ){
 
   const canEdit =
@@ -1988,7 +2146,6 @@ ${
 canEdit
 ?
 `
-
 <button
   class="edit-btn"
   id="edit-${index}"
@@ -2004,20 +2161,20 @@ canEdit
 >
 저장
 </button>
-
 `
 :
-`<span style="color:#475569">-</span>`
+`-`
 }
 
 </td>
 
 
-<td data-column="ascension">
+<td
+  data-column="ascension"
+  class="ascension-cell"
+>
 
-<div class="ascension-wrap">
-
-<div class="ascension-checks">
+<div class="check-row">
 
 <label class="check-item">
 
@@ -2071,81 +2228,47 @@ canEdit
 
 <div class="ascension-resources">
 
-${
-member.스
-?
-`
+<div
+  class="asc-res ${member.스 ? "active" : ""}"
+>
 
-<div class="asc-resource">
-
-<div class="asc-resource-title">
+<span class="asc-res-label">
 스
-</div>
+</span>
 
-<div class="asc-resource-value">
+<span class="asc-res-value">
 ${escapeHtml(member.skill)}
-</div>
+</span>
 
 </div>
 
-`
-:
-""
-}
 
+<div
+  class="asc-res ${member.펫 ? "active" : ""}"
+>
 
-${
-member.펫
-?
-`
-
-<div class="asc-resource">
-
-<div class="asc-resource-title">
+<span class="asc-res-label">
 펫
-</div>
+</span>
 
-<div class="asc-resource-value">
+<span class="asc-res-value">
 ${escapeHtml(member.eggshell)}
-</div>
-
-<div class="asc-resource-merge">
-합 ${member.eggmerge}개
-</div>
+</span>
 
 </div>
 
-`
-:
-""
-}
 
+<div
+  class="asc-res ${member.탈 ? "active" : ""}"
+>
 
-${
-member.탈
-?
-`
-
-<div class="asc-resource">
-
-<div class="asc-resource-title">
+<span class="asc-res-label">
 탈
-</div>
+</span>
 
-<div class="asc-resource-value">
+<span class="asc-res-value">
 ${escapeHtml(member.mount)}
-</div>
-
-<div class="asc-resource-merge">
-합 ${member.mountmerge}개
-</div>
-
-</div>
-
-`
-:
-""
-}
+</span>
 
 </div>
 
@@ -2158,6 +2281,23 @@ ${escapeHtml(member.mount)}
   data-column="nickname"
   class="name-cell"
 >
+
+${
+currentMode === "admin"
+?
+`
+<span style="
+  color:#60a5fa;
+  font-weight:900;
+  display:block;
+  font-size:8px;
+">
+${rank + 1}위
+</span>
+`
+:
+""
+}
 
 <input
   class="name-input"
@@ -2183,6 +2323,22 @@ ${escapeHtml(member.mount)}
 
 <td data-column="skill">
 
+<div class="combined-resource">
+
+<div class="main-resource">
+
+<span class="lv-label">
+LV
+</span>
+
+<input
+  class="lv-input"
+  id="skill_lv-${index}"
+  type="number"
+  value="${member.skill_lv}"
+  disabled
+>
+
 <input
   class="resource-input"
   id="skill-${index}"
@@ -2191,14 +2347,30 @@ ${escapeHtml(member.mount)}
   oninput="checkColor(this,'skill')"
 >
 
+</div>
+
+</div>
+
 </td>
 
 
 <td data-column="eggshell">
 
-<div class="stack-resource">
+<div class="combined-resource">
 
-<div class="stack-main">
+<div class="main-resource">
+
+<span class="lv-label">
+LV
+</span>
+
+<input
+  class="lv-input"
+  id="eggshell_lv-${index}"
+  type="number"
+  value="${member.eggshell_lv}"
+  disabled
+>
 
 <input
   class="resource-input"
@@ -2210,13 +2382,17 @@ ${escapeHtml(member.mount)}
 
 </div>
 
-<div>
+
+<div class="merge-resource">
+
+<span class="merge-label">
+합치기
+</span>
 
 <input
-  class="stack-merge"
-  type="number"
-  min="0"
+  class="merge-input"
   id="eggmerge-${index}"
+  type="number"
   value="${member.eggmerge}"
   disabled
 >
@@ -2230,9 +2406,21 @@ ${escapeHtml(member.mount)}
 
 <td data-column="mount">
 
-<div class="stack-resource">
+<div class="combined-resource">
 
-<div class="stack-main">
+<div class="main-resource">
+
+<span class="lv-label">
+LV
+</span>
+
+<input
+  class="lv-input"
+  id="mount_lv-${index}"
+  type="number"
+  value="${member.mount_lv}"
+  disabled
+>
 
 <input
   class="resource-input"
@@ -2244,13 +2432,17 @@ ${escapeHtml(member.mount)}
 
 </div>
 
-<div>
+
+<div class="merge-resource">
+
+<span class="merge-label">
+합치기
+</span>
 
 <input
-  class="stack-merge"
-  type="number"
-  min="0"
+  class="merge-input"
   id="mountmerge-${index}"
+  type="number"
   value="${member.mountmerge}"
   disabled
 >
@@ -2275,117 +2467,71 @@ ${formatUpdated(
 }
 
 
-/* =====================================================
- VIEW
-===================================================== */
-
-function toggleAllView(){
-
-  if(currentView !== "all"){
-
-    currentView = "all";
-
-    allExpanded = true;
-
-  }
-  else{
-
-    allExpanded =
-      !allExpanded;
-
-  }
-
-
-  updateViewButtons();
-
-  render();
-
-}
-
+/* =========================================================
+   VIEW
+========================================================= */
 
 function setView(view){
 
   currentView =
     view;
 
-  if(view !== "all"){
 
-    allExpanded = true;
+  if(view === "all"){
+
+    summaryOnly =
+      !summaryOnly;
+
+  }
+  else{
+
+    summaryOnly =
+      false;
 
   }
 
 
-  updateViewButtons();
+  document
+    .querySelectorAll(".view-btn")
+    .forEach(
+      button => {
+
+        button.classList.toggle(
+          "active",
+          button.dataset.view === view
+        );
+
+      }
+    );
+
+
+  const allButton =
+    document.querySelector(
+      '[data-view="all"]'
+    );
+
+
+  if(
+    allButton &&
+    view === "all"
+  ){
+
+    allButton.textContent =
+      summaryOnly
+        ? "종합 ▼"
+        : "종합 ▲";
+
+  }
+
 
   render();
 
 }
 
 
-function updateViewButtons(){
-
-  document
-    .querySelectorAll(".view-btn")
-    .forEach(
-      btn => {
-
-        btn.classList.toggle(
-          "active",
-          btn.dataset.view === currentView
-        );
-
-      }
-    );
-
-}
-
-
-/* =====================================================
- ALL VISIBILITY
-===================================================== */
-
-function applyAllVisibility(){
-
-  const tbody =
-    document.getElementById(
-      "members"
-    );
-
-  const total =
-    document.getElementById(
-      "total-row"
-    );
-
-
-  if(currentView === "all"){
-
-    tbody.style.display =
-      allExpanded
-        ? ""
-        : "none";
-
-    total.style.display =
-      "";
-
-    return;
-
-  }
-
-
-  tbody.style.display =
-    "";
-
-  total.style.display =
-    "";
-
-  applyColumnView();
-
-}
-
-
-/* =====================================================
- COLUMN VIEW
-===================================================== */
+/* =========================================================
+   COLUMN VIEW
+========================================================= */
 
 function applyColumnView(){
 
@@ -2398,42 +2544,86 @@ function applyColumnView(){
   all.forEach(
     el => {
 
-      el.style.display =
-        "";
+      el.style.display = "";
 
     }
   );
 
 
-  if(currentView === "all")
-    return;
-
-
-  if(currentView === "ascension"){
-
-    document
-      .querySelectorAll(
-        '[data-column="nickname"], [data-column="ascension"]'
-      )
-      .forEach(
-        el =>
-          el.style.display = ""
-      );
-
+  if(
+    currentView === "all" &&
+    summaryOnly
+  ){
 
     document
       .querySelectorAll(
-        '[data-column]:not([data-column="nickname"]):not([data-column="ascension"])'
+        "#members tr"
       )
       .forEach(
-        el =>
-          el.style.display = "none"
+        tr => {
+
+          tr.style.display =
+            "none";
+
+        }
       );
+
+
+    /*
+      합계행만 표시
+    */
+
+    document.getElementById(
+      "total-row"
+    ).style.display =
+      "table-row";
+
 
     return;
 
   }
 
+
+  document.getElementById(
+    "total-row"
+  ).style.display =
+    "table-row";
+
+
+  if(
+    currentView === "all"
+  ){
+
+    return;
+
+  }
+
+
+  if(
+    currentView === "ascension"
+  ){
+
+    hideColumns();
+
+    showColumn("ascension");
+
+    showColumn("nickname");
+
+    return;
+
+  }
+
+
+  hideColumns();
+
+  showColumn("nickname");
+
+  showColumn(currentView);
+
+}
+
+
+function hideColumns(){
 
   document
     .querySelectorAll(
@@ -2442,19 +2632,8 @@ function applyColumnView(){
     .forEach(
       el => {
 
-        if(
-          el.dataset.column === "nickname" ||
-          el.dataset.column === currentView
-        ){
-
-          el.style.display = "";
-
-        }
-        else{
-
-          el.style.display = "none";
-
-        }
+        el.style.display =
+          "none";
 
       }
     );
@@ -2462,14 +2641,33 @@ function applyColumnView(){
 }
 
 
-/* =====================================================
- EDIT
-===================================================== */
+function showColumn(column){
+
+  document
+    .querySelectorAll(
+      `[data-column="${column}"]`
+    )
+    .forEach(
+      el => {
+
+        el.style.display =
+          "";
+
+      }
+    );
+
+}
+
+
+/* =========================================================
+   EDIT
+========================================================= */
 
 function editMember(index){
 
   const member =
     members[index];
+
 
   if(!member)
     return;
@@ -2483,7 +2681,7 @@ function editMember(index){
   if(!canEdit){
 
     alert(
-      "본인의 정보만 수정할 수 있습니다."
+      "수정 권한이 없습니다."
     );
 
     return;
@@ -2491,52 +2689,68 @@ function editMember(index){
   }
 
 
-  [
+  const fields = [
+
     "name",
     "chomul",
+    "skill_lv",
     "skill",
+    "eggshell_lv",
     "eggshell",
     "eggmerge",
+    "mount_lv",
     "mount",
     "mountmerge"
-  ]
-  .forEach(
+
+  ];
+
+
+  fields.forEach(
     field => {
 
-      const el =
+      const input =
         document.getElementById(
           field + "-" + index
         );
 
-      if(el)
-        el.disabled = false;
+      if(input)
+        input.disabled = false;
 
     }
   );
 
 
-  document.getElementById(
-    "edit-" + index
-  ).style.display =
-    "none";
+  const edit =
+    document.getElementById(
+      "edit-" + index
+    );
+
+  const save =
+    document.getElementById(
+      "save-" + index
+    );
 
 
-  document.getElementById(
-    "save-" + index
-  ).style.display =
-    "inline-block";
+  if(edit)
+    edit.style.display =
+      "none";
+
+  if(save)
+    save.style.display =
+      "inline-block";
 
 }
 
 
-/* =====================================================
- SAVE
-===================================================== */
+/* =========================================================
+   SAVE
+========================================================= */
 
 async function saveMember(index){
 
   const member =
     members[index];
+
 
   if(!member)
     return;
@@ -2547,35 +2761,42 @@ async function saveMember(index){
     member.id === currentMemberId;
 
 
-  if(!canEdit)
+  if(!canEdit){
+
+    alert(
+      "수정 권한이 없습니다."
+    );
+
     return;
 
+  }
 
-  const value =
+
+  const get =
     field => {
 
-      const el =
+      const element =
         document.getElementById(
           field + "-" + index
         );
 
-      return el
-        ? el.value.trim()
+      return element
+        ? element.value.trim()
         : "";
 
     };
 
 
-  const check =
-    field => {
+  const getCheck =
+    id => {
 
-      const el =
+      const element =
         document.getElementById(
-          field + "-" + index
+          id + "-" + index
         );
 
-      return el
-        ? el.checked
+      return element
+        ? element.checked
         : false;
 
     };
@@ -2586,9 +2807,9 @@ async function saveMember(index){
   );
 
 
-  const {data,error} =
+  const result =
     await supabaseClient.rpc(
-      "fm_update_member",
+      "fm2_update_member",
       {
 
         p_mode:
@@ -2598,59 +2819,53 @@ async function saveMember(index){
           member.id,
 
         p_nickname:
-          value("name"),
+          get("name"),
 
         p_chomul:
-          value("chomul"),
+          get("chomul"),
 
         p_skill:
-          value("skill"),
+          get("skill"),
 
         p_skill_lv:
-          member.skill_lv,
+          Number(get("skill_lv")) || 0,
 
         p_eggshell:
-          value("eggshell"),
+          get("eggshell"),
 
         p_eggshell_lv:
-          member.eggshell_lv,
+          Number(get("eggshell_lv")) || 0,
 
         p_eggmerge:
-          Number(
-            value("eggmerge")
-          ) || 0,
+          Number(get("eggmerge")) || 0,
 
         p_mount:
-          value("mount"),
+          get("mount"),
 
         p_mount_lv:
-          member.mount_lv,
+          Number(get("mount_lv")) || 0,
 
         p_mountmerge:
-          Number(
-            value("mountmerge")
-          ) || 0,
+          Number(get("mountmerge")) || 0,
 
         p_s:
-          check("check_s"),
+          getCheck("check_s"),
 
         p_pet:
-          check("check_pet"),
+          getCheck("check_pet"),
 
         p_tal:
-          check("check_tal")
+          getCheck("check_tal")
 
       }
     );
 
 
-  if(error){
-
-    console.error(error);
+  if(result.error){
 
     alert(
       "저장 실패\n\n" +
-      error.message
+      result.error.message
     );
 
     setStatus(
@@ -2664,7 +2879,9 @@ async function saveMember(index){
 
 
   members[index] =
-    normalizeMember(data);
+    normalizeMember(
+      result.data
+    );
 
 
   if(
@@ -2688,9 +2905,9 @@ async function saveMember(index){
 }
 
 
-/* =====================================================
- CHECK
-===================================================== */
+/* =========================================================
+   CHECKBOX
+========================================================= */
 
 async function toggleCheck(
   index,
@@ -2700,27 +2917,36 @@ async function toggleCheck(
   const member =
     members[index];
 
+
   if(!member)
     return;
 
 
-  const checkboxId = {
+  const canEdit =
+    currentMode === "admin" ||
+    member.id === currentMemberId;
 
-    "스":
-      "check_s-",
 
-    "펫":
-      "check_pet-",
+  if(!canEdit)
+    return;
 
-    "탈":
-      "check_tal-"
 
-  }[type];
+  const idMap = {
+
+    "스":"check_s",
+
+    "펫":"check_pet",
+
+    "탈":"check_tal"
+
+  };
 
 
   const checkbox =
     document.getElementById(
-      checkboxId + index
+      idMap[type] +
+      "-" +
+      index
     );
 
 
@@ -2731,17 +2957,17 @@ async function toggleCheck(
   const old =
     member[type];
 
-  const next =
+  const value =
     checkbox.checked;
 
 
   member[type] =
-    next;
+    value;
 
 
-  const {data,error} =
+  const result =
     await supabaseClient.rpc(
-      "fm_update_member",
+      "fm2_update_member",
       {
 
         p_mode:
@@ -2782,24 +3008,24 @@ async function toggleCheck(
 
         p_s:
           type === "스"
-            ? next
+            ? value
             : member.스,
 
         p_pet:
           type === "펫"
-            ? next
+            ? value
             : member.펫,
 
         p_tal:
           type === "탈"
-            ? next
+            ? value
             : member.탈
 
       }
     );
 
 
-  if(error){
+  if(result.error){
 
     member[type] =
       old;
@@ -2809,7 +3035,7 @@ async function toggleCheck(
 
     alert(
       "체크 저장 실패\n\n" +
-      error.message
+      result.error.message
     );
 
     return;
@@ -2819,20 +3045,70 @@ async function toggleCheck(
 
   render();
 
+}
 
-  setStatus(
-    "✅ " +
-    type +
-    " 저장 완료",
-    "success"
-  );
+
+/* =========================================================
+   ADD MEMBER
+========================================================= */
+
+async function addMember(){
+
+  if(currentMode !== "admin")
+    return;
+
+
+  const input =
+    document.getElementById(
+      "new-member-name"
+    );
+
+  const nickname =
+    input.value.trim();
+
+
+  if(!nickname){
+
+    alert(
+      "닉네임을 입력해주세요."
+    );
+
+    return;
+
+  }
+
+
+  const result =
+    await supabaseClient.rpc(
+      "fm2_add_member",
+      {
+        p_nickname:nickname
+      }
+    );
+
+
+  if(result.error){
+
+    alert(
+      "추가 실패\n\n" +
+      result.error.message
+    );
+
+    return;
+
+  }
+
+
+  input.value = "";
+
+  await loadMembers();
 
 }
 
 
-/* =====================================================
- COLOR
-===================================================== */
+/* =========================================================
+   COLOR
+========================================================= */
 
 function checkColor(
   input,
@@ -2844,14 +3120,10 @@ function checkColor(
 
 
   const value =
-    toNumber(
-      input.value
-    );
+    toNumber(input.value);
 
 
-  input.classList.remove(
-    "red"
-  );
+  input.classList.remove("red");
 
 
   if(
@@ -2859,9 +3131,7 @@ function checkColor(
     value >= 50000
   ){
 
-    input.classList.add(
-      "red"
-    );
+    input.classList.add("red");
 
   }
 
@@ -2871,9 +3141,7 @@ function checkColor(
     value >= 50000
   ){
 
-    input.classList.add(
-      "red"
-    );
+    input.classList.add("red");
 
   }
 
@@ -2883,18 +3151,16 @@ function checkColor(
     value >= 30000
   ){
 
-    input.classList.add(
-      "red"
-    );
+    input.classList.add("red");
 
   }
 
 }
 
 
-/* =====================================================
- NUMBER
-===================================================== */
+/* =========================================================
+   NUMBER
+========================================================= */
 
 function toNumber(value){
 
@@ -2913,29 +3179,29 @@ function toNumber(value){
       .replace(/,/g,"");
 
 
-  let n =
+  let number =
     parseFloat(text);
 
 
-  if(isNaN(n))
+  if(isNaN(number))
     return 0;
 
 
   if(text.endsWith("m"))
-    n *= 1000000;
+    number *= 1000000;
 
   else if(text.endsWith("k"))
-    n *= 1000;
+    number *= 1000;
 
 
-  return n;
+  return number;
 
 }
 
 
-/* =====================================================
- FORMAT
-===================================================== */
+/* =========================================================
+   FORMAT
+========================================================= */
 
 function formatNumber(number){
 
@@ -2947,8 +3213,7 @@ function formatNumber(number){
 
     return Number(
       (
-        number /
-        1000000
+        number / 1000000
       ).toFixed(2)
     ) + "m";
 
@@ -2959,23 +3224,127 @@ function formatNumber(number){
 
     return Number(
       (
-        number /
-        1000
+        number / 1000
       ).toFixed(2)
     ) + "k";
 
   }
 
 
-  return Math.round(number)
-    .toString();
+  return Math.round(
+    number
+  ).toString();
 
 }
 
 
-/* =====================================================
- UPDATED
-===================================================== */
+/* =========================================================
+   TOTAL
+========================================================= */
+
+function updateTotals(){
+
+  const totals = {
+
+    chomul:0,
+
+    skill:0,
+
+    eggshell:0,
+
+    eggmerge:0,
+
+    mount:0,
+
+    mountmerge:0
+
+  };
+
+
+  members.forEach(
+    member => {
+
+      totals.chomul +=
+        toNumber(member.chomul);
+
+      totals.skill +=
+        toNumber(member.skill);
+
+      totals.eggshell +=
+        toNumber(member.eggshell);
+
+      totals.eggmerge +=
+        Number(member.eggmerge) || 0;
+
+      totals.mount +=
+        toNumber(member.mount);
+
+      totals.mountmerge +=
+        Number(member.mountmerge) || 0;
+
+    }
+  );
+
+
+  const values = {
+
+    chomul:
+      formatNumber(totals.chomul),
+
+    skill:
+      formatNumber(totals.skill),
+
+    eggshell:
+      formatNumber(totals.eggshell),
+
+    eggmerge:
+      Math.round(
+        totals.eggmerge
+      ) + "개",
+
+    mount:
+      formatNumber(totals.mount),
+
+    mountmerge:
+      Math.round(
+        totals.mountmerge
+      ) + "개"
+
+  };
+
+
+  Object.keys(values)
+    .forEach(
+      key => {
+
+        const total =
+          document.getElementById(
+            "total-" + key
+          );
+
+        const summary =
+          document.getElementById(
+            "summary-" + key
+          );
+
+
+        if(total)
+          total.textContent =
+            values[key];
+
+        if(summary)
+          summary.textContent =
+            values[key];
+
+      }
+    );
+
+}
+
+
+/* =========================================================
+   UPDATED
+========================================================= */
 
 function formatUpdated(value){
 
@@ -3031,7 +3400,7 @@ function formatUpdated(value){
 
 
   return (
-    date.getMonth()+1
+    date.getMonth() + 1
   ) +
   "/" +
   date.getDate();
@@ -3039,135 +3408,66 @@ function formatUpdated(value){
 }
 
 
-/* =====================================================
- TOTAL
-===================================================== */
+/* =========================================================
+   DATETIME
+========================================================= */
 
-function updateTotals(){
+function formatDateTime(value){
 
-  const totals = {
-
-    chomul:0,
-
-    skill:0,
-
-    eggshell:0,
-
-    eggmerge:0,
-
-    mount:0,
-
-    mountmerge:0
-
-  };
+  if(!value)
+    return "-";
 
 
-  members.forEach(
-    m => {
+  const date =
+    new Date(value);
 
-      totals.chomul +=
-        toNumber(m.chomul);
 
-      totals.skill +=
-        toNumber(m.skill);
+  if(isNaN(date.getTime()))
+    return "-";
 
-      totals.eggshell +=
-        toNumber(m.eggshell);
 
-      totals.eggmerge +=
-        toNumber(m.eggmerge);
-
-      totals.mount +=
-        toNumber(m.mount);
-
-      totals.mountmerge +=
-        toNumber(m.mountmerge);
-
+  return new Intl.DateTimeFormat(
+    "ko-KR",
+    {
+      timeZone:"Asia/Seoul",
+      month:"numeric",
+      day:"numeric",
+      weekday:"short",
+      hour:"numeric",
+      minute:"2-digit"
     }
-  );
-
-
-  document.getElementById(
-    "total-chomul"
-  ).textContent =
-    formatNumber(
-      totals.chomul
-    );
-
-
-  document.getElementById(
-    "total-skill"
-  ).textContent =
-    formatNumber(
-      totals.skill
-    );
-
-
-  document.getElementById(
-    "total-eggshell"
-  ).textContent =
-    formatNumber(
-      totals.eggshell
-    );
-
-
-  document.getElementById(
-    "total-eggmerge"
-  ).textContent =
-    "합치기 " +
-    Math.round(
-      totals.eggmerge
-    ) +
-    "개";
-
-
-  document.getElementById(
-    "total-mount"
-  ).textContent =
-    formatNumber(
-      totals.mount
-    );
-
-
-  document.getElementById(
-    "total-mountmerge"
-  ).textContent =
-    "합치기 " +
-    Math.round(
-      totals.mountmerge
-    ) +
-    "개";
+  ).format(date);
 
 }
 
 
-/* =====================================================
- STATUS
-===================================================== */
+/* =========================================================
+   STATUS
+========================================================= */
 
 function setStatus(
   message,
   type=""
 ){
 
-  const el =
+  const element =
     document.getElementById(
       "status"
     );
 
-  el.textContent =
+
+  element.textContent =
     message;
 
-  el.className =
-    "status " +
-    type;
+  element.className =
+    "status " + type;
 
 }
 
 
-/* =====================================================
- ESCAPE
-===================================================== */
+/* =========================================================
+   ESCAPE
+========================================================= */
 
 function escapeHtml(value){
 
@@ -3182,9 +3482,9 @@ function escapeHtml(value){
 }
 
 
-/* =====================================================
- LOGOUT
-===================================================== */
+/* =========================================================
+   LOGOUT
+========================================================= */
 
 function logout(){
 
@@ -3198,7 +3498,7 @@ function logout(){
 
   currentView = "all";
 
-  allExpanded = true;
+  summaryOnly = false;
 
 
   document.getElementById(
@@ -3212,6 +3512,7 @@ function logout(){
   document.getElementById(
     "admin-password"
   ).value = "";
+
 
   document.getElementById(
     "login-status"
@@ -3227,9 +3528,9 @@ function logout(){
 }
 
 
-/* =====================================================
- ENTER
-===================================================== */
+/* =========================================================
+   ENTER KEY
+========================================================= */
 
 document.addEventListener(
   "keydown",
@@ -3258,14 +3559,15 @@ document.addEventListener(
     }
 
 
-    const login =
+    const loginScreen =
       document.getElementById(
         "login-screen"
       );
 
 
     if(
-      login.style.display !== "none"
+      loginScreen.style.display !==
+      "none"
     ){
 
       memberLogin();
@@ -3276,14 +3578,13 @@ document.addEventListener(
 );
 
 
-/* =====================================================
- START
-===================================================== */
+/* =========================================================
+   START
+========================================================= */
 
 showMemberLogin();
 
 </script>
 
 </body>
-
 </html>
