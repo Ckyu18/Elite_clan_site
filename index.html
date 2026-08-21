@@ -7,7 +7,7 @@
 
 <meta
   name="viewport"
-  content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"
+  content="width=device-width,initial-scale=1.0"
 >
 
 <meta
@@ -20,10 +20,6 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-
-/* =========================================================
-   RESET
-========================================================= */
 
 *{
   box-sizing:border-box;
@@ -47,12 +43,6 @@ body{
     sans-serif;
 }
 
-button,
-input,
-select{
-  font-family:inherit;
-}
-
 
 /* =========================================================
    LOGIN
@@ -72,35 +62,35 @@ select{
   background:#111a2b;
   border:1px solid #263550;
   border-radius:18px;
-  padding:25px;
+  padding:26px;
   text-align:center;
   box-shadow:0 20px 60px rgba(0,0,0,.4);
 }
 
 .login-logo{
-  font-size:48px;
+  font-size:44px;
 }
 
 .login-box h2{
-  margin:8px 0 4px;
-  font-size:22px;
+  margin:8px 0 5px;
 }
 
 .login-box p{
-  margin:0 0 20px;
   color:#94a3b8;
   font-size:12px;
+  margin:0 0 20px;
 }
 
 .login-box input{
   width:100%;
   margin-bottom:10px;
   padding:13px;
+  font-size:15px;
+  text-align:left;
   border:1px solid #334155;
   border-radius:9px;
   background:#080d18;
   color:white;
-  font-size:14px;
 }
 
 .login-box input:focus{
@@ -108,7 +98,29 @@ select{
   border-color:#3b82f6;
 }
 
-.login-btn{
+.login-password-wrap{
+  position:relative;
+}
+
+.login-password-wrap input{
+  padding-right:52px;
+}
+
+.password-toggle{
+  position:absolute;
+  right:6px;
+  top:4px;
+  height:40px;
+  width:42px;
+  border:0;
+  border-radius:7px;
+  background:#1e293b;
+  color:#cbd5e1;
+  cursor:pointer;
+  font-size:15px;
+}
+
+.login-box button.login-main{
   width:100%;
   padding:13px;
   border:0;
@@ -117,26 +129,26 @@ select{
   color:white;
   font-weight:900;
   cursor:pointer;
+  margin-top:2px;
 }
 
-.login-btn:disabled{
+.login-box button.login-main:disabled{
   opacity:.6;
 }
 
-.admin-login-btn{
-  margin-top:8px;
-  background:#7c3aed;
-}
-
-.login-status{
+#login-status{
   min-height:20px;
   margin-top:12px;
-  color:#f87171;
   font-size:12px;
+  color:#f87171;
 }
 
-.login-help{
-  margin-top:15px;
+.login-hint{
+  margin-top:14px;
+  padding:10px;
+  background:#0c1423;
+  border:1px solid #263550;
+  border-radius:8px;
   color:#64748b;
   font-size:10px;
   line-height:1.6;
@@ -165,7 +177,7 @@ select{
 .header{
   position:relative;
   text-align:center;
-  padding:8px 0 14px;
+  padding:10px 0 14px;
 }
 
 .logo{
@@ -186,29 +198,31 @@ h1{
 .header-buttons{
   position:absolute;
   right:0;
-  top:8px;
+  top:10px;
   display:flex;
   gap:6px;
+  align-items:center;
 }
 
-.header-btn{
-  border-radius:7px;
-  padding:7px 10px;
-  font-size:11px;
-  cursor:pointer;
-  font-weight:900;
-}
-
-.admin-mode-btn{
+.admin-mode-badge{
   border:1px solid #7c3aed;
   background:#24113f;
   color:#d8b4fe;
+  border-radius:7px;
+  padding:7px 10px;
+  font-size:11px;
+  font-weight:900;
 }
 
 .logout-btn{
   border:1px solid #334155;
   background:#111a2b;
   color:#cbd5e1;
+  border-radius:7px;
+  padding:7px 10px;
+  font-size:11px;
+  cursor:pointer;
+  font-weight:800;
 }
 
 
@@ -221,10 +235,10 @@ h1{
   border:1px solid #263550;
   border-radius:12px;
   padding:10px;
-  margin-bottom:9px;
+  margin-bottom:10px;
   color:#cbd5e1;
   font-size:11px;
-  line-height:1.6;
+  line-height:1.7;
 }
 
 .notice b{
@@ -233,82 +247,62 @@ h1{
 
 
 /* =========================================================
-   MY PROFILE
+   MY INFO
 ========================================================= */
 
-.my-profile{
+.my-info{
   background:
     linear-gradient(
       135deg,
-      #111a2b,
-      #0d1728
+      #111f38,
+      #111a2b
     );
-  border:1px solid #334155;
-  border-radius:13px;
+  border:1px solid #31517d;
+  border-radius:12px;
   padding:12px;
+  margin-bottom:10px;
+}
+
+.my-info-title{
+  color:#60a5fa;
+  font-size:12px;
+  font-weight:900;
+  margin-bottom:8px;
+}
+
+.my-info-name{
+  font-size:18px;
+  font-weight:900;
   margin-bottom:9px;
 }
 
-.profile-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-}
-
-.profile-name{
-  font-size:17px;
-  font-weight:900;
-  color:#f8fafc;
-}
-
-.profile-mode{
-  padding:4px 8px;
-  border-radius:6px;
-  font-size:10px;
-  font-weight:900;
-}
-
-.mode-member{
-  background:#1e293b;
-  color:#94a3b8;
-}
-
-.mode-admin{
-  background:#3b0764;
-  color:#d8b4fe;
-}
-
-.profile-resources{
+.my-info-grid{
   display:grid;
   grid-template-columns:
-    repeat(6,1fr);
-  gap:5px;
-  margin-top:10px;
+    repeat(3,1fr);
+  gap:6px;
 }
 
-.profile-resource{
-  min-width:0;
-  padding:7px 4px;
-  background:#080d18;
+.my-stat{
+  background:#0b1424;
   border:1px solid #263550;
-  border-radius:7px;
+  border-radius:8px;
+  padding:8px 5px;
   text-align:center;
 }
 
-.profile-resource-title{
+.my-stat-title{
   color:#94a3b8;
   font-size:9px;
+  margin-bottom:3px;
 }
 
-.profile-resource-value{
-  margin-top:3px;
-  font-size:12px;
+.my-stat-value{
+  font-size:13px;
   font-weight:900;
-  color:#f8fafc;
 }
 
-.profile-resource-value.red-text{
+.my-stat-value.red-text{
   color:#ff4d4d;
 }
 
@@ -317,35 +311,37 @@ h1{
    VIEW BUTTONS
 ========================================================= */
 
-.view-buttons{
+.view-toolbar{
   display:flex;
-  flex-wrap:wrap;
   gap:6px;
-  margin-bottom:9px;
+  flex-wrap:wrap;
+  margin-bottom:8px;
 }
 
 .view-btn{
-  flex:1;
-  min-width:95px;
-  padding:9px 8px;
   border:1px solid #334155;
-  border-radius:8px;
   background:#111a2b;
   color:#cbd5e1;
+  border-radius:8px;
+  padding:8px 11px;
   font-size:11px;
-  font-weight:900;
+  font-weight:800;
   cursor:pointer;
 }
 
 .view-btn.active{
-  background:#1d4ed8;
+  background:#2563eb;
   border-color:#3b82f6;
   color:white;
 }
 
 .view-btn.ascension.active{
-  background:#92400e;
+  background:#b45309;
   border-color:#f59e0b;
+}
+
+.view-btn.close-btn{
+  margin-left:auto;
 }
 
 
@@ -402,64 +398,41 @@ h1{
 
 
 /* =========================================================
-   CLAN SUMMARY
+   MEMBER SECTION
 ========================================================= */
 
-.clan-summary{
-  background:#111a2b;
-  border:1px solid #263550;
-  border-radius:12px;
-  margin-bottom:8px;
-  overflow:hidden;
+.member-section{
+  margin-top:8px;
 }
 
-.summary-header{
-  padding:10px;
+.section-header{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  cursor:pointer;
   background:#18243a;
-}
-
-.summary-title{
-  font-size:12px;
-  font-weight:900;
-}
-
-.summary-arrow{
-  color:#94a3b8;
-  font-size:11px;
-}
-
-.summary-content{
-  padding:9px;
-}
-
-.summary-grid{
-  display:grid;
-  grid-template-columns:
-    repeat(6,1fr);
-  gap:5px;
-}
-
-.summary-item{
-  text-align:center;
-  padding:7px 4px;
-  background:#080d18;
   border:1px solid #263550;
-  border-radius:7px;
+  border-radius:10px 10px 0 0;
+  padding:9px 11px;
 }
 
-.summary-label{
-  color:#94a3b8;
-  font-size:9px;
-}
-
-.summary-value{
-  margin-top:3px;
+.section-title{
   font-size:12px;
   font-weight:900;
+}
+
+.section-title span{
+  color:#60a5fa;
+}
+
+.section-toggle{
+  border:1px solid #475569;
+  background:#111a2b;
+  color:#cbd5e1;
+  border-radius:6px;
+  padding:5px 9px;
+  font-size:10px;
+  font-weight:800;
+  cursor:pointer;
 }
 
 
@@ -471,14 +444,15 @@ h1{
   overflow-x:auto;
   background:#111a2b;
   border:1px solid #263550;
-  border-radius:12px;
+  border-top:0;
+  border-radius:0 0 12px 12px;
   -webkit-overflow-scrolling:touch;
 }
 
 table{
   border-collapse:collapse;
   width:100%;
-  min-width:1100px;
+  min-width:1250px;
 }
 
 th{
@@ -524,6 +498,7 @@ td{
   display:flex;
   flex-direction:column;
   align-items:flex-start;
+  justify-content:center;
   gap:4px;
   padding:1px 5px;
 }
@@ -579,6 +554,11 @@ input:disabled{
   opacity:1;
 }
 
+
+/* =========================================================
+   RESOURCE
+========================================================= */
+
 .resource-box{
   display:flex;
   align-items:center;
@@ -630,6 +610,7 @@ input:disabled{
   font-weight:800;
   min-width:48px;
   cursor:pointer;
+  touch-action:manipulation;
 }
 
 .edit-btn{
@@ -681,13 +662,101 @@ input:disabled{
 
 
 /* =========================================================
-   EMPTY
+   HIDDEN COLUMNS
 ========================================================= */
 
-.empty{
-  padding:30px;
-  text-align:center;
-  color:#64748b;
+body.view-chomul .col-all{
+  display:none;
+}
+
+body.view-chomul .col-chomul{
+  display:table-cell;
+}
+
+body.view-skill .col-all{
+  display:none;
+}
+
+body.view-skill .col-skill{
+  display:table-cell;
+}
+
+body.view-eggshell .col-all{
+  display:none;
+}
+
+body.view-eggshell .col-eggshell{
+  display:table-cell;
+}
+
+body.view-eggmerge .col-all{
+  display:none;
+}
+
+body.view-eggmerge .col-eggmerge{
+  display:table-cell;
+}
+
+body.view-mount .col-all{
+  display:none;
+}
+
+body.view-mount .col-mount{
+  display:table-cell;
+}
+
+body.view-mountmerge .col-all{
+  display:none;
+}
+
+body.view-mountmerge .col-mountmerge{
+  display:table-cell;
+
+
+/* =========================================================
+   ASCENSION VIEW
+========================================================= */
+
+body.view-ascension .normal-resource{
+  display:none;
+}
+
+body.view-ascension .ascension-only{
+  display:table-cell;
+}
+
+.ascension-only{
+  display:none;
+}
+
+
+/* =========================================================
+   COLLAPSED
+========================================================= */
+
+.member-section.collapsed .table-wrap{
+  display:none;
+}
+
+.member-section.collapsed .section-header{
+  border-radius:10px;
+}
+
+
+/* =========================================================
+   ADMIN
+========================================================= */
+
+.admin-only{
+  display:none;
+}
+
+body.admin-mode .admin-only{
+  display:table-cell;
+}
+
+body.admin-mode .admin-edit{
+  display:inline-block;
 }
 
 
@@ -695,7 +764,7 @@ input:disabled{
    MOBILE
 ========================================================= */
 
-@media(max-width:700px){
+@media(max-width:600px){
 
   .container{
     padding:7px;
@@ -719,31 +788,37 @@ input:disabled{
     font-size:10px;
   }
 
-  .profile-resources{
-    grid-template-columns:
-      repeat(3,1fr);
+  .my-info{
+    position:sticky;
+    top:0;
+    z-index:20;
   }
 
-  .profile-resource{
-    padding:9px 3px;
-  }
-
-  .profile-resource-title{
-    font-size:9px;
-  }
-
-  .profile-resource-value{
-    font-size:13px;
-  }
-
-  .view-buttons{
-    display:grid;
+  .my-info-grid{
     grid-template-columns:
       repeat(2,1fr);
   }
 
+  .my-stat{
+    padding:9px 4px;
+  }
+
+  .my-stat-value{
+    font-size:14px;
+  }
+
+  .view-toolbar{
+    overflow-x:auto;
+    flex-wrap:nowrap;
+    padding-bottom:2px;
+  }
+
   .view-btn{
-    min-width:0;
+    flex-shrink:0;
+  }
+
+  .view-btn.close-btn{
+    margin-left:0;
   }
 
   .toolbar{
@@ -755,108 +830,137 @@ input:disabled{
     width:100%;
   }
 
-  .summary-grid{
-    grid-template-columns:
-      repeat(3,1fr);
+  th{
+    padding:9px 5px;
   }
 
-  .table-wrap{
-    border-radius:9px;
+  td{
+    padding:5px 4px;
+  }
+
+  input{
+    padding:8px 3px;
+  }
+
+  .resource-box{
+    gap:2px;
+  }
+
+  .lv-input{
+    width:38px;
+    min-width:38px;
+  }
+
+  .resource-input{
+    width:62px;
+    min-width:62px;
+  }
+
+  .edit-btn,
+  .save-btn{
+    padding:9px;
   }
 
 }
 
 
 /* =========================================================
-   ADMIN MODE
+   MY ONLY
 ========================================================= */
 
-.admin-only{
+body.member-mode .other-member{
   display:none;
 }
 
-body.admin-mode .admin-only{
-  display:initial;
+body.member-mode .total{
+  display:none;
 }
 
-body.admin-mode .member-only{
-  display:none;
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.empty{
+  padding:30px;
+  text-align:center;
+  color:#64748b;
 }
 
 </style>
 
 </head>
 
-
 <body>
 
 
 <!-- =========================================================
-     LOGIN SCREEN
+     LOGIN
 ========================================================= -->
 
 <div id="login-screen">
 
   <div class="login-box">
 
-    <div class="login-logo">
-      ⚒️
+    <div class="login-logo">⚒️</div>
+
+    <h2>Forge Master ELITE</h2>
+
+    <p>클랜 재화 관리 시스템</p>
+
+
+    <input
+      id="login-name"
+      type="text"
+      inputmode="text"
+      autocomplete="off"
+      autocapitalize="off"
+      spellcheck="false"
+      placeholder="닉네임"
+    >
+
+
+    <div class="login-password-wrap">
+
+      <input
+        id="login-password"
+        type="text"
+        inputmode="text"
+        autocomplete="off"
+        autocapitalize="characters"
+        spellcheck="false"
+        placeholder="비밀번호"
+        onkeydown="if(event.key==='Enter') login()"
+      >
+
+      <button
+        type="button"
+        class="password-toggle"
+        onclick="togglePassword()"
+        id="password-toggle"
+      >
+        👁
+      </button>
+
     </div>
 
-    <h2>
-      Forge Master ELITE
-    </h2>
-
-    <p>
-      클랜 재화 관리 시스템
-    </p>
-
-
-    <input
-      id="login-nickname"
-      type="text"
-      placeholder="닉네임"
-      autocomplete="off"
-    >
-
-
-    <input
-      id="login-password"
-      type="password"
-      placeholder="공동 비밀번호"
-      inputmode="numeric"
-      autocomplete="off"
-    >
-
 
     <button
-      class="login-btn"
-      id="member-login-btn"
-      onclick="memberLogin()"
+      class="login-main"
+      id="login-button"
+      onclick="login()"
     >
-      접속하기
+      접속
     </button>
 
 
-    <button
-      class="login-btn admin-login-btn"
-      id="admin-login-btn"
-      onclick="adminLogin()"
-    >
-      관리자 모드
-    </button>
+    <div id="login-status"></div>
 
 
-    <div
-      id="login-status"
-      class="login-status"
-    ></div>
+    <div class="login-hint">
 
-
-    <div class="login-help">
-
-      일반 접속은 닉네임 + 공동 비밀번호를 사용합니다.<br>
-      관리자 접속은 관리자 비밀번호만 사용합니다.
+      일반 접속자는 공동비밀번호를 사용합니다.<br>
+      관리자 모드는 관리자 비밀번호로 접속합니다.
 
     </div>
 
@@ -874,17 +978,11 @@ body.admin-mode .member-only{
 <div class="container">
 
 
-  <!-- HEADER -->
-
   <div class="header">
 
-    <div class="logo">
-      ⚒️
-    </div>
+    <div class="logo">⚒️</div>
 
-    <h1>
-      Forge Master
-    </h1>
+    <h1>Forge Master</h1>
 
     <div class="subtitle">
       ELITE 클랜 재화 현황
@@ -893,21 +991,20 @@ body.admin-mode .member-only{
 
     <div class="header-buttons">
 
-      <button
-        id="mode-button"
-        class="header-btn admin-mode-btn"
-        style="display:none"
-        onclick="switchToMemberMode()"
+      <div
+        id="admin-mode-badge"
+        class="admin-mode-badge"
+        style="display:none;"
       >
-        일반모드
-      </button>
+        👑 관리자 모드
+      </div>
 
 
       <button
-        class="header-btn logout-btn"
+        class="logout-btn"
         onclick="logout()"
       >
-        로그아웃
+        나가기
       </button>
 
     </div>
@@ -915,7 +1012,33 @@ body.admin-mode .member-only{
   </div>
 
 
-  <!-- NOTICE -->
+  <!-- =======================================================
+       MY INFO
+  ======================================================== -->
+
+  <div
+    id="my-info"
+    class="my-info"
+  >
+
+    <div class="my-info-title">
+      👤 내 재화
+    </div>
+
+    <div
+      id="my-name"
+      class="my-info-name"
+    >
+      -
+    </div>
+
+    <div
+      id="my-info-grid"
+      class="my-info-grid"
+    ></div>
+
+  </div>
+
 
   <div class="notice">
 
@@ -938,50 +1061,18 @@ body.admin-mode .member-only{
   </div>
 
 
-  <!-- MY PROFILE -->
+  <!-- =======================================================
+       VIEW BUTTONS
+  ======================================================== -->
 
-  <div
-    id="my-profile"
-    class="my-profile"
-  >
-
-    <div class="profile-top">
-
-      <div
-        id="profile-name"
-        class="profile-name"
-      >
-        -
-      </div>
-
-      <div
-        id="profile-mode"
-        class="profile-mode mode-member"
-      >
-        회원
-      </div>
-
-    </div>
-
-
-    <div
-      id="profile-resources"
-      class="profile-resources"
-    ></div>
-
-  </div>
-
-
-  <!-- VIEW BUTTONS -->
-
-  <div class="view-buttons">
+  <div class="view-toolbar">
 
     <button
       class="view-btn active"
       data-view="all"
       onclick="setView('all')"
     >
-      👥 클원현황
+      📊 전체
     </button>
 
 
@@ -990,7 +1081,7 @@ body.admin-mode .member-only{
       data-view="ascension"
       onclick="setView('ascension')"
     >
-      ⚡ 승천대기
+      ⬆️ 승천대기
     </button>
 
 
@@ -1008,7 +1099,7 @@ body.admin-mode .member-only{
       data-view="skill"
       onclick="setView('skill')"
     >
-      📘 스킬
+      ✨ 스킬
     </button>
 
 
@@ -1026,7 +1117,7 @@ body.admin-mode .member-only{
       data-view="eggmerge"
       onclick="setView('eggmerge')"
     >
-      🥚 알합치기
+      🔗 알합치기
     </button>
 
 
@@ -1044,18 +1135,17 @@ body.admin-mode .member-only{
       data-view="mountmerge"
       onclick="setView('mountmerge')"
     >
-      🐎 탈것합치기
+      🔗 탈것합치기
     </button>
 
   </div>
 
 
-  <!-- TOOLBAR -->
+  <!-- =======================================================
+       SEARCH / SORT
+  ======================================================== -->
 
-  <div
-    id="toolbar"
-    class="toolbar"
-  >
+  <div class="toolbar">
 
     <input
       id="search"
@@ -1104,170 +1194,153 @@ body.admin-mode .member-only{
   </div>
 
 
-  <!-- STATUS -->
-
   <div
     id="status"
     class="status"
-  ></div>
+  >
+    데이터를 불러오는 중...
+  </div>
 
 
-  <!-- SUMMARY -->
+  <!-- =======================================================
+       MEMBER SECTION
+  ======================================================== -->
 
   <div
-    id="summary"
-    class="clan-summary"
+    id="member-section"
+    class="member-section"
   >
 
-    <div
-      class="summary-header"
-      onclick="toggleSummary()"
-    >
+    <div class="section-header">
 
-      <div class="summary-title">
-        📊 종합 현황
+      <div class="section-title">
+        👥 클원현황
+        <span id="member-count">
+          0명
+        </span>
       </div>
 
-      <div
-        id="summary-arrow"
-        class="summary-arrow"
+
+      <button
+        id="section-toggle"
+        class="section-toggle"
+        onclick="toggleSection()"
       >
-        ▲
-      </div>
+        접기
+      </button>
 
     </div>
 
 
-    <div
-      id="summary-content"
-      class="summary-content"
-    >
+    <div class="table-wrap">
 
-      <div
-        id="summary-grid"
-        class="summary-grid"
-      ></div>
+      <table>
+
+        <thead>
+
+          <tr>
+
+            <th class="normal-resource">
+              수정
+            </th>
+
+            <th class="normal-resource">
+              승천대기
+            </th>
+
+            <th>
+              닉네임
+            </th>
+
+            <th class="col-all col-chomul">
+              초물
+            </th>
+
+            <th class="col-all col-skill">
+              스킬
+            </th>
+
+            <th class="col-all col-eggshell">
+              알껍질
+            </th>
+
+            <th class="col-all col-eggmerge">
+              알합치기
+            </th>
+
+            <th class="col-all col-mount">
+              탈것
+            </th>
+
+            <th class="col-all col-mountmerge">
+              탈것합치기
+            </th>
+
+            <th class="col-all">
+              마지막 수정
+            </th>
+
+            <th class="admin-only">
+              관리자
+            </th>
+
+          </tr>
+
+        </thead>
+
+
+        <tbody id="members"></tbody>
+
+
+        <tfoot>
+
+          <tr class="total">
+
+            <td colspan="3">
+              합계
+            </td>
+
+            <td id="total-chomul">
+              0
+            </td>
+
+            <td id="total-skill">
+              0
+            </td>
+
+            <td id="total-eggshell">
+              0
+            </td>
+
+            <td id="total-eggmerge">
+              0개
+            </td>
+
+            <td id="total-mount">
+              0
+            </td>
+
+            <td id="total-mountmerge">
+              0개
+            </td>
+
+            <td>
+              -
+            </td>
+
+            <td class="admin-only">
+              -
+            </td>
+
+          </tr>
+
+        </tfoot>
+
+      </table>
 
     </div>
 
   </div>
-
-
-  <!-- TABLE -->
-
-  <div
-    id="table-section"
-    class="table-wrap"
-  >
-
-    <table>
-
-      <thead>
-
-        <tr>
-
-          <th>
-            수정
-          </th>
-
-          <th>
-            승천대기
-          </th>
-
-          <th>
-            닉네임
-          </th>
-
-          <th>
-            초물
-          </th>
-
-          <th>
-            스킬
-          </th>
-
-          <th>
-            알껍질
-          </th>
-
-          <th>
-            알합치기
-          </th>
-
-          <th>
-            탈것
-          </th>
-
-          <th>
-            탈것합치기
-          </th>
-
-          <th>
-            마지막 수정
-          </th>
-
-        </tr>
-
-      </thead>
-
-
-      <tbody
-        id="members"
-      ></tbody>
-
-
-      <tfoot>
-
-        <tr class="total">
-
-          <td>
-            합계
-          </td>
-
-          <td>
-            -
-          </td>
-
-          <td>
-            -
-          </td>
-
-          <td id="total-chomul">
-            0
-          </td>
-
-          <td id="total-skill">
-            0
-          </td>
-
-          <td id="total-eggshell">
-            0
-          </td>
-
-          <td id="total-eggmerge">
-            0개
-          </td>
-
-          <td id="total-mount">
-            0
-          </td>
-
-          <td id="total-mountmerge">
-            0개
-          </td>
-
-          <td>
-            -
-          </td>
-
-        </tr>
-
-      </tfoot>
-
-    </table>
-
-  </div>
-
 
 </div>
 
@@ -1294,74 +1367,64 @@ window.supabase.createClient(
 
 
 /* =========================================================
-   STATE
+   PASSWORD
+========================================================= */
+
+const COMMON_PASSWORD =
+"1120";
+
+const ADMIN_PASSWORD =
+"E1120";
+
+
+/* =========================================================
+   DATA
 ========================================================= */
 
 let members = [];
 
-let currentMember = null;
+let currentName = "";
 
 let isAdmin = false;
 
 let currentView = "all";
 
-let summaryOpen = true;
-
-let editingId = null;
+let sectionCollapsed = false;
 
 
 /* =========================================================
-   STORAGE
+   LOGIN PASSWORD
 ========================================================= */
 
-const SESSION_KEY =
-"forge_master_session_v1";
+function togglePassword(){
 
-
-function saveSession(){
-
-  localStorage.setItem(
-    SESSION_KEY,
-    JSON.stringify({
-      nickname:
-        currentMember?.nickname || "",
-      admin:
-        isAdmin
-    })
-  );
-
-}
-
-
-function clearSession(){
-
-  localStorage.removeItem(
-    SESSION_KEY
-  );
-
-}
-
-
-function getSession(){
-
-  try{
-
-    const value =
-      localStorage.getItem(
-        SESSION_KEY
-      );
-
-    if(!value)
-      return null;
-
-    return JSON.parse(
-      value
+  const input =
+    document.getElementById(
+      "login-password"
     );
 
-  }
-  catch{
+  const button =
+    document.getElementById(
+      "password-toggle"
+    );
 
-    return null;
+
+  if(
+    input.type === "password"
+  ){
+
+    input.type = "text";
+
+    button.textContent =
+      "🙈";
+
+  }
+  else{
+
+    input.type = "text";
+
+    button.textContent =
+      "👁";
 
   }
 
@@ -1369,7 +1432,7 @@ function getSession(){
 
 
 /* =========================================================
-   LOGIN UI
+   SHOW LOGIN
 ========================================================= */
 
 function showLogin(){
@@ -1387,6 +1450,10 @@ function showLogin(){
 }
 
 
+/* =========================================================
+   SHOW APP
+========================================================= */
+
 function showApp(){
 
   document.getElementById(
@@ -1403,20 +1470,23 @@ function showApp(){
 
 
 /* =========================================================
-   MEMBER LOGIN
+   LOGIN
 ========================================================= */
 
-async function memberLogin(){
+async function login(){
 
-  const nickname =
+  const name =
     document.getElementById(
-      "login-nickname"
+      "login-name"
     ).value.trim();
 
-  const password =
+  const passwordInput =
     document.getElementById(
       "login-password"
-    ).value;
+    );
+
+  const password =
+    passwordInput.value.trim();
 
   const status =
     document.getElementById(
@@ -1425,11 +1495,11 @@ async function memberLogin(){
 
   const button =
     document.getElementById(
-      "member-login-btn"
+      "login-button"
     );
 
 
-  if(!nickname){
+  if(!name){
 
     status.textContent =
       "닉네임을 입력해주세요.";
@@ -1442,7 +1512,7 @@ async function memberLogin(){
   if(!password){
 
     status.textContent =
-      "공동 비밀번호를 입력해주세요.";
+      "비밀번호를 입력해주세요.";
 
     return;
 
@@ -1456,327 +1526,94 @@ async function memberLogin(){
     "접속 중...";
 
 
-  const {
-    data,
-    error
-  } =
-  await supabaseClient.rpc(
-    "forge_login",
-    {
-      input_nickname:
-        nickname,
-
-      input_password:
-        password
-    }
-  );
-
-
-  button.disabled =
-    false;
-
-
-  if(error){
-
-    console.error(error);
-
-    status.textContent =
-      "접속 실패: " +
-      error.message;
-
-    return;
-
-  }
-
+  /* =======================================================
+     ADMIN LOGIN
+  ======================================================== */
 
   if(
-    !data ||
-    !data.success
+    password === ADMIN_PASSWORD
   ){
 
-    status.textContent =
-      data?.message ||
-      "접속할 수 없습니다.";
+    isAdmin = true;
 
-    return;
+    currentName =
+      name;
 
-  }
-
-
-  currentMember =
-    data.member;
-
-  isAdmin =
-    false;
-
-
-  saveSession();
-
-  showApp();
-
-  updateModeUI();
-
-  await loadMemberData();
-
-}
-
-
-/* =========================================================
-   ADMIN LOGIN
-========================================================= */
-
-async function adminLogin(){
-
-  const password =
-    document.getElementById(
-      "login-password"
-    ).value;
-
-  const nickname =
-    document.getElementById(
-      "login-nickname"
-    ).value.trim();
-
-  const status =
-    document.getElementById(
-      "login-status"
+    localStorage.setItem(
+      "forge_name",
+      name
     );
 
-  const button =
-    document.getElementById(
-      "admin-login-btn"
+    localStorage.setItem(
+      "forge_admin",
+      "true"
     );
 
-
-  if(!password){
-
-    status.textContent =
-      "관리자 비밀번호를 입력해주세요.";
-
-    return;
-
-  }
-
-
-  button.disabled =
-    true;
-
-  status.textContent =
-    "관리자 모드 접속 중...";
-
-
-  const {
-    data,
-    error
-  } =
-  await supabaseClient.rpc(
-    "forge_admin_login",
-    {
-      input_password:
-        password
-    }
-  );
-
-
-  button.disabled =
-    false;
-
-
-  if(error){
-
-    console.error(error);
+    button.disabled =
+      false;
 
     status.textContent =
-      "접속 실패: " +
-      error.message;
-
-    return;
-
-  }
-
-
-  if(
-    !data ||
-    !data.success
-  ){
-
-    status.textContent =
-      data?.message ||
-      "관리자 접속에 실패했습니다.";
-
-    return;
-
-  }
-
-
-  currentMember = {
-
-    nickname:
-      nickname ||
-      "관리자"
-
-  };
-
-  isAdmin =
-    true;
-
-
-  saveSession();
-
-  showApp();
-
-  updateModeUI();
-
-  await loadAllMembers(
-    password
-  );
-
-}
-
-
-/* =========================================================
-   SESSION AUTO LOGIN
-========================================================= */
-
-async function restoreSession(){
-
-  const session =
-    getSession();
-
-
-  if(!session){
-
-    showLogin();
-
-    return;
-
-  }
-
-
-  if(session.admin){
-
-    const password =
-      prompt(
-        "관리자 모드 비밀번호를 입력해주세요."
-      );
-
-
-    if(!password){
-
-      clearSession();
-
-      showLogin();
-
-      return;
-
-    }
-
-
-    const {
-      data,
-      error
-    } =
-    await supabaseClient.rpc(
-      "forge_admin_login",
-      {
-        input_password:
-          password
-      }
-    );
-
-
-    if(
-      error ||
-      !data ||
-      !data.success
-    ){
-
-      clearSession();
-
-      showLogin();
-
-      return;
-
-    }
-
-
-    currentMember = {
-
-      nickname:
-        session.nickname ||
-        "관리자"
-
-    };
-
-    isAdmin =
-      true;
+      "";
 
     showApp();
 
-    updateModeUI();
+    applyMode();
 
-    await loadAllMembers(
-      password
-    );
+    await loadMembers();
 
     return;
 
   }
 
 
-  const nickname =
-    session.nickname;
-
-
-  if(!nickname){
-
-    clearSession();
-
-    showLogin();
-
-    return;
-
-  }
-
-
-  const {
-    data,
-    error
-  } =
-  await supabaseClient.rpc(
-    "forge_get_member",
-    {
-      input_nickname:
-        nickname
-    }
-  );
-
+  /* =======================================================
+     NORMAL LOGIN
+  ======================================================== */
 
   if(
-    error ||
-    !data
+    password !== COMMON_PASSWORD
   ){
 
-    clearSession();
+    button.disabled =
+      false;
 
-    showLogin();
+    status.textContent =
+      "❌ 비밀번호가 올바르지 않습니다.";
 
     return;
 
   }
 
-
-  currentMember =
-    data;
 
   isAdmin =
     false;
 
+  currentName =
+    name;
+
+
+  localStorage.setItem(
+    "forge_name",
+    name
+  );
+
+  localStorage.setItem(
+    "forge_admin",
+    "false"
+  );
+
+
+  button.disabled =
+    false;
+
+  status.textContent =
+    "";
+
   showApp();
 
-  updateModeUI();
+  applyMode();
 
-  await loadMemberData();
+  await loadMembers();
 
 }
 
@@ -1787,15 +1624,27 @@ async function restoreSession(){
 
 function logout(){
 
-  clearSession();
+  currentName =
+    "";
 
-  members = [];
+  isAdmin =
+    false;
 
-  currentMember = null;
+  members =
+    [];
 
-  isAdmin = false;
+  localStorage.removeItem(
+    "forge_name"
+  );
 
-  editingId = null;
+  localStorage.removeItem(
+    "forge_admin"
+  );
+
+  document.getElementById(
+    "login-password"
+  ).value =
+    "";
 
   showLogin();
 
@@ -1803,156 +1652,15 @@ function logout(){
 
 
 /* =========================================================
-   MEMBER DATA
+   MODE
 ========================================================= */
 
-async function loadMemberData(){
+function applyMode(){
 
-  if(
-    !currentMember ||
-    !currentMember.nickname
-  )
-    return;
-
-
-  setStatus(
-    "내 데이터를 불러오는 중..."
+  document.body.classList.remove(
+    "admin-mode",
+    "member-mode"
   );
-
-
-  const {
-    data,
-    error
-  } =
-  await supabaseClient.rpc(
-    "forge_get_member",
-    {
-      input_nickname:
-        currentMember.nickname
-    }
-  );
-
-
-  if(error){
-
-    console.error(error);
-
-    setStatus(
-      "데이터를 불러오지 못했습니다.",
-      "error"
-    );
-
-    return;
-
-  }
-
-
-  if(!data){
-
-    setStatus(
-      "회원 데이터를 찾을 수 없습니다.",
-      "error"
-    );
-
-    return;
-
-  }
-
-
-  currentMember =
-    data;
-
-  members =
-    [data];
-
-
-  renderProfile();
-
-  render();
-
-  setStatus(
-    "✅ 내 데이터 불러오기 완료",
-    "success"
-  );
-
-}
-
-
-/* =========================================================
-   ADMIN DATA
-========================================================= */
-
-async function loadAllMembers(
-  password
-){
-
-  if(!isAdmin)
-    return;
-
-
-  setStatus(
-    "전체 데이터를 불러오는 중..."
-  );
-
-
-  const {
-    data,
-    error
-  } =
-  await supabaseClient.rpc(
-    "forge_get_all_members",
-    {
-      input_password:
-        password
-    }
-  );
-
-
-  if(error){
-
-    console.error(error);
-
-    setStatus(
-      "전체 데이터를 불러오지 못했습니다.",
-      "error"
-    );
-
-    return;
-
-  }
-
-
-  members =
-    data || [];
-
-
-  renderProfile();
-
-  render();
-
-  setStatus(
-    "✅ 관리자 모드 · 전체 클원 표시",
-    "success"
-  );
-
-}
-
-
-/* =========================================================
-   MODE UI
-========================================================= */
-
-function updateModeUI(){
-
-  const mode =
-    document.getElementById(
-      "profile-mode"
-    );
-
-  const modeButton =
-    document.getElementById(
-      "mode-button"
-    );
 
 
   if(isAdmin){
@@ -1961,29 +1669,21 @@ function updateModeUI(){
       "admin-mode"
     );
 
-    mode.textContent =
-      "관리자";
-
-    mode.className =
-      "profile-mode mode-admin";
-
-    modeButton.style.display =
-      "inline-block";
+    document.getElementById(
+      "admin-mode-badge"
+    ).style.display =
+      "block";
 
   }
   else{
 
-    document.body.classList.remove(
-      "admin-mode"
+    document.body.classList.add(
+      "member-mode"
     );
 
-    mode.textContent =
-      "회원";
-
-    mode.className =
-      "profile-mode mode-member";
-
-    modeButton.style.display =
+    document.getElementById(
+      "admin-mode-badge"
+    ).style.display =
       "none";
 
   }
@@ -1992,43 +1692,126 @@ function updateModeUI(){
 
 
 /* =========================================================
-   SWITCH MEMBER MODE
+   AUTH RESTORE
 ========================================================= */
 
-async function switchToMemberMode(){
+async function restoreLogin(){
 
-  if(!currentMember)
-    return;
+  const savedName =
+    localStorage.getItem(
+      "forge_name"
+    );
 
-
-  const nickname =
-    prompt(
-      "회원 모드로 볼 닉네임을 입력해주세요.",
-      currentMember.nickname || ""
+  const savedAdmin =
+    localStorage.getItem(
+      "forge_admin"
     );
 
 
-  if(!nickname)
+  if(
+    savedName &&
+    savedAdmin
+  ){
+
+    currentName =
+      savedName;
+
+    isAdmin =
+      savedAdmin ===
+      "true";
+
+
+    showApp();
+
+    applyMode();
+
+    await loadMembers();
+
     return;
+
+  }
+
+
+  showLogin();
+
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+function setStatus(
+  message,
+  type=""
+){
+
+  const element =
+    document.getElementById(
+      "status"
+    );
+
+  element.textContent =
+    message;
+
+  element.className =
+    "status " +
+    type;
+
+}
+
+
+/* =========================================================
+   LOAD MEMBERS
+========================================================= */
+
+async function loadMembers(){
+
+  setStatus(
+    "데이터를 불러오는 중..."
+  );
 
 
   const {
     data,
     error
   } =
-  await supabaseClient.rpc(
-    "forge_get_member",
-    {
-      input_nickname:
-        nickname
-    }
-  );
+  await supabaseClient
+    .from("clan_members")
+    .select(`
+      id,
+      created_at,
+      updated_at,
+      nickname,
+      초물,
+      스킬,
+      알껍질,
+      알합치기,
+      탈것,
+      탈것합치기,
+      스킬_lv,
+      알껍질_lv,
+      탈것_lv,
+      스,
+      펫,
+      탈
+    `)
+    .order(
+      "id",
+      {
+        ascending:true
+      }
+    );
 
 
-  if(error || !data){
+  if(error){
 
-    alert(
-      "해당 닉네임을 찾을 수 없습니다."
+    console.error(error);
+
+    setStatus(
+      "❌ 데이터를 불러오지 못했습니다: " +
+      error.message,
+      "error"
     );
 
     return;
@@ -2036,136 +1819,117 @@ async function switchToMemberMode(){
   }
 
 
-  currentMember =
-    data;
-
-  isAdmin =
-    false;
-
   members =
-    [data];
+    (data || []).map(
+      row => ({
 
+        id:
+          row.id,
 
-  saveSession();
+        created_at:
+          row.created_at,
 
-  updateModeUI();
+        updated_at:
+          row.updated_at,
 
-  renderProfile();
+        name:
+          row.nickname ||
+          "",
+
+        chomul:
+          row.초물 ||
+          "",
+
+        skill:
+          row.스킬 ||
+          "",
+
+        skill_lv:
+          Number(
+            row.스킬_lv ||
+            0
+          ),
+
+        eggshell:
+          row.알껍질 ||
+          "",
+
+        eggshell_lv:
+          Number(
+            row.알껍질_lv ||
+            0
+          ),
+
+        eggmerge:
+          Number(
+            row.알합치기 ||
+            0
+          ),
+
+        mount:
+          row.탈것 ||
+          "",
+
+        mount_lv:
+          Number(
+            row.탈것_lv ||
+            0
+          ),
+
+        mountmerge:
+          Number(
+            row.탈것합치기 ||
+            0
+          ),
+
+        스:
+          !!row.스,
+
+        펫:
+          !!row.펫,
+
+        탈:
+          !!row.탈
+
+      })
+    );
+
 
   render();
+
+  updateMyInfo();
+
+
+  setStatus(
+    "✅ 데이터 불러오기 완료",
+    "success"
+  );
 
 }
 
 
 /* =========================================================
-   PROFILE
+   REALTIME
 ========================================================= */
 
-function renderProfile(){
+supabaseClient
+.channel(
+  "forge-master-live"
+)
+.on(
+  "postgres_changes",
+  {
+    event:"*",
+    schema:"public",
+    table:"clan_members"
+  },
+  () => {
 
-  if(!currentMember)
-    return;
+    loadMembers();
 
-
-  document.getElementById(
-    "profile-name"
-  ).textContent =
-    currentMember.nickname ||
-    "-";
-
-
-  const resources =
-    document.getElementById(
-      "profile-resources"
-    );
-
-
-  resources.innerHTML = `
-
-    ${profileResource(
-      "초물",
-      currentMember.초물,
-      "chomul"
-    )}
-
-    ${profileResource(
-      "스킬",
-      currentMember.스킬,
-      "skill"
-    )}
-
-    ${profileResource(
-      "알껍질",
-      currentMember.알껍질,
-      "eggshell"
-    )}
-
-    ${profileResource(
-      "알합치기",
-      currentMember.알합치기 + "개",
-      "eggmerge"
-    )}
-
-    ${profileResource(
-      "탈것",
-      currentMember.탈것,
-      "mount"
-    )}
-
-    ${profileResource(
-      "탈것합치기",
-      currentMember.탈것합치기 + "개",
-      "mountmerge"
-    )}
-
-  `;
-
-}
-
-
-function profileResource(
-  title,
-  value,
-  type
-){
-
-  const red =
-    (
-      type === "skill" &&
-      toNumber(value) >= 50000
-    ) ||
-    (
-      type === "eggshell" &&
-      toNumber(value) >= 50000
-    ) ||
-    (
-      type === "mount" &&
-      toNumber(value) >= 30000
-    );
-
-
-  return `
-
-    <div class="profile-resource">
-
-      <div class="profile-resource-title">
-        ${title}
-      </div>
-
-      <div
-        class="
-          profile-resource-value
-          ${red ? "red-text" : ""}
-        "
-      >
-        ${escapeHtml(value ?? "0")}
-      </div>
-
-    </div>
-
-  `;
-
-}
+  }
+)
+.subscribe();
 
 
 /* =========================================================
@@ -2178,6 +1942,38 @@ function setView(
 
   currentView =
     view;
+
+
+  const classes = [
+    "view-chomul",
+    "view-skill",
+    "view-eggshell",
+    "view-eggmerge",
+    "view-mount",
+    "view-mountmerge",
+    "view-ascension"
+  ];
+
+
+  classes.forEach(
+    className => {
+
+      document.body.classList.remove(
+        className
+      );
+
+    }
+  );
+
+
+  if(view !== "all"){
+
+    document.body.classList.add(
+      "view-" +
+      view
+    );
+
+  }
 
 
   document
@@ -2197,66 +1993,42 @@ function setView(
     );
 
 
-  const toolbar =
-    document.getElementById(
-      "toolbar"
-    );
-
-
-  const table =
-    document.getElementById(
-      "table-section"
-    );
-
-
-  if(
-    view === "all"
-  ){
-
-    toolbar.style.display =
-      "flex";
-
-    table.style.display =
-      "block";
-
-  }
-  else{
-
-    toolbar.style.display =
-      "none";
-
-  }
-
-
   render();
 
 }
 
 
 /* =========================================================
-   SUMMARY TOGGLE
+   SECTION TOGGLE
 ========================================================= */
 
-function toggleSummary(){
+function toggleSection(){
 
-  summaryOpen =
-    !summaryOpen;
+  const section =
+    document.getElementById(
+      "member-section"
+    );
+
+  const button =
+    document.getElementById(
+      "section-toggle"
+    );
 
 
-  document.getElementById(
-    "summary-content"
-  ).style.display =
-    summaryOpen
-      ? "block"
-      : "none";
+  sectionCollapsed =
+    !sectionCollapsed;
 
 
-  document.getElementById(
-    "summary-arrow"
-  ).textContent =
-    summaryOpen
-      ? "▲"
-      : "▼";
+  section.classList.toggle(
+    "collapsed",
+    sectionCollapsed
+  );
+
+
+  button.textContent =
+    sectionCollapsed
+      ? "펼치기"
+      : "접기";
 
 }
 
@@ -2267,139 +2039,14 @@ function toggleSummary(){
 
 function render(){
 
-  renderSummary();
-
-
-  if(
-    currentView ===
-    "ascension"
-  ){
-
-    renderAscension();
-
-    return;
-
-  }
-
-
-  if(
-    currentView !==
-    "all"
-  ){
-
-    renderResourceView(
-      currentView
-    );
-
-    return;
-
-  }
-
-
-  renderAll();
-
-}
-
-
-/* =========================================================
-   SUMMARY
-========================================================= */
-
-function renderSummary(){
-
-  const fields = [
-
-    ["초물","chomul"],
-    ["스킬","skill"],
-    ["알껍질","eggshell"],
-    ["알합치기","eggmerge"],
-    ["탈것","mount"],
-    ["탈것합치기","mountmerge"]
-
-  ];
-
-
-  const totals = {};
-
-
-  fields.forEach(
-    ([title,key]) => {
-
-      totals[key] = 0;
-
-    }
-  );
-
-
-  members.forEach(
-    member => {
-
-      fields.forEach(
-        ([title,key]) => {
-
-          totals[key] +=
-            toNumber(
-              member[
-                koreanField(key)
-              ]
-            );
-
-        }
-      );
-
-    }
-  );
-
-
-  const grid =
-    document.getElementById(
-      "summary-grid"
-    );
-
-
-  grid.innerHTML =
-    fields
-      .map(
-        ([title,key]) => `
-
-          <div class="summary-item">
-
-            <div class="summary-label">
-              ${title}
-            </div>
-
-            <div class="summary-value">
-              ${
-                key === "eggmerge" ||
-                key === "mountmerge"
-                  ? Math.round(
-                      totals[key]
-                    ) + "개"
-                  : formatNumber(
-                      totals[key]
-                    )
-              }
-            </div>
-
-          </div>
-
-        `
-      )
-      .join("");
-
-}
-
-
-/* =========================================================
-   ALL
-========================================================= */
-
-function renderAll(){
-
   const tbody =
     document.getElementById(
       "members"
     );
+
+
+  if(!tbody)
+    return;
 
 
   tbody.innerHTML =
@@ -2409,6 +2056,30 @@ function renderAll(){
   let list =
     [...members];
 
+
+  /* =======================================================
+     NORMAL USER = OWN MEMBER ONLY
+  ======================================================== */
+
+  if(!isAdmin){
+
+    list =
+      list.filter(
+        member =>
+          normalizeName(
+            member.name
+          ) ===
+          normalizeName(
+            currentName
+          )
+      );
+
+  }
+
+
+  /* =======================================================
+     SEARCH
+  ======================================================== */
 
   const search =
     (
@@ -2421,20 +2092,13 @@ function renderAll(){
     .toLowerCase();
 
 
-  const sort =
-    document.getElementById(
-      "sort"
-    )?.value ||
-    "default";
-
-
   if(search){
 
     list =
       list.filter(
         member =>
           String(
-            member.nickname
+            member.name
           )
           .toLowerCase()
           .includes(search)
@@ -2443,39 +2107,80 @@ function renderAll(){
   }
 
 
-  if(sort !== "default"){
+  /* =======================================================
+     ASCENSION FILTER
+  ======================================================== */
+
+  if(
+    currentView ===
+    "ascension"
+  ){
+
+    list =
+      list.filter(
+        member =>
+          member.스 ||
+          member.펫 ||
+          member.탈
+      );
+
+  }
+
+
+  /* =======================================================
+     SORT
+  ======================================================== */
+
+  const sort =
+    document.getElementById(
+      "sort"
+    )?.value ||
+    "default";
+
+
+  if(
+    sort !== "default"
+  ){
 
     list.sort(
       (a,b) =>
-
         toNumber(
-          b[
-            koreanField(sort)
-          ]
-        )
-        -
+          b[sort]
+        ) -
         toNumber(
-          a[
-            koreanField(sort)
-          ]
+          a[sort]
         )
-
     );
 
   }
 
 
-  if(list.length === 0){
+  document.getElementById(
+    "member-count"
+  ).textContent =
+    list.length +
+    "명";
+
+
+  if(
+    list.length === 0
+  ){
 
     tbody.innerHTML = `
 
       <tr>
 
         <td
-          colspan="10"
+          colspan="11"
           class="empty"
         >
-          표시할 회원이 없습니다.
+
+          ${
+            isAdmin
+              ? "등록된 클랜원이 없습니다."
+              : "등록된 닉네임을 찾을 수 없습니다."
+          }
+
         </td>
 
       </tr>
@@ -2490,12 +2195,311 @@ function renderAll(){
 
 
   list.forEach(
-    member => {
+    (member,index) => {
+
+      const originalIndex =
+        members.findIndex(
+          item =>
+            item.id ===
+            member.id
+        );
+
+
+      const tr =
+        document.createElement(
+          "tr"
+        );
+
+
+      tr.className =
+        isAdmin
+          ? ""
+          : "other-member";
+
+
+      tr.innerHTML = `
+
+<td class="normal-resource">
+
+<button
+  class="edit-btn"
+  id="edit-${originalIndex}"
+  onclick="editMember(${originalIndex})"
+>
+수정
+</button>
+
+<button
+  class="save-btn"
+  id="save-${originalIndex}"
+  onclick="saveMember(${originalIndex})"
+>
+저장
+</button>
+
+</td>
+
+
+<td class="normal-resource">
+
+<div class="check-group">
+
+<label class="check-item">
+
+<input
+  type="checkbox"
+  class="checkbox"
+  id="check_s-${originalIndex}"
+  ${member.스 ? "checked" : ""}
+  onchange="toggleCheck(${originalIndex},'스')"
+>
+
+<span>스</span>
+
+</label>
+
+
+<label class="check-item">
+
+<input
+  type="checkbox"
+  class="checkbox"
+  id="check_pet-${originalIndex}"
+  ${member.펫 ? "checked" : ""}
+  onchange="toggleCheck(${originalIndex},'펫')"
+>
+
+<span>펫</span>
+
+</label>
+
+
+<label class="check-item">
+
+<input
+  type="checkbox"
+  class="checkbox"
+  id="check_tal-${originalIndex}"
+  ${member.탈 ? "checked" : ""}
+  onchange="toggleCheck(${originalIndex},'탈')"
+>
+
+<span>탈</span>
+
+</label>
+
+</div>
+
+</td>
+
+
+<td class="name-cell">
+
+${
+sort !== "default" &&
+isAdmin
+?
+`<span class="rank">
+${index+1}위
+</span>`
+:
+""
+}
+
+<input
+  class="name-input"
+  id="name-${originalIndex}"
+  value="${escapeHtml(member.name)}"
+  disabled
+>
+
+</td>
+
+
+<td class="col-all col-chomul">
+
+<input
+  class="resource-input"
+  id="chomul-${originalIndex}"
+  value="${escapeHtml(member.chomul)}"
+  disabled
+>
+
+</td>
+
+
+<td class="col-all col-skill">
+
+<div class="resource-box">
+
+<span class="lv-label">
+LV
+</span>
+
+<input
+  class="lv-input"
+  id="skill_lv-${originalIndex}"
+  type="number"
+  min="0"
+  step="1"
+  value="${member.skill_lv}"
+  disabled
+>
+
+<input
+  class="resource-input"
+  id="skill-${originalIndex}"
+  value="${escapeHtml(member.skill)}"
+  disabled
+  oninput="checkColor(this,'skill')"
+>
+
+</div>
+
+</td>
+
+
+<td class="col-all col-eggshell">
+
+<div class="resource-box">
+
+<span class="lv-label">
+LV
+</span>
+
+<input
+  class="lv-input"
+  id="eggshell_lv-${originalIndex}"
+  type="number"
+  min="0"
+  step="1"
+  value="${member.eggshell_lv}"
+  disabled
+>
+
+<input
+  class="resource-input"
+  id="eggshell-${originalIndex}"
+  value="${escapeHtml(member.eggshell)}"
+  disabled
+  oninput="checkColor(this,'eggshell')"
+>
+
+</div>
+
+</td>
+
+
+<td class="col-all col-eggmerge">
+
+<input
+  class="resource-input"
+  type="number"
+  min="0"
+  step="1"
+  id="eggmerge-${originalIndex}"
+  value="${member.eggmerge}"
+  disabled
+>
+
+</td>
+
+
+<td class="col-all col-mount">
+
+<div class="resource-box">
+
+<span class="lv-label">
+LV
+</span>
+
+<input
+  class="lv-input"
+  id="mount_lv-${originalIndex}"
+  type="number"
+  min="0"
+  step="1"
+  value="${member.mount_lv}"
+  disabled
+>
+
+<input
+  class="resource-input"
+  id="mount-${originalIndex}"
+  value="${escapeHtml(member.mount)}"
+  disabled
+  oninput="checkColor(this,'mount')"
+>
+
+</div>
+
+</td>
+
+
+<td class="col-all col-mountmerge">
+
+<input
+  class="resource-input"
+  type="number"
+  min="0"
+  step="1"
+  id="mountmerge-${originalIndex}"
+  value="${member.mountmerge}"
+  disabled
+>
+
+</td>
+
+
+<td class="col-all">
+
+${formatUpdated(
+  member.updated_at
+)}
+
+</td>
+
+
+<td class="admin-only">
+
+<span class="role-badge role-admin">
+관리자
+</span>
+
+</td>
+
+`;
+
 
       tbody.appendChild(
-        createMemberRow(
-          member
-        )
+        tr
+      );
+
+
+      checkColor(
+        document.getElementById(
+          "skill-" +
+          originalIndex
+        ),
+        "skill"
+      );
+
+
+      checkColor(
+        document.getElementById(
+          "eggshell-" +
+          originalIndex
+        ),
+        "eggshell"
+      );
+
+
+      checkColor(
+        document.getElementById(
+          "mount-" +
+          originalIndex
+        ),
+        "mount"
       );
 
     }
@@ -2508,44 +2512,80 @@ function renderAll(){
 
 
 /* =========================================================
-   ASCENSION VIEW
+   MY INFO
 ========================================================= */
 
-function renderAscension(){
+function updateMyInfo(){
 
-  const tbody =
+  const myInfoGrid =
     document.getElementById(
-      "members"
+      "my-info-grid"
+    );
+
+  const myName =
+    document.getElementById(
+      "my-name"
     );
 
 
-  tbody.innerHTML =
-    "";
+  if(!myInfoGrid)
+    return;
 
 
-  const list =
-    members.filter(
-      member =>
-        member.스 ||
-        member.펫 ||
-        member.탈
-    );
+  let member;
 
 
-  if(list.length === 0){
+  if(isAdmin){
 
-    tbody.innerHTML = `
+    member =
+      members.find(
+        item =>
+          normalizeName(
+            item.name
+          ) ===
+          normalizeName(
+            currentName
+          )
+      );
 
-      <tr>
+  }
+  else{
 
-        <td
-          colspan="10"
-          class="empty"
-        >
-          현재 승천대기자가 없습니다.
-        </td>
+    member =
+      members.find(
+        item =>
+          normalizeName(
+            item.name
+          ) ===
+          normalizeName(
+            currentName
+          )
+      );
 
-      </tr>
+  }
+
+
+  myName.textContent =
+    member?.name ||
+    currentName ||
+    "-";
+
+
+  if(!member){
+
+    myInfoGrid.innerHTML = `
+
+      <div class="my-stat">
+
+        <div class="my-stat-title">
+          상태
+        </div>
+
+        <div class="my-stat-value">
+          닉네임 확인 필요
+        </div>
+
+      </div>
 
     `;
 
@@ -2554,652 +2594,138 @@ function renderAscension(){
   }
 
 
-  list.forEach(
-    member => {
-
-      const tr =
-        document.createElement(
-          "tr"
-        );
-
-
-      tr.innerHTML = `
-
-        <td>
-          -
-        </td>
-
-        <td>
-
-          ${
-            member.스
-              ? "스 "
-              : ""
-          }
-
-          ${
-            member.펫
-              ? "펫 "
-              : ""
-          }
-
-          ${
-            member.탈
-              ? "탈"
-              : ""
-          }
-
-        </td>
-
-        <td class="name-cell">
-
-          ${escapeHtml(
-            member.nickname
-          )}
-
-        </td>
-
-        <td>
-          ${escapeHtml(
-            member.초물 || "0"
-          )}
-        </td>
-
-        <td>
-          ${escapeHtml(
-            member.스킬 || "0"
-          )}
-        </td>
-
-        <td>
-          ${escapeHtml(
-            member.알껍질 || "0"
-          )}
-        </td>
-
-        <td>
-          ${Number(
-            member.알합치기 || 0
-          )}개
-        </td>
-
-        <td>
-          ${escapeHtml(
-            member.탈것 || "0"
-          )}
-        </td>
-
-        <td>
-          ${Number(
-            member.탈것합치기 || 0
-          )}개
-        </td>
-
-        <td>
-          ${formatUpdated(
-            member.updated_at
-          )}
-        </td>
-
-      `;
-
-
-      tbody.appendChild(
-        tr
-      );
-
-    }
-  );
-
-}
-
-
-/* =========================================================
-   RESOURCE VIEW
-========================================================= */
-
-function renderResourceView(
-  type
-){
-
-  const tbody =
-    document.getElementById(
-      "members"
-    );
-
-
-  tbody.innerHTML =
-    "";
-
-
-  const field =
-    koreanField(type);
-
-
-  let list =
-    [...members];
-
-
-  list.sort(
-    (a,b) =>
-      toNumber(
-        b[field]
-      )
-      -
-      toNumber(
-        a[field]
-      )
-  );
-
-
-  if(list.length === 0){
-
-    tbody.innerHTML = `
-
-      <tr>
-
-        <td
-          colspan="10"
-          class="empty"
-        >
-          표시할 데이터가 없습니다.
-        </td>
-
-      </tr>
-
-    `;
-
-    return;
-
-  }
-
-
-  list.forEach(
-    (member,index) => {
-
-      const tr =
-        document.createElement(
-          "tr"
-        );
-
-
-      const value =
-        member[field] ??
-        0;
-
-
-      const red =
-        (
-          type === "skill" &&
-          toNumber(value) >= 50000
-        ) ||
-        (
-          type === "eggshell" &&
-          toNumber(value) >= 50000
-        ) ||
-        (
-          type === "mount" &&
-          toNumber(value) >= 30000
-        );
-
-
-      tr.innerHTML = `
-
-        <td>
-          ${index + 1}위
-        </td>
-
-        <td>
-          -
-        </td>
-
-        <td class="name-cell">
-
-          ${escapeHtml(
-            member.nickname
-          )}
-
-        </td>
-
-        <td
-          colspan="6"
-          class="${
-            red ? "red" : ""
-          }"
-        >
-
-          ${
-            type === "eggmerge" ||
-            type === "mountmerge"
-              ? Math.round(
-                  toNumber(value)
-                ) + "개"
-              : escapeHtml(
-                  value || "0"
-                )
-          }
-
-        </td>
-
-        <td>
-          ${formatUpdated(
-            member.updated_at
-          )}
-        </td>
-
-      `;
-
-
-      tbody.appendChild(
-        tr
-      );
-
-    }
-  );
-
-}
-
-
-/* =========================================================
-   CREATE MEMBER ROW
-========================================================= */
-
-function createMemberRow(
-  member
-){
-
-  const tr =
-    document.createElement(
-      "tr"
-    );
-
-
-  const editable =
-    isAdmin ||
-    (
-      currentMember &&
-      currentMember.id ===
-        member.id
-    );
-
-
-  tr.innerHTML = `
-
-<td>
-
-  ${
-    editable
-      ? `
-
-        <button
-          class="edit-btn"
-          id="edit-${member.id}"
-          onclick="editMember(${member.id})"
-        >
-          수정
-        </button>
-
-        <button
-          class="save-btn"
-          id="save-${member.id}"
-          onclick="saveMember(${member.id})"
-        >
-          저장
-        </button>
-
-      `
-      : "-"
-  }
-
-</td>
-
-
-<td class="ascension-cell">
-
-  <div class="ascension-title">
-    승천대기
-  </div>
-
-  <div class="check-group">
-
-    <label class="check-item">
-
-      <input
-        type="checkbox"
-        class="checkbox"
-        id="check-s-${member.id}"
-        ${
-          member.스
-            ? "checked"
-            : ""
-        }
-        ${
-          editable
-            ? ""
-            : "disabled"
-        }
-        onchange="
-          toggleCheck(
-            ${member.id},
-            '스'
-          )
-        "
-      >
-
-      <span>
-        스
-      </span>
-
-    </label>
-
-
-    <label class="check-item">
-
-      <input
-        type="checkbox"
-        class="checkbox"
-        id="check-pet-${member.id}"
-        ${
-          member.펫
-            ? "checked"
-            : ""
-        }
-        ${
-          editable
-            ? ""
-            : "disabled"
-        }
-        onchange="
-          toggleCheck(
-            ${member.id},
-            '펫'
-          )
-        "
-      >
-
-      <span>
-        펫
-      </span>
-
-    </label>
-
-
-    <label class="check-item">
-
-      <input
-        type="checkbox"
-        class="checkbox"
-        id="check-tal-${member.id}"
-        ${
-          member.탈
-            ? "checked"
-            : ""
-        }
-        ${
-          editable
-            ? ""
-            : "disabled"
-        }
-        onchange="
-          toggleCheck(
-            ${member.id},
-            '탈'
-          )
-        "
-      >
-
-      <span>
-        탈
-      </span>
-
-    </label>
-
-  </div>
-
-</td>
-
-
-<td class="name-cell">
-
-  <input
-    class="name-input"
-    id="name-${member.id}"
-    value="${escapeHtml(
-      member.nickname
-    )}"
-    disabled
-  >
-
-</td>
-
-
-<td>
-
-  <input
-    class="resource-input"
-    id="chomul-${member.id}"
-    value="${escapeHtml(
-      member.초물 || ""
-    )}"
-    disabled
-  >
-
-</td>
-
-
-<td>
-
-  <div class="resource-box">
-
-    <span class="lv-label">
-      LV
-    </span>
-
-    <input
-      class="lv-input"
-      id="skill_lv-${member.id}"
-      type="number"
-      min="0"
-      value="${
-        member.스킬_lv || 0
-      }"
-      disabled
-    >
-
-    <input
-      class="resource-input"
-      id="skill-${member.id}"
-      value="${escapeHtml(
-        member.스킬 || ""
-      )}"
-      disabled
-    >
-
-  </div>
-
-</td>
-
-
-<td>
-
-  <div class="resource-box">
-
-    <span class="lv-label">
-      LV
-    </span>
-
-    <input
-      class="lv-input"
-      id="eggshell_lv-${member.id}"
-      type="number"
-      min="0"
-      value="${
-        member.알껍질_lv || 0
-      }"
-      disabled
-    >
-
-    <input
-      class="resource-input"
-      id="eggshell-${member.id}"
-      value="${escapeHtml(
-        member.알껍질 || ""
-      )}"
-      disabled
-    >
-
-  </div>
-
-</td>
-
-
-<td>
-
-  <input
-    class="resource-input"
-    id="eggmerge-${member.id}"
-    type="number"
-    min="0"
-    value="${
-      member.알합치기 || 0
-    }"
-    disabled
-  >
-
-</td>
-
-
-<td>
-
-  <div class="resource-box">
-
-    <span class="lv-label">
-      LV
-    </span>
-
-    <input
-      class="lv-input"
-      id="mount_lv-${member.id}"
-      type="number"
-      min="0"
-      value="${
-        member.탈것_lv || 0
-      }"
-      disabled
-    >
-
-    <input
-      class="resource-input"
-      id="mount-${member.id}"
-      value="${escapeHtml(
-        member.탈것 || ""
-      )}"
-      disabled
-    >
-
-  </div>
-
-</td>
-
-
-<td>
-
-  <input
-    class="resource-input"
-    id="mountmerge-${member.id}"
-    type="number"
-    min="0"
-    value="${
-      member.탈것합치기 || 0
-    }"
-    disabled
-  >
-
-</td>
-
-
-<td>
-
-  ${formatUpdated(
-    member.updated_at
-  )}
-
-</td>
-
-  `;
-
-
-  setTimeout(
-    () => {
-
-      checkColor(
-        document.getElementById(
-          "skill-" +
-          member.id
-        ),
-        "skill"
-      );
-
-
-      checkColor(
-        document.getElementById(
-          "eggshell-" +
-          member.id
-        ),
-        "eggshell"
-      );
-
-
-      checkColor(
-        document.getElementById(
-          "mount-" +
-          member.id
-        ),
-        "mount"
-      );
-
+  const stats = [
+
+    {
+      title:"초물",
+      value:member.chomul,
+      type:"normal"
     },
-    0
-  );
+
+    {
+      title:"스킬",
+      value:member.skill,
+      type:"skill"
+    },
+
+    {
+      title:"알껍질",
+      value:member.eggshell,
+      type:"eggshell"
+    },
+
+    {
+      title:"알합치기",
+      value:
+        member.eggmerge +
+        "개",
+      type:"normal"
+    },
+
+    {
+      title:"탈것",
+      value:member.mount,
+      type:"mount"
+    },
+
+    {
+      title:"탈것합치기",
+      value:
+        member.mountmerge +
+        "개",
+      type:"normal"
+    }
+
+  ];
 
 
-  return tr;
+  myInfoGrid.innerHTML =
+    stats.map(
+      stat => {
+
+        const red =
+          (
+            stat.type ===
+            "skill" &&
+            toNumber(
+              stat.value
+            ) >= 50000
+          )
+          ||
+          (
+            stat.type ===
+            "eggshell" &&
+            toNumber(
+              stat.value
+            ) >= 50000
+          )
+          ||
+          (
+            stat.type ===
+            "mount" &&
+            toNumber(
+              stat.value
+            ) >= 30000
+          );
+
+
+        return `
+
+        <div class="my-stat">
+
+          <div class="my-stat-title">
+            ${stat.title}
+          </div>
+
+          <div
+            class="my-stat-value ${
+              red
+                ? "red-text"
+                : ""
+            }"
+          >
+            ${escapeHtml(
+              stat.value
+            )}
+          </div>
+
+        </div>
+
+        `;
+
+      }
+    )
+    .join("");
 
 }
 
 
 /* =========================================================
-   EDIT
+   EDIT MEMBER
 ========================================================= */
 
-function editMember(
-  id
-){
+function editMember(index){
 
   const member =
-    members.find(
-      item =>
-        item.id === id
-    );
+    members[index];
 
 
   if(!member)
     return;
 
 
-  const editable =
-    isAdmin ||
-    (
-      currentMember &&
-      currentMember.id ===
-        member.id
-    );
-
-
-  if(!editable){
+  if(
+    !isAdmin &&
+    normalizeName(
+      member.name
+    ) !==
+    normalizeName(
+      currentName
+    )
+  ){
 
     alert(
-      "수정 권한이 없습니다."
+      "본인의 재화만 수정할 수 있습니다."
     );
 
     return;
@@ -3230,13 +2756,27 @@ function editMember(
         document.getElementById(
           field +
           "-" +
-          id
+          index
         );
+
 
       if(input){
 
-        input.disabled =
-          false;
+        if(
+          field === "name" &&
+          !isAdmin
+        ){
+
+          input.disabled =
+            true;
+
+        }
+        else{
+
+          input.disabled =
+            false;
+
+        }
 
       }
 
@@ -3247,14 +2787,13 @@ function editMember(
   const edit =
     document.getElementById(
       "edit-" +
-      id
+      index
     );
-
 
   const save =
     document.getElementById(
       "save-" +
-      id
+      index
     );
 
 
@@ -3268,10 +2807,6 @@ function editMember(
       "inline-block";
 
 
-  editingId =
-    id;
-
-
   setStatus(
     "✏️ 수정 중..."
   );
@@ -3280,32 +2815,46 @@ function editMember(
 
 
 /* =========================================================
-   SAVE
+   SAVE MEMBER
 ========================================================= */
 
-async function saveMember(
-  id
-){
+async function saveMember(index){
 
   const member =
-    members.find(
-      item =>
-        item.id === id
-    );
+    members[index];
 
 
   if(!member)
     return;
 
 
-  const get =
+  if(
+    !isAdmin &&
+    normalizeName(
+      member.name
+    ) !==
+    normalizeName(
+      currentName
+    )
+  ){
+
+    alert(
+      "본인의 재화만 수정할 수 있습니다."
+    );
+
+    return;
+
+  }
+
+
+  const value =
     field => {
 
       const element =
         document.getElementById(
           field +
           "-" +
-          id
+          index
         );
 
       return element
@@ -3315,210 +2864,90 @@ async function saveMember(
     };
 
 
-  const getCheck =
-    field => {
-
-      const element =
-        document.getElementById(
-          field +
-          "-" +
-          id
-        );
-
-      return element
-        ? element.checked
-        : false;
-
-    };
-
-
   setStatus(
     "💾 저장 중..."
   );
 
 
-  let result;
+  const updateData = {
 
+    초물:
+      value("chomul"),
+
+    스킬:
+      value("skill"),
+
+    스킬_lv:
+      Number(
+        value("skill_lv")
+      ) || 0,
+
+    알껍질:
+      value("eggshell"),
+
+    알껍질_lv:
+      Number(
+        value("eggshell_lv")
+      ) || 0,
+
+    알합치기:
+      Number(
+        value("eggmerge")
+      ) || 0,
+
+    탈것:
+      value("mount"),
+
+    탈것_lv:
+      Number(
+        value("mount_lv")
+      ) || 0,
+
+    탈것합치기:
+      Number(
+        value("mountmerge")
+      ) || 0,
+
+    updated_at:
+      new Date().toISOString()
+
+  };
+
+
+  /* 관리자만 닉네임 변경 */
 
   if(isAdmin){
 
-    const password =
-      prompt(
-        "관리자 비밀번호를 입력해주세요."
-      );
-
-
-    if(!password){
-
-      setStatus(
-        "저장이 취소되었습니다."
-      );
-
-      return;
-
-    }
-
-
-    result =
-      await supabaseClient.rpc(
-        "forge_admin_update",
-        {
-
-          input_password:
-            password,
-
-          member_id:
-            id,
-
-          new_nickname:
-            get("name"),
-
-          new_chomul:
-            get("chomul"),
-
-          new_skill:
-            get("skill"),
-
-          new_skill_lv:
-            Number(
-              get("skill_lv")
-            ) || 0,
-
-          new_eggshell:
-            get("eggshell"),
-
-          new_eggshell_lv:
-            Number(
-              get("eggshell_lv")
-            ) || 0,
-
-          new_eggmerge:
-            Number(
-              get("eggmerge")
-            ) || 0,
-
-          new_mount:
-            get("mount"),
-
-          new_mount_lv:
-            Number(
-              get("mount_lv")
-            ) || 0,
-
-          new_mountmerge:
-            Number(
-              get("mountmerge")
-            ) || 0,
-
-          new_s:
-            getCheck("check-s"),
-
-          new_pet:
-            getCheck("check-pet"),
-
-          new_tal:
-            getCheck("check-tal")
-
-        }
-      );
-
-  }
-  else{
-
-    const password =
-      prompt(
-        "공동 비밀번호를 입력해주세요."
-      );
-
-
-    if(!password){
-
-      setStatus(
-        "저장이 취소되었습니다."
-      );
-
-      return;
-
-    }
-
-
-    result =
-      await supabaseClient.rpc(
-        "forge_update_member",
-        {
-
-          input_password:
-            password,
-
-          input_nickname:
-            member.nickname,
-
-          new_nickname:
-            get("name"),
-
-          new_chomul:
-            get("chomul"),
-
-          new_skill:
-            get("skill"),
-
-          new_skill_lv:
-            Number(
-              get("skill_lv")
-            ) || 0,
-
-          new_eggshell:
-            get("eggshell"),
-
-          new_eggshell_lv:
-            Number(
-              get("eggshell_lv")
-            ) || 0,
-
-          new_eggmerge:
-            Number(
-              get("eggmerge")
-            ) || 0,
-
-          new_mount:
-            get("mount"),
-
-          new_mount_lv:
-            Number(
-              get("mount_lv")
-            ) || 0,
-
-          new_mountmerge:
-            Number(
-              get("mountmerge")
-            ) || 0,
-
-          new_s:
-            getCheck("check-s"),
-
-          new_pet:
-            getCheck("check-pet"),
-
-          new_tal:
-            getCheck("check-tal")
-
-        }
-      );
+    updateData.nickname =
+      value("name");
 
   }
 
 
-  if(
-    result.error
-  ){
+  const {
+    data,
+    error
+  } =
+  await supabaseClient
+    .from("clan_members")
+    .update(
+      updateData
+    )
+    .eq(
+      "id",
+      member.id
+    )
+    .select()
+    .single();
 
-    console.error(
-      result.error
-    );
+
+  if(error){
+
+    console.error(error);
 
     alert(
       "저장 실패\n\n" +
-      result.error.message
+      error.message
     );
 
     setStatus(
@@ -3531,77 +2960,82 @@ async function saveMember(
   }
 
 
-  const data =
-    result.data;
+  members[index] = {
+
+    ...member,
+
+    updated_at:
+      data.updated_at,
+
+    name:
+      data.nickname ||
+      "",
+
+    chomul:
+      data.초물 ||
+      "",
+
+    skill:
+      data.스킬 ||
+      "",
+
+    skill_lv:
+      data.스킬_lv ||
+      0,
+
+    eggshell:
+      data.알껍질 ||
+      "",
+
+    eggshell_lv:
+      data.알껍질_lv ||
+      0,
+
+    eggmerge:
+      data.알합치기 ||
+      0,
+
+    mount:
+      data.탈것 ||
+      "",
+
+    mount_lv:
+      data.탈것_lv ||
+      0,
+
+    mountmerge:
+      data.탈것합치기 ||
+      0
+
+  };
 
 
   if(
-    !data ||
-    !data.success
+    isAdmin &&
+    normalizeName(
+      member.name
+    ) ===
+    normalizeName(
+      currentName
+    )
   ){
 
-    alert(
-      "저장 실패\n\n" +
-      (
-        data?.message ||
-        "알 수 없는 오류"
-      )
+    currentName =
+      data.nickname ||
+      currentName;
+
+    localStorage.setItem(
+      "forge_name",
+      currentName
     );
 
-    setStatus(
-      "❌ 저장 실패",
-      "error"
-    );
-
-    return;
-
   }
 
-
-  const updated =
-    data.member;
-
-
-  const index =
-    members.findIndex(
-      item =>
-        item.id === id
-    );
-
-
-  if(index !== -1){
-
-    members[index] =
-      updated;
-
-  }
-
-
-  if(
-    currentMember &&
-    currentMember.id === id
-  ){
-
-    currentMember =
-      updated;
-
-  }
-
-
-  editingId =
-    null;
-
-
-  if(!isAdmin){
-
-    saveSession();
-
-  }
-
-
-  renderProfile();
 
   render();
+
+  updateMyInfo();
+
 
   setStatus(
     "✅ 저장 완료",
@@ -3616,51 +3050,59 @@ async function saveMember(
 ========================================================= */
 
 async function toggleCheck(
-  id,
+  index,
   type
 ){
 
   const member =
-    members.find(
-      item =>
-        item.id === id
-    );
+    members[index];
 
 
   if(!member)
     return;
 
 
-  const editable =
-    isAdmin ||
-    (
-      currentMember &&
-      currentMember.id ===
-        member.id
+  if(
+    !isAdmin &&
+    normalizeName(
+      member.name
+    ) !==
+    normalizeName(
+      currentName
+    )
+  ){
+
+    alert(
+      "본인의 승천대기만 수정할 수 있습니다."
     );
 
+    render();
 
-  if(!editable)
     return;
 
+  }
 
-  const checkboxId = {
+
+  const ids = {
 
     "스":
-      "check-s-" + id,
+      "check_s-" +
+      index,
 
     "펫":
-      "check-pet-" + id,
+      "check_pet-" +
+      index,
 
     "탈":
-      "check-tal-" + id
+      "check_tal-" +
+      index
 
-  }[type];
+  };
 
 
   const checkbox =
     document.getElementById(
-      checkboxId
+      ids[type]
     );
 
 
@@ -3672,142 +3114,61 @@ async function toggleCheck(
     checkbox.checked;
 
 
-  const fields = {
+  const updateData = {};
 
-    "스":
-      member.스,
-
-    "펫":
-      member.펫,
-
-    "탈":
-      member.탈
-
-  };
-
-
-  fields[type] =
+  updateData[type] =
     checked;
 
+  updateData.updated_at =
+    new Date().toISOString();
 
-  const oldMember =
-    {...member};
+
+  const {
+    error
+  } =
+  await supabaseClient
+    .from("clan_members")
+    .update(
+      updateData
+    )
+    .eq(
+      "id",
+      member.id
+    );
 
 
-  member[type] =
+  if(error){
+
+    checkbox.checked =
+      !checked;
+
+    alert(
+      "체크 저장 실패\n\n" +
+      error.message
+    );
+
+    return;
+
+  }
+
+
+  members[index][type] =
     checked;
 
+  members[index].updated_at =
+    updateData.updated_at;
 
-  /* 체크 변경은 저장 버튼 없이
-     바로 저장하지 않고
-     현재 데이터에 반영 */
 
   setStatus(
-    "☑ " +
-    type +
-    " 변경됨 · 저장 버튼을 눌러주세요."
+    checked
+      ? "✅ " +
+        type +
+        " 체크 저장됨"
+      : "☑ " +
+        type +
+        " 체크 해제됨",
+    "success"
   );
-
-}
-
-
-/* =========================================================
-   TOTAL
-========================================================= */
-
-function updateTotals(){
-
-  const fields = [
-
-    ["chomul","초물"],
-    ["skill","스킬"],
-    ["eggshell","알껍질"],
-    ["eggmerge","알합치기"],
-    ["mount","탈것"],
-    ["mountmerge","탈것합치기"]
-
-  ];
-
-
-  const totals = {};
-
-
-  fields.forEach(
-    ([key]) => {
-
-      totals[key] =
-        0;
-
-    }
-  );
-
-
-  members.forEach(
-    member => {
-
-      fields.forEach(
-        ([key,field]) => {
-
-          totals[key] +=
-            toNumber(
-              member[field]
-            );
-
-        }
-      );
-
-    }
-  );
-
-
-  document.getElementById(
-    "total-chomul"
-  ).textContent =
-    formatNumber(
-      totals.chomul
-    );
-
-
-  document.getElementById(
-    "total-skill"
-  ).textContent =
-    formatNumber(
-      totals.skill
-    );
-
-
-  document.getElementById(
-    "total-eggshell"
-  ).textContent =
-    formatNumber(
-      totals.eggshell
-    );
-
-
-  document.getElementById(
-    "total-eggmerge"
-  ).textContent =
-    Math.round(
-      totals.eggmerge
-    ) +
-    "개";
-
-
-  document.getElementById(
-    "total-mount"
-  ).textContent =
-    formatNumber(
-      totals.mount
-    );
-
-
-  document.getElementById(
-    "total-mountmerge"
-  ).textContent =
-    Math.round(
-      totals.mountmerge
-    ) +
-    "개";
 
 }
 
@@ -3875,49 +3236,10 @@ function checkColor(
 
 
 /* =========================================================
-   FIELD
-========================================================= */
-
-function koreanField(
-  key
-){
-
-  const map = {
-
-    chomul:
-      "초물",
-
-    skill:
-      "스킬",
-
-    eggshell:
-      "알껍질",
-
-    eggmerge:
-      "알합치기",
-
-    mount:
-      "탈것",
-
-    mountmerge:
-      "탈것합치기"
-
-  };
-
-
-  return map[key] ||
-    key;
-
-}
-
-
-/* =========================================================
    NUMBER
 ========================================================= */
 
-function toNumber(
-  value
-){
+function toNumber(value){
 
   if(
     value === null ||
@@ -4062,23 +3384,21 @@ function formatUpdated(
     );
 
 
-  if(minutes < 1){
+  if(
+    minutes < 1
+  ){
 
-    return `
-      <span class="success">
-        방금 수정
-      </span>
-    `;
+    return "방금 수정";
 
   }
 
 
-  if(minutes < 60){
+  if(
+    minutes < 60
+  ){
 
-    return (
-      minutes +
-      "분 전"
-    );
+    return minutes +
+      "분 전";
 
   }
 
@@ -4089,12 +3409,12 @@ function formatUpdated(
     );
 
 
-  if(hours < 24){
+  if(
+    hours < 24
+  ){
 
-    return (
-      hours +
-      "시간 전"
-    );
+    return hours +
+      "시간 전";
 
   }
 
@@ -4105,12 +3425,12 @@ function formatUpdated(
     );
 
 
-  if(days < 7){
+  if(
+    days < 7
+  ){
 
-    return (
-      days +
-      "일 전"
-    );
+    return days +
+      "일 전";
 
   }
 
@@ -4122,6 +3442,140 @@ function formatUpdated(
   "월 " +
   date.getDate() +
   "일";
+
+}
+
+
+/* =========================================================
+   TOTAL
+========================================================= */
+
+function updateTotals(){
+
+  const fields = [
+
+    "chomul",
+    "skill",
+    "eggshell",
+    "eggmerge",
+    "mount",
+    "mountmerge"
+
+  ];
+
+
+  const totals = {};
+
+
+  fields.forEach(
+    field => {
+
+      totals[field] =
+        0;
+
+    }
+  );
+
+
+  members.forEach(
+    member => {
+
+      if(
+        !isAdmin &&
+        normalizeName(
+          member.name
+        ) !==
+        normalizeName(
+          currentName
+        )
+      ){
+
+        return;
+
+      }
+
+
+      fields.forEach(
+        field => {
+
+          totals[field] +=
+            toNumber(
+              member[field]
+            );
+
+        }
+      );
+
+    }
+  );
+
+
+  document.getElementById(
+    "total-chomul"
+  ).textContent =
+    formatNumber(
+      totals.chomul
+    );
+
+
+  document.getElementById(
+    "total-skill"
+  ).textContent =
+    formatNumber(
+      totals.skill
+    );
+
+
+  document.getElementById(
+    "total-eggshell"
+  ).textContent =
+    formatNumber(
+      totals.eggshell
+    );
+
+
+  document.getElementById(
+    "total-eggmerge"
+  ).textContent =
+    Math.round(
+      totals.eggmerge
+    ) +
+    "개";
+
+
+  document.getElementById(
+    "total-mount"
+  ).textContent =
+    formatNumber(
+      totals.mount
+    );
+
+
+  document.getElementById(
+    "total-mountmerge"
+  ).textContent =
+    Math.round(
+      totals.mountmerge
+    ) +
+    "개";
+
+}
+
+
+/* =========================================================
+   NORMALIZE NAME
+========================================================= */
+
+function normalizeName(
+  value
+){
+
+  return String(
+    value ||
+    ""
+  )
+  .trim()
+  .toLowerCase();
 
 }
 
@@ -4158,74 +3612,10 @@ function escapeHtml(
 
 
 /* =========================================================
-   STATUS
-========================================================= */
-
-function setStatus(
-  message,
-  type=""
-){
-
-  const element =
-    document.getElementById(
-      "status"
-    );
-
-
-  if(!element)
-    return;
-
-
-  element.textContent =
-    message;
-
-
-  element.className =
-    "status " +
-    type;
-
-}
-
-
-/* =========================================================
-   KEYBOARD
-========================================================= */
-
-document.addEventListener(
-  "keydown",
-  event => {
-
-    if(
-      event.key ===
-      "Enter"
-    ){
-
-      const loginScreen =
-        document.getElementById(
-          "login-screen"
-        );
-
-
-      if(
-        loginScreen.style.display !==
-        "none"
-      ){
-
-        memberLogin();
-
-      }
-
-    }
-
-  }
-);
-
-
-/* =========================================================
    START
 ========================================================= */
 
-restoreSession();
+restoreLogin();
 
 </script>
 
