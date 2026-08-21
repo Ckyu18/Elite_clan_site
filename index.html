@@ -272,10 +272,15 @@ h1{
 
 .view-buttons{
   display:flex;
-  gap:6px;
+  gap:5px;
   overflow-x:auto;
   padding-bottom:5px;
   margin-bottom:8px;
+  scrollbar-width:none;
+}
+
+.view-buttons::-webkit-scrollbar{
+  display:none;
 }
 
 .view-btn{
@@ -284,7 +289,7 @@ h1{
   border-radius:8px;
   background:#111a2b;
   color:#cbd5e1;
-  padding:9px 12px;
+  padding:8px 11px;
   font-size:11px;
   font-weight:900;
   cursor:pointer;
@@ -364,14 +369,14 @@ h1{
 table{
   border-collapse:collapse;
   width:100%;
-  min-width:1100px;
+  min-width:0;
 }
 
 th{
   background:#18243a;
   color:#c8d8ef;
-  padding:9px 5px;
-  font-size:11px;
+  padding:8px 3px;
+  font-size:10px;
   white-space:nowrap;
   position:sticky;
   top:0;
@@ -379,15 +384,51 @@ th{
 }
 
 td{
-  padding:6px 4px;
+  padding:5px 3px;
   border-top:1px solid #263550;
   text-align:center;
   white-space:nowrap;
-  font-size:11px;
+  font-size:10px;
 }
 
 .name-cell{
   text-align:left;
+  width:72px;
+  max-width:72px;
+}
+
+
+/* =========================================================
+   COLUMN WIDTH
+========================================================= */
+
+th[data-column="nickname"],
+td[data-column="nickname"]{
+  width:78px;
+  min-width:78px;
+  max-width:78px;
+}
+
+th[data-column="ascension"],
+td[data-column="ascension"]{
+  width:78px;
+  min-width:78px;
+}
+
+th[data-column="chomul"],
+td[data-column="chomul"],
+th[data-column="skill"],
+td[data-column="skill"],
+th[data-column="eggshell"],
+td[data-column="eggshell"],
+th[data-column="eggmerge"],
+td[data-column="eggmerge"],
+th[data-column="mount"],
+td[data-column="mount"],
+th[data-column="mountmerge"],
+td[data-column="mountmerge"]{
+  width:78px;
+  min-width:78px;
 }
 
 
@@ -396,40 +437,78 @@ td{
 ========================================================= */
 
 .ascension-cell{
-  min-width:90px;
+  min-width:78px;
 }
 
 .ascension-title{
   color:#fbbf24;
-  font-size:11px;
+  font-size:10px;
   font-weight:900;
-  margin-bottom:5px;
+  margin-bottom:4px;
 }
 
 .check-group{
   display:flex;
   flex-direction:column;
   align-items:flex-start;
-  gap:4px;
-  padding:1px 5px;
+  gap:3px;
+  padding:1px 3px;
 }
 
 .check-item{
   display:flex;
   align-items:center;
-  gap:5px;
+  gap:3px;
   cursor:pointer;
   color:#e2e8f0;
-  font-size:11px;
+  font-size:10px;
   font-weight:700;
 }
 
 .checkbox{
-  width:18px;
-  height:18px;
+  width:16px;
+  height:16px;
   margin:0;
   accent-color:#22c55e;
   cursor:pointer;
+}
+
+
+/* =========================================================
+   ASCENSION RESOURCES
+========================================================= */
+
+.asc-resource-box{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+  align-items:center;
+}
+
+.asc-resource{
+  display:none;
+  padding:3px 5px;
+  border-radius:5px;
+  background:#172033;
+  border:1px solid #334155;
+  font-size:9px;
+  font-weight:900;
+}
+
+.asc-resource.show{
+  display:block;
+}
+
+.asc-resource.skill{
+  color:#60a5fa;
+}
+
+.asc-resource.pet{
+  color:#c084fc;
+}
+
+.asc-resource.tal{
+  color:#fbbf24;
 }
 
 
@@ -438,19 +517,22 @@ td{
 ========================================================= */
 
 input{
-  width:65px;
-  padding:7px 4px;
+  width:60px;
+  padding:6px 3px;
   border:1px solid #334155;
   border-radius:6px;
   background:#080d18;
   color:white;
   text-align:center;
-  font-size:11px;
+  font-size:10px;
 }
 
 .name-input{
-  width:95px;
+  width:67px;
+  min-width:67px;
+  max-width:67px;
   text-align:left;
+  padding-left:4px;
 }
 
 input:focus{
@@ -471,23 +553,23 @@ input:disabled{
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:3px;
+  gap:2px;
 }
 
 .lv-label{
   color:#94a3b8;
-  font-size:10px;
+  font-size:9px;
   font-weight:800;
 }
 
 .lv-input{
-  width:40px;
-  min-width:40px;
+  width:34px;
+  min-width:34px;
 }
 
 .resource-input{
-  width:65px;
-  min-width:65px;
+  width:58px;
+  min-width:58px;
 }
 
 
@@ -510,12 +592,12 @@ input:disabled{
 .edit-btn,
 .save-btn{
   border:0;
-  border-radius:7px;
-  padding:8px 9px;
+  border-radius:6px;
+  padding:6px 7px;
   color:white;
-  font-size:11px;
+  font-size:9px;
   font-weight:800;
-  min-width:48px;
+  min-width:42px;
   cursor:pointer;
 }
 
@@ -541,6 +623,36 @@ input:disabled{
 .total td{
   border-top:2px solid #3b4d6b;
   font-size:11px;
+  padding:10px 3px;
+}
+
+
+/* =========================================================
+   TOTAL ONLY MODE
+========================================================= */
+
+body.total-only .table-wrap{
+  overflow-x:hidden;
+}
+
+body.total-only tbody{
+  display:none;
+}
+
+body.total-only thead{
+  display:none;
+}
+
+body.total-only tfoot{
+  display:table-footer-group;
+}
+
+body.total-only .toolbar{
+  display:none;
+}
+
+body.total-only #status{
+  display:none;
 }
 
 
@@ -561,50 +673,123 @@ input:disabled{
 @media(max-width:600px){
 
   .container{
-    padding:7px;
+    padding:6px;
   }
 
   .logo{
-    font-size:30px;
+    font-size:28px;
   }
 
   h1{
-    font-size:20px;
+    font-size:19px;
+  }
+
+  .header{
+    padding-bottom:10px;
   }
 
   .header-buttons{
     position:static;
     justify-content:center;
-    margin-top:8px;
+    margin-top:7px;
+  }
+
+  .notice{
+    font-size:10px;
+    padding:8px;
+  }
+
+  .my-info{
+    padding:11px;
+  }
+
+  .my-name{
+    font-size:17px;
+  }
+
+  .view-btn{
+    padding:8px 10px;
+    font-size:10px;
   }
 
   .toolbar{
-    flex-direction:column;
+    gap:5px;
   }
 
   .search,
   .sort{
-    width:100%;
-  }
-
-  .my-info{
-    padding:15px;
-  }
-
-  .my-name{
-    font-size:20px;
-  }
-
-  .view-btn{
-    padding:10px 13px;
+    padding:8px;
+    font-size:11px;
   }
 
   th{
-    padding:9px 5px;
+    padding:7px 2px;
+    font-size:9px;
   }
 
   td{
-    padding:5px 4px;
+    padding:4px 2px;
+    font-size:9px;
+  }
+
+  th[data-column="nickname"],
+  td[data-column="nickname"]{
+    width:70px;
+    min-width:70px;
+    max-width:70px;
+  }
+
+  .name-input{
+    width:60px;
+    min-width:60px;
+    max-width:60px;
+    font-size:9px;
+  }
+
+  th[data-column="ascension"],
+  td[data-column="ascension"]{
+    width:72px;
+    min-width:72px;
+  }
+
+  th[data-column="chomul"],
+  td[data-column="chomul"],
+  th[data-column="skill"],
+  td[data-column="skill"],
+  th[data-column="eggshell"],
+  td[data-column="eggshell"],
+  th[data-column="eggmerge"],
+  td[data-column="eggmerge"],
+  th[data-column="mount"],
+  td[data-column="mount"],
+  th[data-column="mountmerge"],
+  td[data-column="mountmerge"]{
+    width:70px;
+    min-width:70px;
+  }
+
+  .resource-input{
+    width:50px;
+    min-width:50px;
+  }
+
+  .lv-input{
+    width:30px;
+    min-width:30px;
+  }
+
+  .checkbox{
+    width:15px;
+    height:15px;
+  }
+
+  .check-item{
+    font-size:9px;
+  }
+
+  .asc-resource{
+    font-size:8px;
+    padding:3px;
   }
 
 }
@@ -646,14 +831,12 @@ input:disabled{
       클랜 재화 관리 시스템
     </p>
 
-
     <input
       id="login-nickname"
       type="text"
       placeholder="닉네임"
       autocomplete="off"
     >
-
 
     <input
       id="login-password"
@@ -663,14 +846,12 @@ input:disabled{
       autocomplete="off"
     >
 
-
     <button
       class="login-btn"
       onclick="memberLogin()"
     >
       일반 접속
     </button>
-
 
     <button
       class="admin-login-btn"
@@ -679,12 +860,10 @@ input:disabled{
       관리자 모드
     </button>
 
-
     <div
       id="login-status"
       class="login-status"
     ></div>
-
 
     <div class="login-note">
       일반 접속자는 본인의 정보만 표시됩니다.
@@ -718,7 +897,6 @@ input:disabled{
       관리자 비밀번호를 입력해주세요.
     </p>
 
-
     <input
       id="admin-password"
       type="text"
@@ -730,7 +908,6 @@ input:disabled{
       spellcheck="false"
     >
 
-
     <button
       class="admin-login-btn"
       onclick="adminLogin()"
@@ -738,14 +915,12 @@ input:disabled{
       관리자 로그인
     </button>
 
-
     <button
       class="login-btn"
       onclick="backToMemberLogin()"
     >
       일반 접속으로 돌아가기
     </button>
-
 
     <div
       id="admin-login-status"
@@ -766,6 +941,8 @@ input:disabled{
 <div class="container">
 
 
+  <!-- HEADER -->
+
   <div class="header">
 
     <div class="logo">
@@ -780,13 +957,9 @@ input:disabled{
       ELITE 클랜 재화 현황
     </div>
 
-
     <div class="header-buttons">
 
-      <div
-        id="mode-badge"
-      ></div>
-
+      <div id="mode-badge"></div>
 
       <button
         class="logout-btn"
@@ -799,6 +972,8 @@ input:disabled{
 
   </div>
 
+
+  <!-- NOTICE -->
 
   <div class="notice">
 
@@ -821,9 +996,7 @@ input:disabled{
   </div>
 
 
-  <!-- =====================================================
-       MY INFO
-  ====================================================== -->
+  <!-- MY INFO -->
 
   <div
     id="my-info"
@@ -851,9 +1024,7 @@ input:disabled{
   </div>
 
 
-  <!-- =====================================================
-       VIEW BUTTONS
-  ====================================================== -->
+  <!-- VIEW BUTTONS -->
 
   <div
     id="view-buttons"
@@ -927,9 +1098,7 @@ input:disabled{
   </div>
 
 
-  <!-- =====================================================
-       TOOLBAR
-  ====================================================== -->
+  <!-- TOOLBAR -->
 
   <div
     id="toolbar"
@@ -942,7 +1111,6 @@ input:disabled{
       placeholder="🔍 닉네임 검색"
       oninput="render()"
     >
-
 
     <select
       id="sort"
@@ -991,9 +1159,7 @@ input:disabled{
   </div>
 
 
-  <!-- =====================================================
-       TABLE
-  ====================================================== -->
+  <!-- TABLE -->
 
   <div class="table-wrap">
 
@@ -1007,57 +1173,39 @@ input:disabled{
             수정
           </th>
 
-          <th
-            data-column="ascension"
-          >
+          <th data-column="ascension">
             승천대기
           </th>
 
-          <th
-            data-column="nickname"
-          >
+          <th data-column="nickname">
             닉네임
           </th>
 
-          <th
-            data-column="chomul"
-          >
+          <th data-column="chomul">
             초물
           </th>
 
-          <th
-            data-column="skill"
-          >
+          <th data-column="skill">
             스킬
           </th>
 
-          <th
-            data-column="eggshell"
-          >
+          <th data-column="eggshell">
             알껍질
           </th>
 
-          <th
-            data-column="eggmerge"
-          >
+          <th data-column="eggmerge">
             알합치기
           </th>
 
-          <th
-            data-column="mount"
-          >
+          <th data-column="mount">
             탈것
           </th>
 
-          <th
-            data-column="mountmerge"
-          >
+          <th data-column="mountmerge">
             탈것합치기
           </th>
 
-          <th
-            data-column="updated"
-          >
+          <th data-column="updated">
             마지막 수정
           </th>
 
@@ -1066,9 +1214,7 @@ input:disabled{
       </thead>
 
 
-      <tbody
-        id="members"
-      ></tbody>
+      <tbody id="members"></tbody>
 
 
       <tfoot>
@@ -1170,19 +1316,15 @@ function showMemberLogin(){
 
   document.getElementById(
     "login-screen"
-  ).style.display =
-    "flex";
+  ).style.display = "flex";
 
   document.getElementById(
     "admin-login-screen"
-  ).classList.add(
-    "hidden"
-  );
+  ).classList.add("hidden");
 
   document.getElementById(
     "app"
-  ).style.display =
-    "none";
+  ).style.display = "none";
 
 }
 
@@ -1191,21 +1333,22 @@ function showAdminLogin(){
 
   document.getElementById(
     "login-screen"
-  ).style.display =
-    "none";
+  ).style.display = "none";
 
   document.getElementById(
     "admin-login-screen"
-  ).classList.remove(
-    "hidden"
-  );
+  ).classList.remove("hidden");
 
   setTimeout(
     () => {
 
-      document.getElementById(
-        "admin-password"
-      ).focus();
+      const input =
+        document.getElementById(
+          "admin-password"
+        );
+
+      if(input)
+        input.focus();
 
     },
     100
@@ -1275,14 +1418,9 @@ async function memberLogin(){
     .rpc(
       "fm_login",
       {
-        p_nickname:
-          nickname,
-
-        p_password:
-          password,
-
-        p_mode:
-          "member"
+        p_nickname:nickname,
+        p_password:password,
+        p_mode:"member"
       }
     );
 
@@ -1314,13 +1452,10 @@ async function memberLogin(){
   }
 
 
-  currentMode =
-    "member";
+  currentMode = "member";
 
   currentMemberId =
-    Number(
-      data.member_id
-    );
+    Number(data.member_id);
 
   currentNickname =
     data.nickname ||
@@ -1334,9 +1469,7 @@ async function memberLogin(){
 
   localStorage.setItem(
     "fm_member_id",
-    String(
-      currentMemberId
-    )
+    String(currentMemberId)
   );
 
   localStorage.setItem(
@@ -1389,14 +1522,9 @@ async function adminLogin(){
     .rpc(
       "fm_login",
       {
-        p_nickname:
-          "",
-
-        p_password:
-          password,
-
-        p_mode:
-          "admin"
+        p_nickname:"",
+        p_password:password,
+        p_mode:"admin"
       }
     );
 
@@ -1428,14 +1556,11 @@ async function adminLogin(){
   }
 
 
-  currentMode =
-    "admin";
+  currentMode = "admin";
 
-  currentMemberId =
-    null;
+  currentMemberId = null;
 
-  currentNickname =
-    "관리자";
+  currentNickname = "관리자";
 
 
   localStorage.setItem(
@@ -1466,22 +1591,24 @@ async function startApp(){
 
   document.getElementById(
     "login-screen"
-  ).style.display =
-    "none";
+  ).style.display = "none";
 
   document.getElementById(
     "admin-login-screen"
-  ).classList.add(
-    "hidden"
-  );
+  ).classList.add("hidden");
 
   document.getElementById(
     "app"
-  ).style.display =
-    "block";
+  ).style.display = "block";
 
 
   updateModeUI();
+
+  currentView = "all";
+
+  document.body.classList.add(
+    "total-only"
+  );
 
   await loadMembers();
 
@@ -1510,9 +1637,7 @@ function updateModeUI(){
     );
 
 
-  if(
-    currentMode === "admin"
-  ){
+  if(currentMode === "admin"){
 
     badge.innerHTML =
       `
@@ -1530,12 +1655,10 @@ function updateModeUI(){
   }
   else{
 
-    badge.innerHTML =
-      "";
+    badge.innerHTML = "";
 
     myName.textContent =
-      currentNickname ||
-      "-";
+      currentNickname || "-";
 
     myMode.textContent =
       "본인의 재화만 표시됩니다.";
@@ -1564,11 +1687,8 @@ async function loadMembers(){
     .rpc(
       "fm_get_members",
       {
-        p_mode:
-          currentMode,
-
-        p_member_id:
-          currentMemberId
+        p_mode:currentMode,
+        p_member_id:currentMemberId
       }
     );
 
@@ -1615,79 +1735,50 @@ function normalizeMember(row){
 
   return {
 
-    id:
-      row.id,
+    id:row.id,
 
-    created_at:
-      row.created_at,
+    created_at:row.created_at,
 
-    updated_at:
-      row.updated_at,
+    updated_at:row.updated_at,
 
     name:
-      row.nickname ||
-      "",
+      row.nickname || "",
 
     chomul:
-      row.초물 ||
-      "",
+      row.초물 || "",
 
     skill:
-      row.스킬 ||
-      "",
+      row.스킬 || "",
 
     skill_lv:
-      Number(
-        row.스킬_lv ||
-        0
-      ),
+      Number(row.스킬_lv || 0),
 
     eggshell:
-      row.알껍질 ||
-      "",
+      row.알껍질 || "",
 
     eggshell_lv:
-      Number(
-        row.알껍질_lv ||
-        0
-      ),
+      Number(row.알껍질_lv || 0),
 
     eggmerge:
-      Number(
-        row.알합치기 ||
-        0
-      ),
+      Number(row.알합치기 || 0),
 
     mount:
-      row.탈것 ||
-      "",
+      row.탈것 || "",
 
     mount_lv:
-      Number(
-        row.탈것_lv ||
-        0
-      ),
+      Number(row.탈것_lv || 0),
 
     mountmerge:
-      Number(
-        row.탈것합치기 ||
-        0
-      ),
+      Number(row.탈것합치기 || 0),
 
     스:
-      Boolean(
-        row.스
-      ),
+      Boolean(row.스),
 
     펫:
-      Boolean(
-        row.펫
-      ),
+      Boolean(row.펫),
 
     탈:
-      Boolean(
-        row.탈
-      )
+      Boolean(row.탈)
 
   };
 
@@ -1705,13 +1796,34 @@ function render(){
       "members"
     );
 
-
   if(!tbody)
     return;
 
 
-  tbody.innerHTML =
-    "";
+  tbody.innerHTML = "";
+
+
+  /*
+    종합은 클랜원 목록을 숨기고
+    합계 행만 보여준다.
+  */
+
+  if(currentView === "all"){
+
+    document.body.classList.add(
+      "total-only"
+    );
+
+    updateTotals();
+
+    return;
+
+  }
+
+
+  document.body.classList.remove(
+    "total-only"
+  );
 
 
   let list =
@@ -1722,8 +1834,7 @@ function render(){
     (
       document.getElementById(
         "search"
-      )?.value ||
-      ""
+      )?.value || ""
     )
     .trim()
     .toLowerCase();
@@ -1741,9 +1852,7 @@ function render(){
     list =
       list.filter(
         member =>
-          String(
-            member.name
-          )
+          String(member.name)
           .toLowerCase()
           .includes(search)
       );
@@ -1755,12 +1864,8 @@ function render(){
 
     list.sort(
       (a,b) =>
-        toNumber(
-          b[sort]
-        ) -
-        toNumber(
-          a[sort]
-        )
+        toNumber(b[sort]) -
+        toNumber(a[sort])
     );
 
   }
@@ -1780,8 +1885,6 @@ function render(){
       </tr>
       `;
 
-    updateTotals();
-
     return;
 
   }
@@ -1792,15 +1895,12 @@ function render(){
 
       const originalIndex =
         members.findIndex(
-          x =>
-            x.id === member.id
+          x => x.id === member.id
         );
 
 
       const tr =
-        document.createElement(
-          "tr"
-        );
+        document.createElement("tr");
 
 
       tr.innerHTML =
@@ -1811,14 +1911,10 @@ function render(){
         );
 
 
-      tbody.appendChild(
-        tr
-      );
+      tbody.appendChild(tr);
 
 
-      applyColumnView(
-        tr
-      );
+      applyColumnView(tr);
 
 
       checkColor(
@@ -1847,11 +1943,14 @@ function render(){
         "mount"
       );
 
+
+      updateAscensionResources(
+        originalIndex
+      );
+
     }
   );
 
-
-  updateTotals();
 
 }
 
@@ -1911,7 +2010,7 @@ canEdit
 <td data-column="ascension">
 
 <div class="ascension-title">
-승천대기
+승천
 </div>
 
 <div class="check-group">
@@ -1976,13 +2075,15 @@ canEdit
 ${
 currentMode === "admin"
 ?
-`<span style="
+`
+<span style="
   color:#60a5fa;
   font-weight:900;
-  margin-right:4px;
+  margin-right:2px;
 ">
-${rank + 1}위
-</span>`
+${rank + 1}
+</span>
+`
 :
 ""
 }
@@ -2134,9 +2235,7 @@ LV
 
 <td data-column="updated">
 
-${formatUpdated(
-  member.updated_at
-)}
+${formatUpdated(member.updated_at)}
 
 </td>
 
@@ -2146,19 +2245,16 @@ ${formatUpdated(
 
 
 /* =========================================================
-   COLUMN VIEW
+   VIEW
 ========================================================= */
 
 function setView(view){
 
-  currentView =
-    view;
+  currentView = view;
 
 
   document
-    .querySelectorAll(
-      ".view-btn"
-    )
+    .querySelectorAll(".view-btn")
     .forEach(
       button => {
 
@@ -2171,124 +2267,39 @@ function setView(view){
     );
 
 
-  applyView();
+  render();
 
 }
 
+
+/* =========================================================
+   APPLY COLUMN VIEW
+========================================================= */
 
 function applyView(){
 
-  document
-    .querySelectorAll(
-      "[data-column]"
-    )
-    .forEach(
-      element => {
-
-        element.style.display =
-          "";
-
-      }
-    );
-
-
-  if(
-    currentView === "all"
-  ){
-
-    return;
-
-  }
-
-
-  if(
-    currentView === "ascension"
-  ){
-
-    hideAllColumns();
-
-    showColumn(
-      "ascension"
-    );
-
-    showColumn(
-      "nickname"
-    );
-
-    return;
-
-  }
-
-
-  hideAllColumns();
-
-  showColumn(
-    "nickname"
-  );
-
-  showColumn(
-    currentView
-  );
+  /*
+    render()에서 행을 만들 때 직접 적용한다.
+    기존 함수와 호환을 위해 유지.
+  */
 
 }
 
 
-function hideAllColumns(){
+/* =========================================================
+   APPLY ROW VIEW
+========================================================= */
 
-  document
-    .querySelectorAll(
-      "[data-column]"
-    )
-    .forEach(
-      element => {
+function applyColumnView(tr){
 
-        element.style.display =
-          "none";
-
-      }
-    );
-
-}
-
-
-function showColumn(
-  column
-){
-
-  document
-    .querySelectorAll(
-      `[data-column="${column}"]`
-    )
-    .forEach(
-      element => {
-
-        element.style.display =
-          "";
-
-      }
-    );
-
-}
-
-
-function applyColumnView(
-  tr
-){
-
-  if(
-    currentView === "all"
-  )
+  if(currentView === "all")
     return;
 
 
-  if(
-    currentView === "ascension"
-  ){
+  if(currentView === "ascension"){
 
     tr
-      .querySelectorAll(
-        "[data-column]"
-      )
+      .querySelectorAll("[data-column]")
       .forEach(
         element => {
 
@@ -2311,12 +2322,40 @@ function applyColumnView(
 
 
     if(ascension)
-      ascension.style.display =
-        "";
+      ascension.style.display = "";
+
 
     if(nickname)
-      nickname.style.display =
-        "";
+      nickname.style.display = "";
+
+
+    /*
+      승천대기 오른쪽에 표시할 재화
+      셀 자체의 내부 표시를 확장한다.
+    */
+
+    const ascCell =
+      ascension;
+
+    if(ascCell){
+
+      const memberIndex =
+        getMemberIndexFromRow(tr);
+
+      if(memberIndex >= 0){
+
+        const member =
+          members[memberIndex];
+
+        addAscensionResourceArea(
+          ascCell,
+          memberIndex,
+          member
+        );
+
+      }
+
+    }
 
     return;
 
@@ -2324,9 +2363,7 @@ function applyColumnView(
 
 
   tr
-    .querySelectorAll(
-      "[data-column]"
-    )
+    .querySelectorAll("[data-column]")
     .forEach(
       element => {
 
@@ -2349,12 +2386,198 @@ function applyColumnView(
 
 
   if(nickname)
-    nickname.style.display =
-      "";
+    nickname.style.display = "";
+
 
   if(target)
-    target.style.display =
-      "";
+    target.style.display = "";
+
+}
+
+
+/* =========================================================
+   ASCENSION RESOURCE AREA
+========================================================= */
+
+function addAscensionResourceArea(
+  cell,
+  index,
+  member
+){
+
+  let box =
+    cell.querySelector(
+      ".asc-resource-box"
+    );
+
+
+  if(!box){
+
+    box =
+      document.createElement("div");
+
+    box.className =
+      "asc-resource-box";
+
+    cell.appendChild(box);
+
+  }
+
+
+  box.innerHTML = "";
+
+
+  if(member.스){
+
+    const item =
+      document.createElement("div");
+
+    item.className =
+      "asc-resource skill show";
+
+    item.textContent =
+      "스킬 " +
+      formatResource(member.skill);
+
+    box.appendChild(item);
+
+  }
+
+
+  if(member.펫){
+
+    const item =
+      document.createElement("div");
+
+    item.className =
+      "asc-resource pet show";
+
+    item.textContent =
+      "알껍질 " +
+      formatResource(member.eggshell);
+
+    box.appendChild(item);
+
+  }
+
+
+  if(member.탈){
+
+    const item =
+      document.createElement("div");
+
+    item.className =
+      "asc-resource tal show";
+
+    item.textContent =
+      "탈것 " +
+      formatResource(member.mount);
+
+    box.appendChild(item);
+
+  }
+
+}
+
+
+/* =========================================================
+   UPDATE ASCENSION
+========================================================= */
+
+function updateAscensionResources(index){
+
+  if(currentView !== "ascension")
+    return;
+
+
+  const rows =
+    document.querySelectorAll(
+      "#members tr"
+    );
+
+
+  rows.forEach(
+    tr => {
+
+      const nameInput =
+        tr.querySelector(
+          '[id^="name-"]'
+        );
+
+      if(!nameInput)
+        return;
+
+
+      const rowIndex =
+        Number(
+          nameInput.id.split("-")[1]
+        );
+
+
+      if(rowIndex === index){
+
+        const cell =
+          tr.querySelector(
+            '[data-column="ascension"]'
+          );
+
+        if(cell){
+
+          addAscensionResourceArea(
+            cell,
+            index,
+            members[index]
+          );
+
+        }
+
+      }
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   GET MEMBER INDEX
+========================================================= */
+
+function getMemberIndexFromRow(tr){
+
+  const input =
+    tr.querySelector(
+      '[id^="name-"]'
+    );
+
+  if(!input)
+    return -1;
+
+
+  const parts =
+    input.id.split("-");
+
+
+  return Number(parts[1]);
+
+}
+
+
+/* =========================================================
+   FORMAT RESOURCE
+========================================================= */
+
+function formatResource(value){
+
+  if(
+    value === null ||
+    value === undefined ||
+    value === ""
+  )
+    return "0";
+
+
+  return String(value);
 
 }
 
@@ -2416,8 +2639,7 @@ function editMember(index){
         );
 
       if(input)
-        input.disabled =
-          false;
+        input.disabled = false;
 
     }
   );
@@ -2437,8 +2659,8 @@ function editMember(index){
 
 
   if(edit)
-    edit.style.display =
-      "none";
+    edit.style.display = "none";
+
 
   if(save)
     save.style.display =
@@ -2620,9 +2842,7 @@ async function saveMember(index){
 
 
   members[index] =
-    normalizeMember(
-      data
-    );
+    normalizeMember(data);
 
 
   if(
@@ -2680,16 +2900,13 @@ async function toggleCheck(
   const ids = {
 
     "스":
-      "check_s-" +
-      index,
+      "check_s-" + index,
 
     "펫":
-      "check_pet-" +
-      index,
+      "check_pet-" + index,
 
     "탈":
-      "check_tal-" +
-      index
+      "check_tal-" + index
 
   };
 
@@ -2706,7 +2923,6 @@ async function toggleCheck(
 
   const oldValue =
     member[type];
-
 
   const newValue =
     checkbox.checked;
@@ -2797,6 +3013,40 @@ async function toggleCheck(
   }
 
 
+  /*
+    승천대기 화면이면
+    체크 즉시 오른쪽 재화 갱신
+  */
+
+  if(currentView === "ascension"){
+
+    const row =
+      document.querySelector(
+        `#name-${index}`
+      )?.closest("tr");
+
+    if(row){
+
+      const cell =
+        row.querySelector(
+          '[data-column="ascension"]'
+        );
+
+      if(cell){
+
+        addAscensionResourceArea(
+          cell,
+          index,
+          member
+        );
+
+      }
+
+    }
+
+  }
+
+
   setStatus(
     "✅ " +
     type +
@@ -2821,14 +3071,10 @@ function checkColor(
 
 
   const value =
-    toNumber(
-      input.value
-    );
+    toNumber(input.value);
 
 
-  input.classList.remove(
-    "red"
-  );
+  input.classList.remove("red");
 
 
   if(
@@ -2836,9 +3082,7 @@ function checkColor(
     value >= 50000
   ){
 
-    input.classList.add(
-      "red"
-    );
+    input.classList.add("red");
 
   }
 
@@ -2848,9 +3092,7 @@ function checkColor(
     value >= 50000
   ){
 
-    input.classList.add(
-      "red"
-    );
+    input.classList.add("red");
 
   }
 
@@ -2860,9 +3102,7 @@ function checkColor(
     value >= 30000
   ){
 
-    input.classList.add(
-      "red"
-    );
+    input.classList.add("red");
 
   }
 
@@ -2890,38 +3130,25 @@ function toNumber(value){
     String(value)
       .trim()
       .toLowerCase()
-      .replace(
-        /,/g,
-        ""
-      );
+      .replace(/,/g,"");
 
 
   let number =
-    parseFloat(
-      text
-    );
+    parseFloat(text);
 
 
-  if(
-    isNaN(number)
-  )
+  if(isNaN(number))
     return 0;
 
 
-  if(
-    text.endsWith("m")
-  ){
+  if(text.endsWith("m")){
 
-    number *=
-      1000000;
+    number *= 1000000;
 
   }
-  else if(
-    text.endsWith("k")
-  ){
+  else if(text.endsWith("k")){
 
-    number *=
-      1000;
+    number *= 1000;
 
   }
 
@@ -2935,19 +3162,13 @@ function toNumber(value){
    FORMAT NUMBER
 ========================================================= */
 
-function formatNumber(
-  number
-){
+function formatNumber(number){
 
-  if(
-    number === 0
-  )
+  if(number === 0)
     return "0";
 
 
-  if(
-    number >= 1000000
-  ){
+  if(number >= 1000000){
 
     return Number(
       (
@@ -2959,9 +3180,7 @@ function formatNumber(
   }
 
 
-  if(
-    number >= 1000
-  ){
+  if(number >= 1000){
 
     return Number(
       (
@@ -2973,9 +3192,7 @@ function formatNumber(
   }
 
 
-  return Math.round(
-    number
-  ).toString();
+  return Math.round(number).toString();
 
 }
 
@@ -2984,9 +3201,7 @@ function formatNumber(
    UPDATED
 ========================================================= */
 
-function formatUpdated(
-  value
-){
+function formatUpdated(value){
 
   if(!value)
     return "-";
@@ -3000,11 +3215,8 @@ function formatUpdated(
     isNaN(
       date.getTime()
     )
-  ){
-
+  )
     return "-";
-
-  }
 
 
   const diff =
@@ -3018,19 +3230,12 @@ function formatUpdated(
     );
 
 
-  if(minutes < 1){
-
+  if(minutes < 1)
     return "방금 수정";
 
-  }
 
-
-  if(minutes < 60){
-
-    return minutes +
-      "분 전";
-
-  }
+  if(minutes < 60)
+    return minutes + "분 전";
 
 
   const hours =
@@ -3039,12 +3244,8 @@ function formatUpdated(
     );
 
 
-  if(hours < 24){
-
-    return hours +
-      "시간 전";
-
-  }
+  if(hours < 24)
+    return hours + "시간 전";
 
 
   const days =
@@ -3053,12 +3254,8 @@ function formatUpdated(
     );
 
 
-  if(days < 7){
-
-    return days +
-      "일 전";
-
-  }
+  if(days < 7)
+    return days + "일 전";
 
 
   return (
@@ -3119,54 +3316,65 @@ function updateTotals(){
   );
 
 
-  document.getElementById(
-    "total-chomul"
-  ).textContent =
+  const set =
+    (id,value) => {
+
+      const element =
+        document.getElementById(id);
+
+      if(element)
+        element.textContent =
+          value;
+
+    };
+
+
+  set(
+    "total-chomul",
     formatNumber(
       totals.chomul
-    );
+    )
+  );
 
 
-  document.getElementById(
-    "total-skill"
-  ).textContent =
+  set(
+    "total-skill",
     formatNumber(
       totals.skill
-    );
+    )
+  );
 
 
-  document.getElementById(
-    "total-eggshell"
-  ).textContent =
+  set(
+    "total-eggshell",
     formatNumber(
       totals.eggshell
-    );
+    )
+  );
 
 
-  document.getElementById(
-    "total-eggmerge"
-  ).textContent =
+  set(
+    "total-eggmerge",
     Math.round(
       totals.eggmerge
-    ) +
-    "개";
+    ) + "개"
+  );
 
 
-  document.getElementById(
-    "total-mount"
-  ).textContent =
+  set(
+    "total-mount",
     formatNumber(
       totals.mount
-    );
+    )
+  );
 
 
-  document.getElementById(
-    "total-mountmerge"
-  ).textContent =
+  set(
+    "total-mountmerge",
     Math.round(
       totals.mountmerge
-    ) +
-    "개";
+    ) + "개"
+  );
 
 }
 
@@ -3194,8 +3402,7 @@ function setStatus(
     message;
 
   element.className =
-    "status " +
-    type;
+    "status " + type;
 
 }
 
@@ -3204,29 +3411,15 @@ function setStatus(
    ESCAPE
 ========================================================= */
 
-function escapeHtml(
-  value
-){
+function escapeHtml(value){
 
   return String(
     value ?? ""
   )
-  .replace(
-    /&/g,
-    "&amp;"
-  )
-  .replace(
-    /"/g,
-    "&quot;"
-  )
-  .replace(
-    /</g,
-    "&lt;"
-  )
-  .replace(
-    />/g,
-    "&gt;"
-  );
+  .replace(/&/g,"&amp;")
+  .replace(/"/g,"&quot;")
+  .replace(/</g,"&lt;")
+  .replace(/>/g,"&gt;");
 
 }
 
@@ -3237,17 +3430,21 @@ function escapeHtml(
 
 function logout(){
 
-  currentMode =
-    null;
+  currentMode = null;
 
-  currentMemberId =
-    null;
+  currentMemberId = null;
 
-  currentNickname =
-    "";
+  currentNickname = "";
 
-  members =
-    [];
+  members = [];
+
+  currentView = "all";
+
+
+  document.body.classList.remove(
+    "total-only"
+  );
+
 
   localStorage.removeItem(
     "fm_mode"
@@ -3264,29 +3461,24 @@ function logout(){
 
   document.getElementById(
     "login-nickname"
-  ).value =
-    "";
+  ).value = "";
 
   document.getElementById(
     "login-password"
-  ).value =
-    "";
+  ).value = "";
 
   document.getElementById(
     "admin-password"
-  ).value =
-    "";
+  ).value = "";
 
 
   document.getElementById(
     "login-status"
-  ).textContent =
-    "";
+  ).textContent = "";
 
   document.getElementById(
     "admin-login-status"
-  ).textContent =
-    "";
+  ).textContent = "";
 
 
   showMemberLogin();
@@ -3302,18 +3494,21 @@ document.addEventListener(
   "keydown",
   event => {
 
-    if(
-      event.key !== "Enter"
-    )
+    if(event.key !== "Enter")
       return;
 
 
-    if(
+    const adminScreen =
       document.getElementById(
         "admin-login-screen"
-      ).classList.contains(
+      );
+
+
+    if(
+      adminScreen &&
+      !adminScreen.classList.contains(
         "hidden"
-      ) === false
+      )
     ){
 
       adminLogin();
@@ -3323,10 +3518,15 @@ document.addEventListener(
     }
 
 
-    if(
+    const loginScreen =
       document.getElementById(
         "login-screen"
-      ).style.display !== "none"
+      );
+
+
+    if(
+      loginScreen &&
+      loginScreen.style.display !== "none"
     ){
 
       memberLogin();
@@ -3343,24 +3543,20 @@ document.addEventListener(
 
 function initialStart(){
 
-  /*
-    새 버전에서는 보안상 자동 로그인하지 않는다.
-    페이지를 열 때마다 비밀번호를 입력한다.
-  */
+  currentView = "all";
+
+  document.body.classList.add(
+    "total-only"
+  );
 
   showMemberLogin();
 
 }
 
 
-/* =========================================================
-   RUN
-========================================================= */
-
 initialStart();
 
 </script>
 
 </body>
-
 </html>
