@@ -281,7 +281,22 @@ h1{
   font-size:14px;
   margin-top:2px;
 }
+.add-member-btn{
+  width:100%;
+  padding:10px;
+  margin-bottom:8px;
+  border:1px solid #22c55e;
+  border-radius:8px;
+  background:#14532d;
+  color:#bbf7d0;
+  font-size:11px;
+  font-weight:900;
+  cursor:pointer;
+}
 
+.add-member-btn:hover{
+  background:#166534;
+}
 /* VIEW */
 
 .view-buttons{
@@ -883,7 +898,12 @@ input:focus{
     <div class="admin-panel-title">
       👑 관리자 기능
     </div>
-
+<button
+  class="add-member-btn"
+  onclick="addMember()"
+>
+  ＋ 클랜원 추가
+</button>
     <div class="admin-panel-grid">
 
       <div class="admin-info">
