@@ -1731,7 +1731,6 @@ function normalizeMember(row){
 
 }
 
-
 /* =========================================================
    RENDER
 ========================================================= */
@@ -1741,6 +1740,9 @@ function render(){
   const tbody =
     document.getElementById("members");
 
+  if(!tbody) return;
+
+
   tbody.innerHTML = "";
 
 
@@ -1748,15 +1750,17 @@ function render(){
     [...members];
 
 
+  /* =========================================================
+     SEARCH
+  ========================================================= */
+
+  const searchEl =
+    document.getElementById("search");
+
   const search =
-    document.getElementById("search")
-      .value
-      .trim()
-      .toLowerCase();
-
-
-  const sort =
-    document.getElementById("sort").value;
+    searchEl
+      ? searchEl.value.trim().toLowerCase()
+      : "";
 
 
   if(search){
@@ -1764,7 +1768,7 @@ function render(){
     list =
       list.filter(
         m =>
-          m.name
+          String(m.name || "")
             .toLowerCase()
             .includes(search)
       );
@@ -1772,6 +1776,19 @@ function render(){
   }
 
 
+  /* =========================================================
+     SORT
+  ========================================================= */
+
+  const sortEl =
+    document.getElementById("sort");
+
+  const sort =
+    sortEl
+      ? sortEl.value
+      : "default";
+
+
   if(sort !== "default"){
 
     list.sort(
@@ -1781,147 +1798,174 @@ function render(){
     );
 
   }
-
-  if(sort !== "default"){
-
-    list.sort(
-      (a,b) =>
-        toNumber(b[sort]) -
-        toNumber(a[sort])
-    );
-
-  }
-
-
-  /* 여기에 코드 */
 
 
   /* =========================================================
      MULTI VIEW FILTER
+     여러 버튼 중복 선택 가능
   ========================================================= */
 
-/* =========================================================
-   MULTI VIEW FILTER
-   여러 버튼 중복 선택 가능
-========================================================= */
+  const selectedViews =
+    currentView;
 
-const selectedViews = currentView;
 
-if(selectedViews.size > 0){
+  if(selectedViews.size > 0){
 
-  /* 승천대기 */
-  if(selectedViews.has("ascension")){
 
-    list =
-      list.filter(
-        m =>
-          m.asc_skill ||
-          m.asc_pet ||
-          m.asc_mount
-      );
+    /* 승천대기 */
+
+    if(selectedViews.has("ascension")){
+
+      list =
+        list.filter(
+          m =>
+            m.asc_skill ||
+            m.asc_pet ||
+            m.asc_mount
+        );
+
+    }
+
+
+    /* 초물 */
+
+    if(selectedViews.has("chomul")){
+
+      list =
+        list.filter(
+          m =>
+            toNumber(m.chomul) > 0
+        );
+
+    }
+
+
+    /* 스킬 */
+
+    if(selectedViews.has("skill")){
+
+      list =
+        list.filter(
+          m =>
+            toNumber(m.skill) > 0
+        );
+
+    }
+
+
+    /* 알껍질 */
+
+    if(selectedViews.has("eggshell")){
+
+      list =
+        list.filter(
+          m =>
+            toNumber(m.eggshell) > 0
+        );
+
+    }
+
+
+    /* 알합치기 */
+
+    if(selectedViews.has("eggmerge")){
+
+      list =
+        list.filter(
+          m =>
+            toNumber(m.eggmerge) > 0
+        );
+
+    }
+
+
+    /* 탈것 */
+
+    if(selectedViews.has("mount")){
+
+      list =
+        list.filter(
+          m =>
+            toNumber(m.mount) > 0
+        );
+
+    }
+
+
+    /* 탈것합치기 */
+
+    if(selectedViews.has("mountmerge")){
+
+      list =
+        list.filter(
+          m =>
+            toNumber(m.mountmerge) > 0
+        );
+
+    }
 
   }
 
 
-  /* 초물 */
-  if(selectedViews.has("chomul")){
+  /* =========================================================
+     LIST EMPTY
+  ========================================================= */
 
-    list =
-      list.filter(
-        m =>
-          toNumber(m.chomul) > 0
-      );
+  if(list.length === 0){
 
-  }
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="8" class="empty">
+          표시할 클랜원이 없습니다.
+        </td>
+      </tr>
+    `;
 
+    updateTotals();
 
-  /* 스킬 */
-  if(selectedViews.has("skill")){
+    applyTotalState();
 
-    list =
-      list.filter(
-        m =>
-          toNumber(m.skill) > 0
-      );
-
-  }
-
-
-  /* 알껍질 */
-  if(selectedViews.has("eggshell")){
-
-    list =
-      list.filter(
-        m =>
-          toNumber(m.eggshell) > 0
-      );
+    return;
 
   }
 
 
-  /* 알합치기 */
-  if(selectedViews.has("eggmerge")){
+  /* =========================================================
+     BUILD EXISTING ROWS
+  ========================================================= */
 
-    list =
-      list.filter(
-        m =>
-          toNumber(m.eggmerge) > 0
+  list.forEach(member => {
+
+    const realIndex =
+      members.findIndex(
+        x =>
+          Number(x.id) ===
+          Number(member.id)
       );
 
-  }
+
+    const tr =
+      document.createElement("tr");
 
 
-  /* 탈것 */
-  if(selectedViews.has("mount")){
-
-    list =
-      list.filter(
-        m =>
-          toNumber(m.mount) > 0
+    tr.innerHTML =
+      buildRow(
+        member,
+        realIndex
       );
 
-  }
 
+    tbody.appendChild(tr);
 
-  /* 탈것합치기 */
-  if(selectedViews.has("mountmerge")){
+  });
 
-    list =
-      list.filter(
-        m =>
-          toNumber(m.mountmerge) > 0
-      );
-
-  }
-
-}
-
-
-/* =========================================================
-   LIST EMPTY
-========================================================= */
-
-if(list.length === 0){
-
-  tbody.innerHTML = `
-    <tr>
-      <td colspan="8" class="empty">
-        표시할 클랜원이 없습니다.
-      </td>
-    </tr>
-  `;
 
   updateTotals();
-  applyTotalState();
 
-  return;
+  applyTotalState();
 
 }
 
-
-/* =========================================================
-   BUILD ROWS
-========================================================= */
 
 list.forEach(member => {
 
