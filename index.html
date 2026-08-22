@@ -1,17 +1,36 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
-<meta name="theme-color" content="#080d18">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1.0,viewport-fit=cover"
+>
+
+<meta
+  name="theme-color"
+  content="#080d18"
+>
+
 <title>⚒️ Forge Master ELITE</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-*{box-sizing:border-box}
 
-html,body{
+/* =========================================================
+   BASE
+========================================================= */
+
+*{
+  box-sizing:border-box;
+}
+
+html,
+body{
   margin:0;
   padding:0;
   min-height:100%;
@@ -20,254 +39,455 @@ html,body{
 body{
   background:#080d18;
   color:#f8fafc;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Arial,
+    sans-serif;
 }
 
-button,input,select{font-family:inherit}
+button,
+input,
+select{
+  font-family:inherit;
+}
 
-/* LOGIN */
+
+/* =========================================================
+   LOGIN
+========================================================= */
 
 #login-screen,
 #admin-login-screen{
+
   min-height:100vh;
+
   display:flex;
+
   align-items:center;
+
   justify-content:center;
+
   padding:18px;
+
 }
 
-#admin-login-screen{display:none}
+#admin-login-screen{
+  display:none;
+}
 
 .login-box{
+
   width:100%;
   max-width:390px;
+
   background:#111a2b;
+
   border:1px solid #263550;
+
   border-radius:18px;
+
   padding:24px;
+
   text-align:center;
-  box-shadow:0 20px 60px rgba(0,0,0,.45);
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.45);
+
 }
 
-.login-logo{font-size:42px}
+.login-logo{
+  font-size:42px;
+}
 
 .login-box h2{
   margin:7px 0;
 }
 
 .login-box p{
+
   color:#94a3b8;
+
   font-size:12px;
+
   margin:0 0 20px;
+
 }
 
 .login-box input{
+
   width:100%;
+
   padding:13px;
+
   margin-bottom:9px;
+
   border:1px solid #334155;
+
   border-radius:9px;
+
   background:#080d18;
+
   color:white;
+
   font-size:15px;
+
   text-align:left;
+
 }
 
 .login-box input:focus{
+
   outline:none;
+
   border-color:#3b82f6;
+
 }
 
 .login-btn,
 .admin-login-btn{
+
   width:100%;
+
   padding:13px;
+
   border-radius:9px;
+
   font-weight:900;
+
   cursor:pointer;
+
 }
 
 .login-btn{
+
   border:0;
+
   background:#2563eb;
+
   color:white;
+
 }
 
 .admin-login-btn{
+
   margin-top:9px;
+
   border:1px solid #7c3aed;
+
   background:#24113f;
+
   color:#d8b4fe;
+
 }
 
 .login-status{
+
   min-height:20px;
+
   margin-top:12px;
+
   color:#f87171;
+
   font-size:12px;
+
 }
 
-/* APP */
 
-#app{display:none}
+/* =========================================================
+   APP
+========================================================= */
+
+#app{
+  display:none;
+}
 
 .container{
+
   max-width:1450px;
+
   margin:auto;
+
   padding:9px;
+
 }
 
-/* HEADER */
+
+/* =========================================================
+   HEADER
+========================================================= */
 
 .header{
+
   position:relative;
+
   text-align:center;
+
   padding:5px 0 12px;
+
 }
 
-.logo{font-size:32px}
+.logo{
+  font-size:32px;
+}
 
 h1{
+
   margin:2px 0;
+
   font-size:22px;
+
 }
 
 .subtitle{
+
   color:#94a3b8;
+
   font-size:11px;
+
 }
 
 .header-buttons{
+
   position:absolute;
+
   right:0;
+
   top:5px;
+
   display:flex;
+
   gap:5px;
+
   align-items:center;
+
 }
 
 .logout-btn,
 .admin-badge{
+
   padding:7px 9px;
+
   border-radius:7px;
+
   font-size:10px;
+
   font-weight:900;
+
 }
 
 .logout-btn{
+
   background:#111a2b;
+
   border:1px solid #334155;
+
   color:#cbd5e1;
+
   cursor:pointer;
+
 }
 
 .admin-badge{
+
   background:#3b0764;
+
   border:1px solid #7c3aed;
+
   color:#e9d5ff;
+
 }
 
-/* NOTICE */
+
+/* =========================================================
+   NOTICE
+========================================================= */
 
 .notice{
+
   background:#111a2b;
+
   border:1px solid #263550;
+
   border-radius:11px;
+
   padding:9px;
+
   margin-bottom:8px;
+
   color:#cbd5e1;
+
   font-size:10px;
+
   line-height:1.55;
+
 }
 
-.notice b{color:#60a5fa}
+.notice b{
+  color:#60a5fa;
+}
 
-/* MY INFO */
+
+/* =========================================================
+   MY INFO
+========================================================= */
 
 .my-info{
-  background:linear-gradient(135deg,#172554,#111a2b);
+
+  background:
+    linear-gradient(
+      135deg,
+      #172554,
+      #111a2b
+    );
+
   border:1px solid #334155;
+
   border-radius:12px;
+
   padding:11px;
+
   margin-bottom:8px;
+
 }
 
 .my-title{
+
   color:#93c5fd;
+
   font-size:10px;
+
   font-weight:900;
+
 }
 
 .my-name{
+
   font-size:18px;
+
   font-weight:900;
+
   margin-top:3px;
+
 }
 
 .my-mode{
+
   color:#94a3b8;
+
   font-size:9px;
+
   margin-top:2px;
+
 }
 
-/* PASSWORD */
+
+/* =========================================================
+   PASSWORD
+========================================================= */
 
 .password-panel{
+
   margin-bottom:8px;
+
   padding:10px;
+
   background:#25143b;
+
   border:1px solid #7c3aed;
+
   border-radius:10px;
+
 }
 
 .password-title{
+
   color:#d8b4fe;
+
   font-size:10px;
+
   font-weight:900;
+
 }
 
 .password-value{
+
   margin-top:4px;
+
   color:white;
+
   font-size:20px;
+
   font-weight:900;
+
   letter-spacing:2px;
+
 }
 
 .password-next{
+
   margin-top:3px;
+
   color:#a78bfa;
+
   font-size:9px;
+
 }
 
-/* ADMIN */
+
+/* =========================================================
+   ADMIN
+========================================================= */
 
 .admin-panel{
+
   background:#17112a;
+
   border:1px solid #6d28d9;
+
   border-radius:11px;
+
   padding:10px;
+
   margin-bottom:8px;
+
 }
 
 .admin-panel-title{
+
   color:#d8b4fe;
+
   font-size:11px;
+
   font-weight:900;
+
   margin-bottom:7px;
+
 }
 
 .add-member-btn{
+
   width:100%;
+
   padding:10px;
+
   margin-bottom:8px;
+
   border:1px solid #22c55e;
+
   border-radius:8px;
+
   background:#14532d;
+
   color:#bbf7d0;
+
   font-size:11px;
+
   font-weight:900;
+
   cursor:pointer;
+
 }
 
 .add-member-btn:hover{
@@ -275,141 +495,309 @@ h1{
 }
 
 .admin-panel-grid{
+
   display:grid;
+
   grid-template-columns:1fr 1fr;
+
   gap:6px;
+
 }
 
 .admin-info{
+
   background:#21183a;
+
   border:1px solid #4c1d95;
+
   border-radius:7px;
+
   padding:7px;
+
 }
 
 .admin-info-label{
+
   color:#a78bfa;
+
   font-size:9px;
+
 }
 
 .admin-info-value{
+
   color:white;
+
   font-weight:900;
+
   font-size:14px;
+
   margin-top:2px;
+
 }
 
-/* VIEW */
+
+/* =========================================================
+   VIEW
+========================================================= */
 
 .view-buttons{
+
   display:flex;
+
   gap:5px;
+
   overflow-x:auto;
+
   margin-bottom:7px;
+
   padding-bottom:3px;
+
 }
 
 .view-btn{
+
   flex:0 0 auto;
+
   padding:8px 10px;
+
   border-radius:7px;
+
   border:1px solid #334155;
+
   background:#111a2b;
+
   color:#cbd5e1;
+
   font-size:10px;
+
   font-weight:900;
+
   cursor:pointer;
+
 }
 
 .view-btn.active{
+
   background:#2563eb;
+
   border-color:#3b82f6;
+
   color:white;
+
 }
 
-/* TOOLBAR */
+
+/* =========================================================
+   TOOLBAR
+========================================================= */
 
 .toolbar{
+
   display:flex;
+
   gap:6px;
+
   margin-bottom:6px;
+
 }
 
 .search{
+
   flex:1;
+
   min-width:0;
+
 }
 
 .search,
 .sort{
+
   padding:9px;
+
   border-radius:7px;
+
   border:1px solid #334155;
+
   background:#111a2b;
+
   color:white;
+
   font-size:11px;
+
 }
 
-.sort{width:150px}
+.sort{
+  width:150px;
+}
 
-/* STATUS */
+
+/* =========================================================
+   STATUS
+========================================================= */
 
 .status{
+
   min-height:17px;
+
   text-align:center;
+
   font-size:10px;
+
   color:#94a3b8;
+
 }
 
-.success{color:#4ade80}
-.error{color:#f87171}
+.success{
+  color:#4ade80;
+}
 
-/* TABLE */
+.error{
+  color:#f87171;
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+/*
+  중요:
+  실제 표는 항상 정확히 8개 열이다.
+
+  1 관리
+  2 승천대기
+  3 닉네임
+  4 초물
+  5 스킬
+  6 알껍질(+합)
+  7 탈것(+합)
+  8 수정일
+*/
 
 .table-wrap{
+
+  width:100%;
+
   overflow-x:auto;
+
   border:1px solid #263550;
+
   border-radius:11px;
+
   background:#111a2b;
+
   -webkit-overflow-scrolling:touch;
+
 }
 
 table{
-  border-collapse:separate;
-  border-spacing:0;
+
+  border-collapse:collapse;
+
+  table-layout:fixed;
+
   width:100%;
-  min-width:1000px;
+
+  min-width:1040px;
+
+}
+
+/* 고정 열 폭 */
+
+th:nth-child(1),
+td:nth-child(1){
+  width:100px;
+}
+
+th:nth-child(2),
+td:nth-child(2){
+  width:215px;
+}
+
+th:nth-child(3),
+td:nth-child(3){
+  width:100px;
+}
+
+th:nth-child(4),
+td:nth-child(4){
+  width:90px;
+}
+
+th:nth-child(5),
+td:nth-child(5){
+  width:120px;
+}
+
+th:nth-child(6),
+td:nth-child(6){
+  width:145px;
+}
+
+th:nth-child(7),
+td:nth-child(7){
+  width:145px;
+}
+
+th:nth-child(8),
+td:nth-child(8){
+  width:90px;
 }
 
 th{
+
   background:#18243a;
+
   color:#c8d8ef;
+
   font-size:10px;
+
   padding:7px 3px;
+
   white-space:nowrap;
-  border-right:1px solid #263550;
+
+  border:1px solid #263550;
+
 }
 
 td{
+
   padding:4px 3px;
+
   text-align:center;
+
   font-size:10px;
-  border-top:1px solid #263550;
-  border-right:1px solid #263550;
+
+  border:1px solid #263550;
+
   white-space:nowrap;
+
   vertical-align:middle;
+
 }
 
-/* INPUT */
+
+/* =========================================================
+   INPUT
+========================================================= */
 
 input{
+
   border:1px solid #334155;
+
   border-radius:5px;
+
   background:#080d18;
+
   color:white;
+
   text-align:center;
+
   padding:5px 2px;
+
   font-size:10px;
+
 }
 
 input:disabled{
@@ -417,147 +805,241 @@ input:disabled{
 }
 
 input:focus{
+
   outline:none;
+
   border-color:#3b82f6;
+
 }
 
 .resource-input{
+
   width:58px;
+
   min-width:58px;
+
 }
 
 .lv-input{
+
   width:34px;
+
   min-width:34px;
+
 }
 
 .name-input{
+
   width:75px;
+
   min-width:75px;
+
 }
 
-/* ASCENSION */
+
+/* =========================================================
+   ASCENSION
+========================================================= */
 
 .ascension-box{
+
   display:flex;
+
   flex-direction:column;
+
   gap:4px;
+
   min-width:205px;
+
 }
 
 .asc-row{
+
   display:flex;
+
   align-items:center;
+
   gap:5px;
+
   min-height:27px;
+
 }
 
 .asc-check{
+
   display:flex;
+
   align-items:center;
+
   gap:3px;
+
   width:35px;
+
   font-size:9px;
+
   font-weight:900;
+
   color:#e2e8f0;
+
 }
 
 .checkbox{
+
   width:15px;
+
   height:15px;
+
   margin:0;
+
   accent-color:#22c55e;
+
 }
 
 .asc-resource{
+
   display:flex;
+
   align-items:center;
+
   gap:3px;
+
 }
 
 .asc-resource input{
+
   width:55px;
+
   min-width:55px;
+
 }
 
 .asc-plus{
+
   color:#fbbf24;
+
   font-weight:900;
+
   font-size:9px;
+
 }
 
 .asc-merge{
+
   width:42px !important;
+
   min-width:42px !important;
+
 }
 
-/* DUAL */
+
+/* =========================================================
+   DUAL
+========================================================= */
 
 .dual-cell{
+
   display:flex;
+
   flex-direction:column;
+
   align-items:center;
+
   justify-content:center;
+
   gap:3px;
+
 }
 
 .dual-top{
+
   display:flex;
+
   align-items:center;
+
   justify-content:center;
+
   gap:2px;
+
 }
 
 .dual-bottom{
+
   display:flex;
+
   align-items:center;
+
   justify-content:center;
+
   gap:3px;
+
   width:100%;
+
 }
 
 .dual-label{
+
   color:#fbbf24;
+
   font-size:9px;
+
   font-weight:900;
+
 }
 
 .dual-merge{
+
   width:52px;
+
   min-width:52px;
+
 }
 
-/* ADD ROW */
+
+/* =========================================================
+   ADD ROW
+========================================================= */
 
 .add-row{
+
   background:#0f1f18;
+
 }
 
 .add-row td{
-  border-top:2px solid #22c55e;
-}
 
-.add-row-title{
-  color:#4ade80;
-  font-weight:900;
-  font-size:10px;
+  border-top:2px solid #22c55e;
+
 }
 
 .add-actions{
+
   display:flex;
+
   gap:4px;
+
   justify-content:center;
+
+  align-items:center;
+
 }
 
 .add-save-btn,
 .add-cancel-btn{
+
   border:0;
+
   border-radius:5px;
+
   padding:7px 8px;
+
   font-size:9px;
+
   font-weight:900;
+
   color:white;
+
   cursor:pointer;
+
 }
 
 .add-save-btn{
@@ -568,133 +1050,231 @@ input:focus{
   background:#475569;
 }
 
-/* RED */
+
+/* =========================================================
+   RED
+========================================================= */
 
 .red{
+
   color:#ff4d4d !important;
+
   background:#180d13 !important;
+
   border-color:#7f1d1d !important;
+
   font-weight:900;
+
 }
 
-/* BUTTONS */
+
+/* =========================================================
+   BUTTONS
+========================================================= */
 
 .edit-btn,
 .save-btn,
 .delete-btn{
+
   border:0;
+
   border-radius:5px;
+
   padding:6px;
+
   font-size:9px;
+
   font-weight:900;
+
   color:white;
+
   cursor:pointer;
+
 }
 
-.edit-btn{background:#2563eb}
+.edit-btn{
+  background:#2563eb;
+}
 
 .save-btn{
+
   display:none;
+
   background:#16a34a;
+
 }
 
 .delete-btn{
+
   background:#dc2626;
+
   margin-left:3px;
+
 }
 
-/* TOTAL */
+
+/* =========================================================
+   TOTAL
+========================================================= */
 
 .total{
+
   background:#1e293b;
+
 }
 
 .total td{
+
   border-top:2px solid #64748b;
+
   color:#f8fafc;
+
   font-weight:900;
+
   font-size:10px;
+
   padding:8px 3px;
+
 }
 
 .total-name{
+
   color:#fbbf24;
+
   font-weight:900;
+
 }
 
-/* TOTAL PANEL */
+
+/* =========================================================
+   TOTAL PANEL
+========================================================= */
 
 .total-panel{
+
   margin-top:8px;
+
   background:#111a2b;
+
   border:1px solid #334155;
+
   border-radius:10px;
+
   padding:8px;
+
 }
 
 .total-panel-title{
+
   color:#fbbf24;
+
   font-size:11px;
+
   font-weight:900;
+
   margin-bottom:7px;
+
 }
 
 .total-grid{
+
   display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
+
+  grid-template-columns:
+    repeat(3,minmax(0,1fr));
+
   gap:5px;
+
 }
 
 .total-card{
+
   background:#18243a;
+
   border:1px solid #263550;
+
   border-radius:7px;
+
   padding:7px 4px;
+
   text-align:center;
+
 }
 
 .total-card-label{
+
   color:#94a3b8;
+
   font-size:9px;
+
 }
 
 .total-card-value{
+
   color:#f8fafc;
+
   font-size:13px;
+
   font-weight:900;
+
   margin-top:2px;
+
 }
 
-/* EMPTY */
+
+/* =========================================================
+   EMPTY
+========================================================= */
 
 .empty{
+
   padding:25px !important;
+
   color:#64748b;
+
 }
 
-/* HIDDEN */
+
+/* =========================================================
+   HIDDEN
+========================================================= */
 
 .hidden{
   display:none !important;
 }
 
-/* MOBILE */
+
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media(max-width:600px){
 
-  .container{padding:5px}
-
-  .header-buttons{
-    position:static;
-    justify-content:center;
-    margin-top:6px;
+  .container{
+    padding:5px;
   }
 
-  .logo{font-size:28px}
+  .header-buttons{
 
-  h1{font-size:19px}
+    position:static;
 
-  .my-name{font-size:19px}
+    justify-content:center;
+
+    margin-top:6px;
+
+  }
+
+  .logo{
+    font-size:28px;
+  }
+
+  h1{
+    font-size:19px;
+  }
+
+  .my-name{
+    font-size:19px;
+  }
 
   .toolbar{
     flex-direction:column;
@@ -710,52 +1290,62 @@ input:focus{
   }
 
   table{
-    min-width:1000px;
+    min-width:1040px;
   }
 
   .total-grid{
-    grid-template-columns:repeat(2,minmax(0,1fr));
+    grid-template-columns:
+      repeat(2,minmax(0,1fr));
   }
 
   .admin-panel-grid{
     grid-template-columns:1fr;
   }
+
 }
+
 </style>
+
 </head>
+
 
 <body>
 
+
 <!-- =========================================================
-     일반 로그인
+     MEMBER LOGIN
 ========================================================= -->
 
 <div id="login-screen">
 
   <div class="login-box">
 
-    <div class="login-logo">⚒️</div>
+    <div class="login-logo">
+      ⚒️
+    </div>
 
-    <h2>Forge Master ELITE</h2>
+    <h2>
+      Forge Master ELITE
+    </h2>
 
-    <p>클랜 재화 관리 시스템</p>
+    <p>
+      클랜 재화 관리 시스템
+    </p>
 
     <input
       id="login-nickname"
       type="text"
       placeholder="닉네임"
       autocomplete="off"
-      enterkeyhint="next"
     >
 
     <input
       id="login-password"
       type="text"
       inputmode="numeric"
+      maxlength="4"
       placeholder="공동비밀번호"
       autocomplete="off"
-      maxlength="4"
-      enterkeyhint="go"
     >
 
     <button
@@ -783,25 +1373,30 @@ input:focus{
 
 
 <!-- =========================================================
-     관리자 로그인
+     ADMIN LOGIN
 ========================================================= -->
 
 <div id="admin-login-screen">
 
   <div class="login-box">
 
-    <div class="login-logo">👑</div>
+    <div class="login-logo">
+      👑
+    </div>
 
-    <h2>관리자 모드</h2>
+    <h2>
+      관리자 모드
+    </h2>
 
-    <p>관리자 비밀번호를 입력해주세요.</p>
+    <p>
+      관리자 비밀번호를 입력해주세요.
+    </p>
 
     <input
       id="admin-password"
       type="text"
       placeholder="관리자 비밀번호"
       autocomplete="off"
-      enterkeyhint="go"
     >
 
     <button
@@ -836,371 +1431,162 @@ input:focus{
 
 <div class="container">
 
-  <div class="header">
 
-    <div class="logo">⚒️</div>
+<!-- HEADER -->
 
-    <h1>Forge Master</h1>
+<div class="header">
 
-    <div class="subtitle">
-      ELITE 클랜 재화 현황
-    </div>
+  <div class="logo">
+    ⚒️
+  </div>
 
-    <div class="header-buttons">
+  <h1>
+    Forge Master
+  </h1>
 
-      <div id="mode-badge"></div>
+  <div class="subtitle">
+    ELITE 클랜 재화 현황
+  </div>
 
-      <button
-        class="logout-btn"
-        onclick="logout()"
+  <div class="header-buttons">
+
+    <div id="mode-badge"></div>
+
+    <button
+      class="logout-btn"
+      onclick="logout()"
+    >
+      로그아웃
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- NOTICE -->
+
+<div class="notice">
+
+  <b>📌 안내</b>
+
+  <br>
+
+  k / m 단위 사용 가능
+
+  <br>
+
+  🔴 스킬 50k 이상 · 알껍질 50k 이상 · 탈것 30k 이상
+
+  <br>
+
+  승천대기에서는 스 / 펫 / 탈 체크에 따라 해당 재화가 표시됩니다.
+
+</div>
+
+
+<!-- MY INFO -->
+
+<div
+  id="my-info"
+  class="my-info"
+>
+
+  <div class="my-title">
+    👤 현재 접속자
+  </div>
+
+  <div
+    id="my-name"
+    class="my-name"
+  >
+    -
+  </div>
+
+  <div
+    id="my-mode"
+    class="my-mode"
+  >
+    -
+  </div>
+
+</div>
+
+
+<!-- PASSWORD -->
+
+<div
+  id="password-panel"
+  class="password-panel hidden"
+>
+
+  <div class="password-title">
+    🔐 현재 일반 접속 비밀번호
+  </div>
+
+  <div
+    id="general-password"
+    class="password-value"
+  >
+    확인 중...
+  </div>
+
+  <div
+    id="password-next"
+    class="password-next"
+  >
+    -
+  </div>
+
+</div>
+
+
+<!-- ADMIN -->
+
+<div
+  id="admin-panel"
+  class="admin-panel hidden"
+>
+
+  <div class="admin-panel-title">
+    👑 관리자 기능
+  </div>
+
+  <button
+    class="add-member-btn"
+    onclick="addMemberRow()"
+  >
+    ＋ 클랜원 추가
+  </button>
+
+  <div class="admin-panel-grid">
+
+    <div class="admin-info">
+
+      <div class="admin-info-label">
+        현재 클랜원
+      </div>
+
+      <div
+        id="member-count"
+        class="admin-info-value"
       >
-        로그아웃
-      </button>
-
-    </div>
-
-  </div>
-
-
-  <div class="notice">
-
-    <b>📌 안내</b>
-
-    <br>
-
-    k / m 단위 사용 가능
-
-    <br>
-
-    🔴 스킬 50k 이상 · 알껍질 50k 이상 · 탈것 30k 이상
-
-    <br>
-
-    승천대기에서는 스 / 펫 / 탈 체크에 따라 해당 재화가 표시됩니다.
-
-  </div>
-
-
-  <div
-    id="my-info"
-    class="my-info"
-  >
-
-    <div class="my-title">
-      👤 현재 접속자
-    </div>
-
-    <div
-      id="my-name"
-      class="my-name"
-    >
-      -
-    </div>
-
-    <div
-      id="my-mode"
-      class="my-mode"
-    >
-      -
-    </div>
-
-  </div>
-
-
-  <div
-    id="password-panel"
-    class="password-panel hidden"
-  >
-
-    <div class="password-title">
-      🔐 현재 일반 접속 비밀번호
-    </div>
-
-    <div
-      id="general-password"
-      class="password-value"
-    >
-      확인 중...
-    </div>
-
-    <div
-      id="password-next"
-      class="password-next"
-    >
-      -
-    </div>
-
-  </div>
-
-
-  <div
-    id="admin-panel"
-    class="admin-panel hidden"
-  >
-
-    <div class="admin-panel-title">
-      👑 관리자 기능
-    </div>
-
-    <button
-      id="add-member-button"
-      class="add-member-btn"
-      onclick="addMemberRow()"
-    >
-      ＋ 클랜원 추가
-    </button>
-
-    <div class="admin-panel-grid">
-
-      <div class="admin-info">
-
-        <div class="admin-info-label">
-          현재 클랜원
-        </div>
-
-        <div
-          id="member-count"
-          class="admin-info-value"
-        >
-          0명
-        </div>
-
-      </div>
-
-      <div class="admin-info">
-
-        <div class="admin-info-label">
-          관리 안내
-        </div>
-
-        <div
-          class="admin-info-value"
-          style="font-size:10px"
-        >
-          각 행의 수정 / 삭제 사용
-        </div>
-
+        0명
       </div>
 
     </div>
 
-  </div>
+    <div class="admin-info">
 
-
-  <div class="view-buttons">
-
-    <button
-      class="view-btn active"
-      data-view="all"
-      onclick="setView('all')"
-    >
-      종합
-    </button>
-
-    <button
-      class="view-btn"
-      data-view="ascension"
-      onclick="setView('ascension')"
-    >
-      승천대기
-    </button>
-
-    <button
-      class="view-btn"
-      data-view="chomul"
-      onclick="setView('chomul')"
-    >
-      초물
-    </button>
-
-    <button
-      class="view-btn"
-      data-view="skill"
-      onclick="setView('skill')"
-    >
-      스킬
-    </button>
-
-    <button
-      class="view-btn"
-      data-view="eggshell"
-      onclick="setView('eggshell')"
-    >
-      알껍질
-    </button>
-
-    <button
-      class="view-btn"
-      data-view="eggmerge"
-      onclick="setView('eggmerge')"
-    >
-      알합치기
-    </button>
-
-    <button
-      class="view-btn"
-      data-view="mount"
-      onclick="setView('mount')"
-    >
-      탈것
-    </button>
-
-    <button
-      class="view-btn"
-      data-view="mountmerge"
-      onclick="setView('mountmerge')"
-    >
-      탈것합치기
-    </button>
-
-  </div>
-
-
-  <div class="toolbar">
-
-    <input
-      id="search"
-      class="search"
-      placeholder="🔍 닉네임 검색"
-      oninput="render()"
-    >
-
-    <select
-      id="sort"
-      class="sort"
-      onchange="render()"
-    >
-
-      <option value="default">기본 순서</option>
-      <option value="chomul">초물 높은순</option>
-      <option value="skill">스킬 높은순</option>
-      <option value="eggshell">알껍질 높은순</option>
-      <option value="eggmerge">알합치기 높은순</option>
-      <option value="mount">탈것 높은순</option>
-      <option value="mountmerge">탈것합치기 높은순</option>
-
-    </select>
-
-  </div>
-
-
-  <div
-    id="status"
-    class="status"
-  >
-    데이터를 불러오는 중...
-  </div>
-
-
-  <div class="table-wrap">
-
-    <table>
-
-<thead id="table-head">
-
-  <tr>
-
-    <th>관리</th>
-
-    <th>승천대기</th>
-
-    <th>닉네임</th>
-
-    <th data-column="chomul">
-      초물
-    </th>
-
-    <th data-column="skill">
-      스킬
-    </th>
-
-    <th data-column="eggshell">
-      알껍질<br>+합
-    </th>
-
-    <th data-column="mount">
-      탈것<br>+합
-    </th>
-
-    <th>수정일</th>
-
-  </tr>
-
-</thead>
-
-      <tbody id="members"></tbody>
-
-      <tfoot>
-
-        <tr
-          id="total-row"
-          class="total"
-        >
-
-          <td class="total-name">합계</td>
-          <td>-</td>
-          <td>-</td>
-
-          <td id="total-chomul">0</td>
-
-          <td id="total-skill">0</td>
-
-          <td id="total-eggshell">0</td>
-
-          <td id="total-mount">0</td>
-
-          <td id="total-combined">-</td>
-
-          <td>-</td>
-
-        </tr>
-
-      </tfoot>
-
-    </table>
-
-  </div>
-
-
-  <div
-    id="total-panel"
-    class="total-panel"
-  >
-
-    <div class="total-panel-title">
-      📊 종합 데이터
-    </div>
-
-    <div class="total-grid">
-
-      <div class="total-card">
-        <div class="total-card-label">초물</div>
-        <div id="panel-chomul" class="total-card-value">0</div>
+      <div class="admin-info-label">
+        관리 안내
       </div>
 
-      <div class="total-card">
-        <div class="total-card-label">스킬</div>
-        <div id="panel-skill" class="total-card-value">0</div>
-      </div>
-
-      <div class="total-card">
-        <div class="total-card-label">알껍질</div>
-        <div id="panel-eggshell" class="total-card-value">0</div>
-      </div>
-
-      <div class="total-card">
-        <div class="total-card-label">알합치기</div>
-        <div id="panel-eggmerge" class="total-card-value">0개</div>
-      </div>
-
-      <div class="total-card">
-        <div class="total-card-label">탈것</div>
-        <div id="panel-mount" class="total-card-value">0</div>
-      </div>
-
-      <div class="total-card">
-        <div class="total-card-label">탈것합치기</div>
-        <div id="panel-mountmerge" class="total-card-value">0개</div>
+      <div
+        class="admin-info-value"
+        style="font-size:10px"
+      >
+        각 행의 수정 / 삭제 사용
       </div>
 
     </div>
@@ -1208,6 +1594,372 @@ input:focus{
   </div>
 
 </div>
+
+
+<!-- VIEW BUTTONS -->
+
+<div class="view-buttons">
+
+  <button
+    class="view-btn active"
+    data-view="all"
+    onclick="setView('all')"
+  >
+    종합
+  </button>
+
+  <button
+    class="view-btn"
+    data-view="ascension"
+    onclick="setView('ascension')"
+  >
+    승천대기
+  </button>
+
+  <button
+    class="view-btn"
+    data-view="chomul"
+    onclick="setView('chomul')"
+  >
+    초물
+  </button>
+
+  <button
+    class="view-btn"
+    data-view="skill"
+    onclick="setView('skill')"
+  >
+    스킬
+  </button>
+
+  <button
+    class="view-btn"
+    data-view="eggshell"
+    onclick="setView('eggshell')"
+  >
+    알껍질
+  </button>
+
+  <button
+    class="view-btn"
+    data-view="eggmerge"
+    onclick="setView('eggmerge')"
+  >
+    알합치기
+  </button>
+
+  <button
+    class="view-btn"
+    data-view="mount"
+    onclick="setView('mount')"
+  >
+    탈것
+  </button>
+
+  <button
+    class="view-btn"
+    data-view="mountmerge"
+    onclick="setView('mountmerge')"
+  >
+    탈것합치기
+  </button>
+
+</div>
+
+
+<!-- TOOLBAR -->
+
+<div class="toolbar">
+
+  <input
+    id="search"
+    class="search"
+    placeholder="🔍 닉네임 검색"
+    oninput="render()"
+  >
+
+  <select
+    id="sort"
+    class="sort"
+    onchange="render()"
+  >
+
+    <option value="default">
+      기본 순서
+    </option>
+
+    <option value="chomul">
+      초물 높은순
+    </option>
+
+    <option value="skill">
+      스킬 높은순
+    </option>
+
+    <option value="eggshell">
+      알껍질 높은순
+    </option>
+
+    <option value="eggmerge">
+      알합치기 높은순
+    </option>
+
+    <option value="mount">
+      탈것 높은순
+    </option>
+
+    <option value="mountmerge">
+      탈것합치기 높은순
+    </option>
+
+  </select>
+
+</div>
+
+
+<!-- STATUS -->
+
+<div
+  id="status"
+  class="status"
+>
+  데이터를 불러오는 중...
+</div>
+
+
+<!-- =======================================================
+     TABLE
+======================================================= -->
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+  <th
+    class="column-manage"
+  >
+    관리
+  </th>
+
+  <th
+    class="column-ascension"
+  >
+    승천대기
+  </th>
+
+  <th
+    class="column-name"
+  >
+    닉네임
+  </th>
+
+  <th
+    class="column-chomul"
+  >
+    초물
+  </th>
+
+  <th
+    class="column-skill"
+  >
+    스킬
+  </th>
+
+  <th
+    class="column-eggshell"
+  >
+    알껍질<br>+합
+  </th>
+
+  <th
+    class="column-mount"
+  >
+    탈것<br>+합
+  </th>
+
+  <th
+    class="column-updated"
+  >
+    수정일
+  </th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="members"></tbody>
+
+
+<tfoot>
+
+<tr
+  id="total-row"
+  class="total"
+>
+
+  <td class="total-name">
+    합계
+  </td>
+
+  <td>
+    -
+  </td>
+
+  <td>
+    -
+  </td>
+
+  <td id="total-chomul">
+    0
+  </td>
+
+  <td id="total-skill">
+    0
+  </td>
+
+  <td id="total-eggshell">
+    0
+  </td>
+
+  <td id="total-mount">
+    0
+  </td>
+
+  <td id="total-updated">
+    -
+  </td>
+
+</tr>
+
+</tfoot>
+
+</table>
+
+</div>
+
+
+<!-- =======================================================
+     TOTAL PANEL
+======================================================= -->
+
+<div
+  id="total-panel"
+  class="total-panel"
+>
+
+  <div class="total-panel-title">
+    📊 종합 데이터
+  </div>
+
+  <div class="total-grid">
+
+    <div class="total-card">
+
+      <div class="total-card-label">
+        초물
+      </div>
+
+      <div
+        id="panel-chomul"
+        class="total-card-value"
+      >
+        0
+      </div>
+
+    </div>
+
+
+    <div class="total-card">
+
+      <div class="total-card-label">
+        스킬
+      </div>
+
+      <div
+        id="panel-skill"
+        class="total-card-value"
+      >
+        0
+      </div>
+
+    </div>
+
+
+    <div class="total-card">
+
+      <div class="total-card-label">
+        알껍질
+      </div>
+
+      <div
+        id="panel-eggshell"
+        class="total-card-value"
+      >
+        0
+      </div>
+
+    </div>
+
+
+    <div class="total-card">
+
+      <div class="total-card-label">
+        알합치기
+      </div>
+
+      <div
+        id="panel-eggmerge"
+        class="total-card-value"
+      >
+        0개
+      </div>
+
+    </div>
+
+
+    <div class="total-card">
+
+      <div class="total-card-label">
+        탈것
+      </div>
+
+      <div
+        id="panel-mount"
+        class="total-card-value"
+      >
+        0
+      </div>
+
+    </div>
+
+
+    <div class="total-card">
+
+      <div class="total-card-label">
+        탈것합치기
+      </div>
+
+      <div
+        id="panel-mountmerge"
+        class="total-card-value"
+      >
+        0개
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+</div>
+
 </div>
 
 
@@ -1244,29 +1996,32 @@ let currentNickname = "";
 
 let currentView = new Set();
 
-let totalOpen = true;
-
 let addingMember = false;
 
 
 /* =========================================================
-   ADMIN LOGIN
+   LOGIN SCREEN
 ========================================================= */
 
 function showAdminLogin(){
 
-  document.getElementById("login-screen").style.display =
-    "none";
+  document.getElementById(
+    "login-screen"
+  ).style.display = "none";
 
-  document.getElementById("admin-login-screen").style.display =
-    "flex";
+  document.getElementById(
+    "admin-login-screen"
+  ).style.display = "flex";
 
-  document.getElementById("admin-login-status").textContent =
-    "";
+  document.getElementById(
+    "admin-login-status"
+  ).textContent = "";
 
   setTimeout(() => {
 
-    document.getElementById("admin-password").focus();
+    document.getElementById(
+      "admin-password"
+    ).focus();
 
   },100);
 
@@ -1275,11 +2030,13 @@ function showAdminLogin(){
 
 function backToMemberLogin(){
 
-  document.getElementById("admin-login-screen").style.display =
-    "none";
+  document.getElementById(
+    "admin-login-screen"
+  ).style.display = "none";
 
-  document.getElementById("login-screen").style.display =
-    "flex";
+  document.getElementById(
+    "login-screen"
+  ).style.display = "flex";
 
 }
 
@@ -1291,13 +2048,19 @@ function backToMemberLogin(){
 async function memberLogin(){
 
   const nickname =
-    document.getElementById("login-nickname").value.trim();
+    document.getElementById(
+      "login-nickname"
+    ).value.trim();
 
   const password =
-    document.getElementById("login-password").value.trim();
+    document.getElementById(
+      "login-password"
+    ).value.trim();
 
   const status =
-    document.getElementById("login-status");
+    document.getElementById(
+      "login-status"
+    );
 
 
   if(!nickname){
@@ -1340,7 +2103,8 @@ async function memberLogin(){
     if(result.error){
 
       status.textContent =
-        "❌ " + result.error.message;
+        "❌ " +
+        result.error.message;
 
       return;
 
@@ -1378,7 +2142,8 @@ async function memberLogin(){
   catch(error){
 
     status.textContent =
-      "❌ " + error.message;
+      "❌ " +
+      error.message;
 
   }
 
@@ -1392,10 +2157,14 @@ async function memberLogin(){
 async function adminLogin(){
 
   const password =
-    document.getElementById("admin-password").value.trim();
+    document.getElementById(
+      "admin-password"
+    ).value.trim();
 
   const status =
-    document.getElementById("admin-login-status");
+    document.getElementById(
+      "admin-login-status"
+    );
 
 
   if(!password){
@@ -1428,7 +2197,8 @@ async function adminLogin(){
     if(result.error){
 
       status.textContent =
-        "❌ " + result.error.message;
+        "❌ " +
+        result.error.message;
 
       return;
 
@@ -1465,7 +2235,8 @@ async function adminLogin(){
   catch(error){
 
     status.textContent =
-      "❌ " + error.message;
+      "❌ " +
+      error.message;
 
   }
 
@@ -1478,17 +2249,28 @@ async function adminLogin(){
 
 async function startApp(){
 
-  document.getElementById("login-screen").style.display =
-    "none";
+  document.getElementById(
+    "login-screen"
+  ).style.display = "none";
 
-  document.getElementById("admin-login-screen").style.display =
-    "none";
+  document.getElementById(
+    "admin-login-screen"
+  ).style.display = "none";
 
-  document.getElementById("app").style.display =
-    "block";
+  document.getElementById(
+    "app"
+  ).style.display = "block";
+
+
+  currentView.clear();
 
 
   updateModeUI();
+
+  updateViewButtons();
+
+  updateTableHeaders();
+
 
   await loadMembers();
 
@@ -1509,19 +2291,29 @@ async function startApp(){
 function updateModeUI(){
 
   const badge =
-    document.getElementById("mode-badge");
+    document.getElementById(
+      "mode-badge"
+    );
 
   const myName =
-    document.getElementById("my-name");
+    document.getElementById(
+      "my-name"
+    );
 
   const myMode =
-    document.getElementById("my-mode");
+    document.getElementById(
+      "my-mode"
+    );
 
   const passwordPanel =
-    document.getElementById("password-panel");
+    document.getElementById(
+      "password-panel"
+    );
 
   const adminPanel =
-    document.getElementById("admin-panel");
+    document.getElementById(
+      "admin-panel"
+    );
 
 
   if(currentMode === "admin"){
@@ -1535,9 +2327,13 @@ function updateModeUI(){
     myMode.textContent =
       "전체 클랜원의 정보를 관리할 수 있습니다.";
 
-    passwordPanel.classList.remove("hidden");
+    passwordPanel.classList.remove(
+      "hidden"
+    );
 
-    adminPanel.classList.remove("hidden");
+    adminPanel.classList.remove(
+      "hidden"
+    );
 
   }
   else{
@@ -1550,9 +2346,13 @@ function updateModeUI(){
     myMode.textContent =
       "본인의 정보만 표시됩니다.";
 
-    passwordPanel.classList.add("hidden");
+    passwordPanel.classList.add(
+      "hidden"
+    );
 
-    adminPanel.classList.add("hidden");
+    adminPanel.classList.add(
+      "hidden"
+    );
 
   }
 
@@ -1578,7 +2378,9 @@ async function loadGeneralPassword(){
 
     if(result.error){
 
-      console.error(result.error);
+      console.error(
+        result.error
+      );
 
       document.getElementById(
         "general-password"
@@ -1616,7 +2418,9 @@ async function loadGeneralPassword(){
     ).textContent =
       result.data.next_change
       ? "다음 변경: " +
-        formatDate(result.data.next_change)
+        formatDate(
+          result.data.next_change
+        )
       : "";
 
   }
@@ -1670,9 +2474,6 @@ async function loadMembers(){
         .map(normalizeMember);
 
 
-    render();
-
-
     if(currentMode === "admin"){
 
       document.getElementById(
@@ -1683,10 +2484,13 @@ async function loadMembers(){
     }
 
 
+    render();
+
+
     setStatus(
       currentMode === "admin"
-      ? "✅ 전체 클랜원 불러오기 완료"
-      : "✅ 내 정보 불러오기 완료",
+        ? "✅ 전체 클랜원 불러오기 완료"
+        : "✅ 내 정보 불러오기 완료",
       "success"
     );
 
@@ -1713,37 +2517,52 @@ function normalizeMember(row){
 
     id:row.id,
 
-    name:row.nickname || "",
+    name:
+      row.nickname || "",
 
-    chomul:row.chomul || "",
+    chomul:
+      row.chomul || "",
 
-    skill:row.skill || "",
+    skill:
+      row.skill || "",
 
-    skill_lv:Number(row.skill_lv || 0),
+    skill_lv:
+      Number(row.skill_lv || 0),
 
-    eggshell:row.eggshell || "",
+    eggshell:
+      row.eggshell || "",
 
-    eggshell_lv:Number(row.eggshell_lv || 0),
+    eggshell_lv:
+      Number(row.eggshell_lv || 0),
 
-    eggmerge:Number(row.eggmerge || 0),
+    eggmerge:
+      Number(row.eggmerge || 0),
 
-    mount:row.mount || "",
+    mount:
+      row.mount || "",
 
-    mount_lv:Number(row.mount_lv || 0),
+    mount_lv:
+      Number(row.mount_lv || 0),
 
-    mountmerge:Number(row.mountmerge || 0),
+    mountmerge:
+      Number(row.mountmerge || 0),
 
-    asc_skill:Boolean(row.asc_skill),
+    asc_skill:
+      Boolean(row.asc_skill),
 
-    asc_pet:Boolean(row.asc_pet),
+    asc_pet:
+      Boolean(row.asc_pet),
 
-    asc_mount:Boolean(row.asc_mount),
+    asc_mount:
+      Boolean(row.asc_mount),
 
-    updated_at:row.updated_at
+    updated_at:
+      row.updated_at
 
   };
 
 }
+
 
 /* =========================================================
    RENDER
@@ -1752,9 +2571,13 @@ function normalizeMember(row){
 function render(){
 
   const tbody =
-    document.getElementById("members");
+    document.getElementById(
+      "members"
+    );
 
-  if(!tbody) return;
+
+  if(!tbody)
+    return;
 
 
   tbody.innerHTML = "";
@@ -1764,17 +2587,18 @@ function render(){
     [...members];
 
 
-  /* =========================================================
+  /* =======================================================
      SEARCH
-  ========================================================= */
-
-  const searchEl =
-    document.getElementById("search");
+  ======================================================= */
 
   const search =
-    searchEl
-      ? searchEl.value.trim().toLowerCase()
-      : "";
+    (
+      document.getElementById(
+        "search"
+      )?.value || ""
+    )
+      .trim()
+      .toLowerCase();
 
 
   if(search){
@@ -1782,7 +2606,9 @@ function render(){
     list =
       list.filter(
         m =>
-          String(m.name || "")
+          String(
+            m.name || ""
+          )
             .toLowerCase()
             .includes(search)
       );
@@ -1790,1304 +2616,939 @@ function render(){
   }
 
 
-  /* =========================================================
-     SORT
-  ========================================================= */
+  /* =======================================================
+     VIEW FILTER
+  ======================================================= */
 
-  const sortEl =
-    document.getElementById("sort");
+  if(currentView.size > 0){
+
+    list =
+      list.filter(member => {
+
+        if(
+          currentView.has("ascension")
+        ){
+
+          if(
+            member.asc_skill ||
+            member.asc_pet ||
+            member.asc_mount
+          ){
+
+            return true;
+
+          }
+
+        }
+
+
+        if(
+          currentView.has("chomul") &&
+          toNumber(member.chomul) > 0
+        ){
+
+          return true;
+
+        }
+
+
+        if(
+          currentView.has("skill") &&
+          toNumber(member.skill) > 0
+        ){
+
+          return true;
+
+        }
+
+
+        if(
+          currentView.has("eggshell") &&
+          (
+            toNumber(member.eggshell) > 0 ||
+            Number(member.eggmerge) > 0
+          )
+        ){
+
+          return true;
+
+        }
+
+
+        if(
+          currentView.has("eggmerge") &&
+          Number(member.eggmerge) > 0
+        ){
+
+          return true;
+
+        }
+
+
+        if(
+          currentView.has("mount") &&
+          (
+            toNumber(member.mount) > 0 ||
+            Number(member.mountmerge) > 0
+          )
+        ){
+
+          return true;
+
+        }
+
+
+        if(
+          currentView.has("mountmerge") &&
+          Number(member.mountmerge) > 0
+        ){
+
+          return true;
+
+        }
+
+
+        return false;
+
+      });
+
+  }
+
+
+  /* =======================================================
+     SORT
+  ======================================================= */
 
   const sort =
-    sortEl
-      ? sortEl.value
-      : "default";
+    document.getElementById(
+      "sort"
+    )?.value || "default";
 
 
   if(sort !== "default"){
 
     list.sort(
-      (a,b) =>
-        toNumber(b[sort]) -
-        toNumber(a[sort])
+      (a,b) => {
+
+        return (
+          toNumber(b[sort]) -
+          toNumber(a[sort])
+        );
+
+      }
     );
 
   }
 
 
-  /* =========================================================
-     MULTI VIEW FILTER
-     여러 버튼 중복 선택 가능
-  ========================================================= */
-
-  const selectedViews =
-    currentView;
-
-
-  if(selectedViews.size > 0){
-
-
-    /* 승천대기 */
-
-    if(selectedViews.has("ascension")){
-
-      list =
-        list.filter(
-          m =>
-            m.asc_skill ||
-            m.asc_pet ||
-            m.asc_mount
-        );
-
-    }
-
-
-    /* 초물 */
-
-    if(selectedViews.has("chomul")){
-
-      list =
-        list.filter(
-          m =>
-            toNumber(m.chomul) > 0
-        );
-
-    }
-
-
-    /* 스킬 */
-
-    if(selectedViews.has("skill")){
-
-      list =
-        list.filter(
-          m =>
-            toNumber(m.skill) > 0
-        );
-
-    }
-
-
-    /* 알껍질 */
-
-    if(selectedViews.has("eggshell")){
-
-      list =
-        list.filter(
-          m =>
-            toNumber(m.eggshell) > 0
-        );
-
-    }
-
-
-    /* 알합치기 */
-
-    if(selectedViews.has("eggmerge")){
-
-      list =
-        list.filter(
-          m =>
-            toNumber(m.eggmerge) > 0
-        );
-
-    }
-
-
-    /* 탈것 */
-
-    if(selectedViews.has("mount")){
-
-      list =
-        list.filter(
-          m =>
-            toNumber(m.mount) > 0
-        );
-
-    }
-
-
-    /* 탈것합치기 */
-
-    if(selectedViews.has("mountmerge")){
-
-      list =
-        list.filter(
-          m =>
-            toNumber(m.mountmerge) > 0
-        );
-
-    }
-
-  }
-
-
-  /* =========================================================
-     LIST EMPTY
-  ========================================================= */
+  /* =======================================================
+     EMPTY
+  ======================================================= */
 
   if(list.length === 0){
 
-    tbody.innerHTML = `
-      <tr>
-        <td colspan="8" class="empty">
-          표시할 클랜원이 없습니다.
-        </td>
-      </tr>
+    const emptyRow =
+      document.createElement("tr");
+
+
+    emptyRow.innerHTML = `
+      <td
+        colspan="8"
+        class="empty"
+      >
+        표시할 클랜원이 없습니다.
+      </td>
     `;
 
-    updateTotals();
 
-    applyTotalState();
+    tbody.appendChild(
+      emptyRow
+    );
 
-    return;
+  }
+  else{
+
+    list.forEach(
+      member => {
+
+        const originalIndex =
+          members.findIndex(
+            m =>
+              Number(m.id) ===
+              Number(member.id)
+          );
+
+
+        const row =
+          document.createElement("tr");
+
+
+        row.innerHTML =
+          buildRow(
+            member,
+            originalIndex
+          );
+
+
+        tbody.appendChild(row);
+
+      }
+    );
 
   }
 
 
-  /* =========================================================
-     BUILD EXISTING ROWS
-  ========================================================= */
-
-  list.forEach(member => {
-
-    const realIndex =
-      members.findIndex(
-        x =>
-          Number(x.id) ===
-          Number(member.id)
-      );
-
-
-    const tr =
-      document.createElement("tr");
-
-
-    tr.innerHTML =
-      buildRow(
-        member,
-        realIndex
-      );
-
-
-    tbody.appendChild(tr);
-
-  });
-
+  updateTableHeaders();
 
   updateTotals();
-
-  applyTotalState();
 
 }
 
 
-
-
-
 /* =========================================================
-   BUILD EXISTING ROW
+   BUILD ROW
 ========================================================= */
 
-  /* =========================================================
-   BUILD EXISTING ROW
-========================================================= */
-
-function buildRow(member,index){
+function buildRow(
+  member,
+  index
+){
 
   const canEdit =
     currentMode === "admin" ||
     Number(member.id) ===
-    Number(currentMemberId);
-
-
-  const selected =
-    currentView;
+      Number(currentMemberId);
 
 
   const isAll =
-    selected.size === 0;
+    currentView.size === 0;
 
 
-  /* =========================================================
-     SHOW COLUMNS
-  ========================================================= */
-
-   const showAscension =
+  const showAscension =
     isAll ||
-    selected.has("ascension");
+    currentView.has("ascension");
+
 
   const showChomul =
     isAll ||
-    selected.has("chomul");
+    currentView.has("chomul");
+
 
   const showSkill =
     isAll ||
-    selected.has("skill");
+    currentView.has("skill");
+
 
   const showEggshell =
     isAll ||
-    selected.has("eggshell");
+    currentView.has("eggshell") ||
+    currentView.has("eggmerge");
 
-  const showEggmerge =
-    showEggshell;
 
   const showMount =
     isAll ||
-    selected.has("mount");
-
-  const showMountmerge =
-    showMount;
+    currentView.has("mount") ||
+    currentView.has("mountmerge");
 
 
-  /* =========================================================
+  /* =======================================================
      MANAGE
-  ========================================================= */
+  ======================================================= */
 
   const manageCell = `
-<td>
 
-${
-canEdit
-?
-`
-<button
-  id="edit-${index}"
-  class="edit-btn"
-  onclick="editMember(${index})"
->
-수정
-</button>
+    <td>
 
-<button
-  id="save-${index}"
-  class="save-btn"
-  onclick="saveMember(${index})"
->
-저장
-</button>
+      ${
+        canEdit
+        ?
 
-${
-currentMode === "admin"
-?
-`
-<button
-  class="delete-btn"
-  onclick="deleteMember(${index})"
->
-삭제
-</button>
-`
-:
-""
-}
-`
-:
-"-"
-}
+        `
 
-</td>
-`;
+        <button
+          id="edit-${index}"
+          class="edit-btn"
+          onclick="editMember(${index})"
+        >
+          수정
+        </button>
+
+        <button
+          id="save-${index}"
+          class="save-btn"
+          onclick="saveMember(${index})"
+        >
+          저장
+        </button>
+
+        ${
+          currentMode === "admin"
+          ?
+
+          `
+          <button
+            class="delete-btn"
+            onclick="deleteMember(${index})"
+          >
+            삭제
+          </button>
+          `
+
+          :
+
+          ""
+        }
+
+        `
+
+        :
+
+        "-"
+      }
+
+    </td>
+
+  `;
 
 
-  /* =========================================================
+  /* =======================================================
      ASCENSION
-  ========================================================= */
+  ======================================================= */
 
-  const ascensionCell =
-    showAscension
-    ?
-`
-<td>
-
-<div class="ascension-box">
+  let ascensionHTML = "";
 
 
-<div class="asc-row">
+  if(member.asc_skill){
 
-<label class="asc-check">
+    ascensionHTML += `
 
-<input
-  class="checkbox"
-  id="check_s-${index}"
-  type="checkbox"
-  ${member.asc_skill ? "checked":""}
-  ${canEdit ? "":"disabled"}
-  onchange="toggleCheck(${index},'skill')"
->
+      <div class="asc-row">
 
-스
+        <label class="asc-check">
 
-</label>
+          <input
+            class="checkbox"
+            id="check_s-${index}"
+            type="checkbox"
+            checked
+            ${canEdit ? "" : "disabled"}
+            onchange="
+              toggleCheck(
+                ${index},
+                'skill'
+              )
+            "
+          >
 
-${
-member.asc_skill
-?
-`
-<div class="asc-resource">
+          스
 
-<input
-  value="${escapeHtml(member.skill)}"
-  disabled
->
+        </label>
 
-</div>
-`
-:
-""
-}
+        <div class="asc-resource">
 
-</div>
+          <input
+            value="${escapeHtml(member.skill)}"
+            disabled
+          >
 
+        </div>
 
-<div class="asc-row">
+      </div>
 
-<label class="asc-check">
+    `;
 
-<input
-  class="checkbox"
-  id="check_pet-${index}"
-  type="checkbox"
-  ${member.asc_pet ? "checked":""}
-  ${canEdit ? "":"disabled"}
-  onchange="toggleCheck(${index},'pet')"
->
+  }
+  else{
 
-펫
+    ascensionHTML += `
 
-</label>
+      <div class="asc-row">
 
-${
-member.asc_pet
-?
-`
-<div class="asc-resource">
+        <label class="asc-check">
 
-<input
-  value="${escapeHtml(member.eggshell)}"
-  disabled
->
+          <input
+            class="checkbox"
+            id="check_s-${index}"
+            type="checkbox"
+            ${canEdit ? "" : "disabled"}
+            onchange="
+              toggleCheck(
+                ${index},
+                'skill'
+              )
+            "
+          >
 
-<span class="asc-plus">+합</span>
+          스
 
-<input
-  class="asc-merge"
-  value="${member.eggmerge}"
-  disabled
->
+        </label>
 
-</div>
-`
-:
-""
-}
+      </div>
 
-</div>
+    `;
+
+  }
 
 
-<div class="asc-row">
+  if(member.asc_pet){
 
-<label class="asc-check">
+    ascensionHTML += `
 
-<input
-  class="checkbox"
-  id="check_tal-${index}"
-  type="checkbox"
-  ${member.asc_mount ? "checked":""}
-  ${canEdit ? "":"disabled"}
-  onchange="toggleCheck(${index},'mount')"
->
+      <div class="asc-row">
 
-탈
+        <label class="asc-check">
 
-</label>
+          <input
+            class="checkbox"
+            id="check_pet-${index}"
+            type="checkbox"
+            checked
+            ${canEdit ? "" : "disabled"}
+            onchange="
+              toggleCheck(
+                ${index},
+                'pet'
+              )
+            "
+          >
 
-${
-member.asc_mount
-?
-`
-<div class="asc-resource">
+          펫
 
-<input
-  value="${escapeHtml(member.mount)}"
-  disabled
->
+        </label>
 
-<span class="asc-plus">+합</span>
+        <div class="asc-resource">
 
-<input
-  class="asc-merge"
-  value="${member.mountmerge}"
-  disabled
->
+          <input
+            value="${escapeHtml(member.eggshell)}"
+            disabled
+          >
 
-</div>
-`
-:
-""
-}
+          <span class="asc-plus">
+            +합
+          </span>
 
-</div>
+          <input
+            class="asc-merge"
+            value="${member.eggmerge}"
+            disabled
+          >
+
+        </div>
+
+      </div>
+
+    `;
+
+  }
+  else{
+
+    ascensionHTML += `
+
+      <div class="asc-row">
+
+        <label class="asc-check">
+
+          <input
+            class="checkbox"
+            id="check_pet-${index}"
+            type="checkbox"
+            ${canEdit ? "" : "disabled"}
+            onchange="
+              toggleCheck(
+                ${index},
+                'pet'
+              )
+            "
+          >
+
+          펫
+
+        </label>
+
+      </div>
+
+    `;
+
+  }
 
 
-</div>
+  if(member.asc_mount){
 
-</td>
-`
-    :
-    "";
+    ascensionHTML += `
+
+      <div class="asc-row">
+
+        <label class="asc-check">
+
+          <input
+            class="checkbox"
+            id="check_tal-${index}"
+            type="checkbox"
+            checked
+            ${canEdit ? "" : "disabled"}
+            onchange="
+              toggleCheck(
+                ${index},
+                'mount'
+              )
+            "
+          >
+
+          탈
+
+        </label>
+
+        <div class="asc-resource">
+
+          <input
+            value="${escapeHtml(member.mount)}"
+            disabled
+          >
+
+          <span class="asc-plus">
+            +합
+          </span>
+
+          <input
+            class="asc-merge"
+            value="${member.mountmerge}"
+            disabled
+          >
+
+        </div>
+
+      </div>
+
+    `;
+
+  }
+  else{
+
+    ascensionHTML += `
+
+      <div class="asc-row">
+
+        <label class="asc-check">
+
+          <input
+            class="checkbox"
+            id="check_tal-${index}"
+            type="checkbox"
+            ${canEdit ? "" : "disabled"}
+            onchange="
+              toggleCheck(
+                ${index},
+                'mount'
+              )
+            "
+          >
+
+          탈
+
+        </label>
+
+      </div>
+
+    `;
+
+  }
 
 
-  /* =========================================================
-     NICKNAME
-  ========================================================= */
+  const ascensionCell = `
+
+    <td>
+
+      ${
+        showAscension
+        ?
+
+        `
+        <div class="ascension-box">
+          ${ascensionHTML}
+        </div>
+        `
+
+        :
+
+        ""
+      }
+
+    </td>
+
+  `;
+
+
+  /* =======================================================
+     NAME
+  ======================================================= */
 
   const nameCell = `
-<td>
 
-<input
-  id="name-${index}"
-  class="name-input"
-  value="${escapeHtml(member.name)}"
-  disabled
->
+    <td>
 
-</td>
-`;
+      <input
+        id="name-${index}"
+        class="name-input"
+        value="${escapeHtml(member.name)}"
+        disabled
+      >
+
+    </td>
+
+  `;
 
 
-  /* =========================================================
+  /* =======================================================
      CHOMUL
-  ========================================================= */
+  ======================================================= */
 
-  const chomulCell =
-    showChomul
-    ?
-`
-<td>
+  const chomulCell = `
 
-<input
-  id="chomul-${index}"
-  class="resource-input"
-  value="${escapeHtml(member.chomul)}"
-  disabled
->
+    <td>
 
-</td>
-`
-    :
-    "";
+      ${
+        showChomul
+
+        ?
+
+        `
+        <input
+          id="chomul-${index}"
+          class="resource-input"
+          value="${escapeHtml(member.chomul)}"
+          disabled
+        >
+        `
+
+        :
+
+        ""
+      }
+
+    </td>
+
+  `;
 
 
-  /* =========================================================
+  /* =======================================================
      SKILL
-  ========================================================= */
+  ======================================================= */
 
-  const skillCell =
-    showSkill
-    ?
-`
-<td>
+  const skillCell = `
 
-<div class="dual-cell">
+    <td>
 
-<div class="dual-top">
+      ${
+        showSkill
 
-<span>LV</span>
+        ?
 
-<input
-  id="skill_lv-${index}"
-  class="lv-input"
-  type="number"
-  value="${member.skill_lv}"
-  disabled
->
+        `
 
-<input
-  id="skill-${index}"
-  class="resource-input"
-  value="${escapeHtml(member.skill)}"
-  disabled
-  oninput="checkColor(this,'skill')"
->
+        <div class="dual-cell">
 
-</div>
+          <div class="dual-top">
 
-</div>
+            <span>LV</span>
 
-</td>
-`
-    :
-    "";
+            <input
+              id="skill_lv-${index}"
+              class="lv-input"
+              type="number"
+              value="${member.skill_lv}"
+              disabled
+            >
+
+            <input
+              id="skill-${index}"
+              class="resource-input"
+              value="${escapeHtml(member.skill)}"
+              disabled
+              oninput="
+                checkColor(
+                  this,
+                  'skill'
+                )
+              "
+            >
+
+          </div>
+
+        </div>
+
+        `
+
+        :
+
+        ""
+      }
+
+    </td>
+
+  `;
 
 
-  /* =========================================================
+  /* =======================================================
      EGGSHELL
-  ========================================================= */
+  ======================================================= */
 
-  const eggshellCell =
-    showEggshell || showEggmerge
-    ?
-`
-<td>
+  const eggshellCell = `
 
-<div class="dual-cell">
+    <td>
 
-${
-showEggshell
-?
-`
-<div class="dual-top">
+      ${
+        showEggshell
 
-<input
-  id="eggshell_lv-${index}"
-  class="lv-input"
-  type="number"
-  value="${member.eggshell_lv}"
-  disabled
->
+        ?
 
-<input
-  id="eggshell-${index}"
-  class="resource-input"
-  value="${escapeHtml(member.eggshell)}"
-  disabled
-  oninput="checkColor(this,'eggshell')"
->
+        `
 
-</div>
-`
-:
-""
-}
+        <div class="dual-cell">
 
-${
-showEggmerge
-?
-`
-<div class="dual-bottom">
+          <div class="dual-top">
 
-<span class="dual-label">
-합
-</span>
+            <input
+              id="eggshell_lv-${index}"
+              class="lv-input"
+              type="number"
+              value="${member.eggshell_lv}"
+              disabled
+            >
 
-<input
-  id="eggmerge-${index}"
-  class="dual-merge"
-  type="number"
-  value="${member.eggmerge}"
-  disabled
->
+            <input
+              id="eggshell-${index}"
+              class="resource-input"
+              value="${escapeHtml(member.eggshell)}"
+              disabled
+              oninput="
+                checkColor(
+                  this,
+                  'eggshell'
+                )
+              "
+            >
 
-</div>
-`
-:
-""
-}
+          </div>
 
-</div>
+          <div class="dual-bottom">
 
-</td>
-`
-    :
-    "";
+            <span class="dual-label">
+              합
+            </span>
+
+            <input
+              id="eggmerge-${index}"
+              class="dual-merge"
+              type="number"
+              value="${member.eggmerge}"
+              disabled
+            >
+
+          </div>
+
+        </div>
+
+        `
+
+        :
+
+        ""
+      }
+
+    </td>
+
+  `;
 
 
-  /* =========================================================
+  /* =======================================================
      MOUNT
-  ========================================================= */
+  ======================================================= */
 
-  const mountCell =
-    showMount || showMountmerge
-    ?
-`
-<td>
+  const mountCell = `
 
-<div class="dual-cell">
+    <td>
 
-${
-showMount
-?
-`
-<div class="dual-top">
+      ${
+        showMount
 
-<input
-  id="mount_lv-${index}"
-  class="lv-input"
-  type="number"
-  value="${member.mount_lv}"
-  disabled
->
+        ?
 
-<input
-  id="mount-${index}"
-  class="resource-input"
-  value="${escapeHtml(member.mount)}"
-  disabled
-  oninput="checkColor(this,'mount')"
->
+        `
 
-</div>
-`
-:
-""
-}
+        <div class="dual-cell">
 
-${
-showMountmerge
-?
-`
-<div class="dual-bottom">
+          <div class="dual-top">
 
-<span class="dual-label">
-합
-</span>
+            <input
+              id="mount_lv-${index}"
+              class="lv-input"
+              type="number"
+              value="${member.mount_lv}"
+              disabled
+            >
 
-<input
-  id="mountmerge-${index}"
-  class="dual-merge"
-  type="number"
-  value="${member.mountmerge}"
-  disabled
->
+            <input
+              id="mount-${index}"
+              class="resource-input"
+              value="${escapeHtml(member.mount)}"
+              disabled
+              oninput="
+                checkColor(
+                  this,
+                  'mount'
+                )
+              "
+            >
 
-</div>
-`
-:
-""
-}
+          </div>
 
-</div>
+          <div class="dual-bottom">
 
-</td>
-`
-    :
-    "";
+            <span class="dual-label">
+              합
+            </span>
+
+            <input
+              id="mountmerge-${index}"
+              class="dual-merge"
+              type="number"
+              value="${member.mountmerge}"
+              disabled
+            >
+
+          </div>
+
+        </div>
+
+        `
+
+        :
+
+        ""
+      }
+
+    </td>
+
+  `;
 
 
-  /* =========================================================
+  /* =======================================================
      UPDATED
-  ========================================================= */
+  ======================================================= */
 
   const updatedCell = `
-<td>
 
-${formatUpdated(member.updated_at)}
+    <td>
 
-</td>
-`;
+      ${formatUpdated(member.updated_at)}
 
+    </td>
 
-  /* =========================================================
-     RETURN
-  ========================================================= */
+  `;
 
-  return `
 
-${manageCell}
+  /* =======================================================
+     IMPORTANT
+     
+     항상 정확히 8개의 td만 반환한다.
+  ======================================================= */
 
-${ascensionCell}
+  return (
 
-${nameCell}
+    manageCell +
 
-${chomulCell}
+    ascensionCell +
 
-${skillCell}
+    nameCell +
 
-${eggshellCell}
+    chomulCell +
 
-${mountCell}
+    skillCell +
 
-${updatedCell}
+    eggshellCell +
 
-`;
+    mountCell +
 
-}
+    updatedCell
 
-
-/* =========================================================
-   ADD MEMBER ROW
-========================================================= */
-
-function addMemberRow(){
-
-  if(currentMode !== "admin"){
-
-    alert("관리자만 클랜원을 추가할 수 있습니다.");
-
-    return;
-
-  }
-
-
-  if(addingMember){
-
-    alert("이미 추가 입력 중인 행이 있습니다.");
-
-    return;
-
-  }
-
-
-  addingMember = true;
-
-
-  const tbody =
-    document.getElementById("members");
-
-
-  const row =
-    document.createElement("tr");
-
-
-  row.id =
-    "new-member-row";
-
-  row.className =
-    "add-row";
-
-
-  row.innerHTML = `
-
-<td>
-
-<div class="add-actions">
-
-<button
-  class="add-save-btn"
-  onclick="saveNewMember()"
->
-저장
-</button>
-
-<button
-  class="add-cancel-btn"
-  onclick="cancelNewMember()"
->
-취소
-</button>
-
-</div>
-
-</td>
-
-
-<td>
-
-<div class="ascension-box">
-
-<div class="asc-row">
-
-<label class="asc-check">
-
-<input
-  id="new-asc-s"
-  class="checkbox"
-  type="checkbox"
->
-
-스
-
-</label>
-
-</div>
-
-
-<div class="asc-row">
-
-<label class="asc-check">
-
-<input
-  id="new-asc-pet"
-  class="checkbox"
-  type="checkbox"
->
-
-펫
-
-</label>
-
-</div>
-
-
-<div class="asc-row">
-
-<label class="asc-check">
-
-<input
-  id="new-asc-mount"
-  class="checkbox"
-  type="checkbox"
->
-
-탈
-
-</label>
-
-</div>
-
-</div>
-
-</td>
-
-
-<td>
-
-<input
-  id="new-name"
-  class="name-input"
-  placeholder="닉네임"
-  autocomplete="off"
->
-
-</td>
-
-
-<td>
-
-<input
-  id="new-chomul"
-  class="resource-input"
-  placeholder="초물"
-  autocomplete="off"
->
-
-</td>
-
-
-<td>
-
-<div class="dual-cell">
-
-<div class="dual-top">
-
-<span>LV</span>
-
-<input
-  id="new-skill-lv"
-  class="lv-input"
-  type="number"
-  value="0"
->
-
-<input
-  id="new-skill"
-  class="resource-input"
-  placeholder="스킬"
-  oninput="checkColor(this,'skill')"
->
-
-</div>
-
-</div>
-
-</td>
-
-
-<td>
-
-<div class="dual-cell">
-
-<div class="dual-top">
-
-<input
-  id="new-eggshell-lv"
-  class="lv-input"
-  type="number"
-  value="0"
->
-
-<input
-  id="new-eggshell"
-  class="resource-input"
-  placeholder="알껍질"
-  oninput="checkColor(this,'eggshell')"
->
-
-</div>
-
-<div class="dual-bottom">
-
-<span class="dual-label">
-합
-</span>
-
-<input
-  id="new-eggmerge"
-  class="dual-merge"
-  type="number"
-  value="0"
->
-
-</div>
-
-</div>
-
-</td>
-
-
-<td>
-
-<div class="dual-cell">
-
-<div class="dual-top">
-
-<input
-  id="new-mount-lv"
-  class="lv-input"
-  type="number"
-  value="0"
->
-
-<input
-  id="new-mount"
-  class="resource-input"
-  placeholder="탈것"
-  oninput="checkColor(this,'mount')"
->
-
-</div>
-
-<div class="dual-bottom">
-
-<span class="dual-label">
-합
-</span>
-
-<input
-  id="new-mountmerge"
-  class="dual-merge"
-  type="number"
-  value="0"
->
-
-</div>
-
-</div>
-
-</td>
-
-
-<td>
-
-<span id="new-total">
-0
-</span>
-
-</td>
-
-
-<td>
-신규
-</td>
-
-`;
-
-
-  tbody.appendChild(row);
-
-
-  document.getElementById(
-    "new-name"
-  ).focus();
-
-
-  row.scrollIntoView({
-    behavior:"smooth",
-    block:"center"
-  });
-
-}
-
-
-/* =========================================================
-   NEW ROW TOTAL
-========================================================= */
-
-document.addEventListener(
-  "input",
-  function(event){
-
-    if(!addingMember)
-      return;
-
-
-    if(
-      !event.target.id ||
-      !event.target.id.startsWith("new-")
-    )
-      return;
-
-
-    const total =
-      toNumber(
-        document.getElementById("new-chomul")?.value
-      ) +
-      toNumber(
-        document.getElementById("new-skill")?.value
-      ) +
-      toNumber(
-        document.getElementById("new-eggshell")?.value
-      ) +
-      toNumber(
-        document.getElementById("new-mount")?.value
-      );
-
-
-    const totalEl =
-      document.getElementById("new-total");
-
-
-    if(totalEl){
-
-      totalEl.textContent =
-        formatNumber(total);
-
-    }
-
-  }
-);
-
-
-/* =========================================================
-   SAVE NEW MEMBER
-========================================================= */
-
-async function saveNewMember(){
-
-  if(currentMode !== "admin"){
-
-    alert(
-      "관리자만 클랜원을 추가할 수 있습니다."
-    );
-
-    return;
-
-  }
-
-
-  const nickname =
-    document.getElementById(
-      "new-name"
-    )?.value.trim();
-
-
-  if(!nickname){
-
-    alert(
-      "닉네임을 입력해주세요."
-    );
-
-    document.getElementById(
-      "new-name"
-    )?.focus();
-
-    return;
-
-  }
-
-
-  setStatus(
-    "➕ 새 클랜원 저장 중..."
-  );
-
-
-  try{
-
-    const result =
-      await supabaseClient.rpc(
-        "fm_add_member",
-        {
-
-          p_mode:
-            "admin",
-
-          p_nickname:
-            nickname,
-
-          p_chomul:
-            document.getElementById(
-              "new-chomul"
-            ).value.trim(),
-
-          p_skill_lv:
-            Number(
-              document.getElementById(
-                "new-skill-lv"
-              ).value
-            ) || 0,
-
-          p_skill:
-            document.getElementById(
-              "new-skill"
-            ).value.trim(),
-
-          p_eggshell_lv:
-            Number(
-              document.getElementById(
-                "new-eggshell-lv"
-              ).value
-            ) || 0,
-
-          p_eggshell:
-  document.getElementById(
-    "new-eggshell"
-  ).value.trim(),
-
-          p_eggmerge:
-            Number(
-              document.getElementById(
-                "new-eggmerge"
-              ).value
-            ) || 0,
-
-          p_mount:
-            document.getElementById(
-              "new-mount"
-            ).value.trim(),
-
-          p_mount_lv:
-            Number(
-              document.getElementById(
-                "new-mount-lv"
-              ).value
-            ) || 0,
-
-          p_mountmerge:
-            Number(
-              document.getElementById(
-                "new-mountmerge"
-              ).value
-            ) || 0,
-
-          p_asc_skill:
-            document.getElementById(
-              "new-asc-s"
-            ).checked,
-
-          p_asc_pet:
-            document.getElementById(
-              "new-asc-pet"
-            ).checked,
-
-          p_asc_mount:
-            document.getElementById(
-              "new-asc-mount"
-            ).checked
-
-        }
-      );
-
-
-    if(result.error){
-
-      alert(
-        "클랜원 추가 실패\n\n" +
-        result.error.message
-      );
-
-      setStatus(
-        "❌ 클랜원 추가 실패",
-        "error"
-      );
-
-      return;
-
-    }
-
-
-    if(!result.data){
-
-      alert(
-        "새 클랜원 정보를 받지 못했습니다."
-      );
-
-      return;
-
-    }
-
-
-    const newMember =
-      normalizeMember(
-        result.data
-      );
-
-
-    members.push(
-      newMember
-    );
-
-
-    addingMember =
-      false;
-
-
-    document.getElementById(
-      "member-count"
-    ).textContent =
-      members.length + "명";
-
-
-    render();
-
-
-    setStatus(
-      "✅ " +
-      newMember.name +
-      " 클랜원 추가 완료",
-      "success"
-    );
-
-  }
-  catch(error){
-
-    alert(
-      "클랜원 추가 실패\n\n" +
-      error.message
-    );
-
-    setStatus(
-      "❌ 클랜원 추가 실패",
-      "error"
-    );
-
-  }
-
-}
-
-
-/* =========================================================
-   CANCEL NEW MEMBER
-========================================================= */
-
-function cancelNewMember(){
-
-  const row =
-    document.getElementById(
-      "new-member-row"
-    );
-
-
-  if(row)
-    row.remove();
-
-
-  addingMember =
-    false;
-
-
-  setStatus(
-    "신규 클랜원 추가를 취소했습니다."
   );
 
 }
 
 
 /* =========================================================
-   MULTI VIEW
+   TABLE HEADER
 ========================================================= */
 
+function updateTableHeaders(){
+
+  const isAll =
+    currentView.size === 0;
+
+
+  const show =
+    key =>
+      isAll ||
+      currentView.has(key);
+
+
+  setColumnVisible(
+    ".column-ascension",
+    show("ascension")
+  );
+
+
+  setColumnVisible(
+    ".column-chomul",
+    show("chomul")
+  );
+
+
+  setColumnVisible(
+    ".column-skill",
+    show("skill")
+  );
+
+
+  setColumnVisible(
+    ".column-eggshell",
+    show("eggshell") ||
+    show("eggmerge")
+  );
+
+
+  setColumnVisible(
+    ".column-mount",
+    show("mount") ||
+    show("mountmerge")
+  );
+
+}
+
+
+function setColumnVisible(
+  selector,
+  visible
+){
+
+  document
+    .querySelectorAll(selector)
+    .forEach(
+      el => {
+
+        el.style.display =
+          visible
+          ? ""
+          : "none";
+
+      }
+    );
+
+}
+
+
 /* =========================================================
-   MULTI VIEW
+   VIEW BUTTON
 ========================================================= */
 
 function setView(view){
@@ -3103,25 +3564,11 @@ function setView(view){
   }
 
 
-  /* =====================================================
-     종합
-     → 모든 선택 해제
-  ===================================================== */
-
   if(view === "all"){
 
     currentView.clear();
 
-    totalOpen = true;
-
   }
-
-
-  /* =====================================================
-     개별 항목
-     → 여러 개 동시 선택 가능
-  ===================================================== */
-
   else{
 
     if(currentView.has(view)){
@@ -3135,111 +3582,46 @@ function setView(view){
 
     }
 
-
-    totalOpen = true;
-
   }
 
 
-  /* =====================================================
-     버튼 색상 갱신
-  ===================================================== */
-
   updateViewButtons();
-
-
-  /* =====================================================
-     화면 갱신
-  ===================================================== */
 
   render();
 
 }
 
 
-/* =========================================================
-   VIEW BUTTON UI
-========================================================= */
-
 function updateViewButtons(){
 
   document
     .querySelectorAll(".view-btn")
-    .forEach(btn => {
+    .forEach(
+      btn => {
 
-      const view =
-        btn.dataset.view;
+        const view =
+          btn.dataset.view;
 
 
-      /*
-        종합 버튼
-        → 아무것도 선택하지 않았을 때만 활성화
-      */
+        if(view === "all"){
 
-      if(view === "all"){
+          btn.classList.toggle(
+            "active",
+            currentView.size === 0
+          );
 
-        btn.classList.toggle(
-          "active",
-          currentView.size === 0
-        );
+        }
+        else{
 
-        return;
+          btn.classList.toggle(
+            "active",
+            currentView.has(view)
+          );
+
+        }
 
       }
-
-
-      /*
-        개별 버튼
-        → 선택되어 있으면 활성화
-        → 여러 개 동시에 선택 가능
-      */
-
-      btn.classList.toggle(
-        "active",
-        currentView.has(view)
-      );
-
-    });
-
-}
-
-
-/* =========================================================
-   TOTAL STATE
-========================================================= */
-
-function applyTotalState(){
-
-  const tbody =
-    document.getElementById("members");
-
-  const totalPanel =
-    document.getElementById("total-panel");
-
-
-  if(
-    currentView === "all" &&
-    !totalOpen
-  ){
-
-    tbody.style.display =
-      "none";
-
-    totalPanel.style.display =
-      "block";
-
-    return;
-
-  }
-
-
-  tbody.style.display =
-    "";
-
-  totalPanel.style.display =
-    currentView === "all"
-      ? "block"
-      : "none";
+    );
 
 }
 
@@ -3261,7 +3643,7 @@ function editMember(index){
   if(
     currentMode !== "admin" &&
     Number(member.id) !==
-    Number(currentMemberId)
+      Number(currentMemberId)
   ){
 
     alert(
@@ -3289,35 +3671,55 @@ function editMember(index){
   ];
 
 
-  fields.forEach(field => {
+  fields.forEach(
+    field => {
 
-    const el =
-      document.getElementById(
-        field + "-" + index
-      );
-
-    if(el)
-      el.disabled = false;
-
-  });
+      const el =
+        document.getElementById(
+          field + "-" + index
+        );
 
 
-  document.getElementById(
-    "edit-" + index
-  ).style.display =
-    "none";
+      if(el){
+
+        el.disabled =
+          false;
+
+      }
+
+    }
+  );
 
 
-  document.getElementById(
-    "save-" + index
-  ).style.display =
-    "inline-block";
+  const edit =
+    document.getElementById(
+      "edit-" + index
+    );
+
+
+  const save =
+    document.getElementById(
+      "save-" + index
+    );
+
+
+  if(edit)
+    edit.style.display =
+      "none";
+
+
+  if(save)
+    save.style.display =
+      "inline-block";
+
+
+  checkAllColors(index);
 
 }
 
 
 /* =========================================================
-   SAVE EXISTING MEMBER
+   SAVE MEMBER
 ========================================================= */
 
 async function saveMember(index){
@@ -3330,7 +3732,7 @@ async function saveMember(index){
     return;
 
 
-  const value =
+  const getValue =
     field => {
 
       const el =
@@ -3345,7 +3747,7 @@ async function saveMember(index){
     };
 
 
-  const check =
+  const getCheck =
     id => {
 
       const el =
@@ -3379,53 +3781,53 @@ async function saveMember(index){
             member.id,
 
           p_nickname:
-            value("name"),
+            getValue("name"),
 
           p_chomul:
-            value("chomul"),
+            getValue("chomul"),
 
           p_skill:
-            value("skill"),
+            getValue("skill"),
 
           p_skill_lv:
             Number(
-              value("skill_lv")
+              getValue("skill_lv")
             ) || 0,
 
           p_eggshell:
-            value("eggshell"),
+            getValue("eggshell"),
 
           p_eggshell_lv:
             Number(
-              value("eggshell_lv")
+              getValue("eggshell_lv")
             ) || 0,
 
           p_eggmerge:
             Number(
-              value("eggmerge")
+              getValue("eggmerge")
             ) || 0,
 
           p_mount:
-            value("mount"),
+            getValue("mount"),
 
           p_mount_lv:
             Number(
-              value("mount_lv")
+              getValue("mount_lv")
             ) || 0,
 
           p_mountmerge:
             Number(
-              value("mountmerge")
+              getValue("mountmerge")
             ) || 0,
 
           p_s:
-            check("check_s"),
+            getCheck("check_s"),
 
           p_pet:
-            check("check_pet"),
+            getCheck("check_pet"),
 
           p_tal:
-            check("check_tal")
+            getCheck("check_tal")
 
         }
       );
@@ -3441,6 +3843,17 @@ async function saveMember(index){
       setStatus(
         "❌ 저장 실패",
         "error"
+      );
+
+      return;
+
+    }
+
+
+    if(!result.data){
+
+      alert(
+        "저장 결과를 받지 못했습니다."
       );
 
       return;
@@ -3629,7 +4042,10 @@ async function deleteMember(index){
    ASCENSION CHECK
 ========================================================= */
 
-async function toggleCheck(index,type){
+async function toggleCheck(
+  index,
+  type
+){
 
   const member =
     members[index];
@@ -3642,7 +4058,7 @@ async function toggleCheck(index,type){
   if(
     currentMode !== "admin" &&
     Number(member.id) !==
-    Number(currentMemberId)
+      Number(currentMemberId)
   ){
 
     return;
@@ -3650,20 +4066,24 @@ async function toggleCheck(index,type){
   }
 
 
-  const checkboxId = {
+  const checkboxMap = {
 
-    skill:"check_s-",
+    skill:
+      "check_s-",
 
-    pet:"check_pet-",
+    pet:
+      "check_pet-",
 
-    mount:"check_tal-"
+    mount:
+      "check_tal-"
 
-  }[type];
+  };
 
 
   const checkbox =
     document.getElementById(
-      checkboxId + index
+      checkboxMap[type] +
+      index
     );
 
 
@@ -3675,9 +4095,11 @@ async function toggleCheck(index,type){
     member.asc_skill =
       checkbox.checked;
 
+
   if(type === "pet")
     member.asc_pet =
       checkbox.checked;
+
 
   if(type === "mount")
     member.asc_mount =
@@ -3752,10 +4174,14 @@ async function toggleCheck(index,type){
     }
 
 
-    members[index] =
-      normalizeMember(
-        result.data
-      );
+    if(result.data){
+
+      members[index] =
+        normalizeMember(
+          result.data
+        );
+
+    }
 
 
     render();
@@ -3774,10 +4200,542 @@ async function toggleCheck(index,type){
 
 
 /* =========================================================
+   ADD MEMBER
+========================================================= */
+
+function addMemberRow(){
+
+  if(currentMode !== "admin"){
+
+    alert(
+      "관리자만 클랜원을 추가할 수 있습니다."
+    );
+
+    return;
+
+  }
+
+
+  if(
+    document.getElementById(
+      "new-member-row"
+    )
+  ){
+
+    alert(
+      "이미 신규 클랜원을 입력 중입니다."
+    );
+
+    return;
+
+  }
+
+
+  const tbody =
+    document.getElementById(
+      "members"
+    );
+
+
+  const row =
+    document.createElement("tr");
+
+
+  row.id =
+    "new-member-row";
+
+  row.className =
+    "add-row";
+
+
+  row.innerHTML = `
+
+    <td>
+
+      <div class="add-actions">
+
+        <button
+          class="add-save-btn"
+          onclick="saveNewMember()"
+        >
+          저장
+        </button>
+
+        <button
+          class="add-cancel-btn"
+          onclick="cancelNewMember()"
+        >
+          취소
+        </button>
+
+      </div>
+
+    </td>
+
+
+    <td>
+
+      <div class="ascension-box">
+
+        <div class="asc-row">
+
+          <label class="asc-check">
+
+            <input
+              id="new-asc-s"
+              class="checkbox"
+              type="checkbox"
+            >
+
+            스
+
+          </label>
+
+        </div>
+
+
+        <div class="asc-row">
+
+          <label class="asc-check">
+
+            <input
+              id="new-asc-pet"
+              class="checkbox"
+              type="checkbox"
+            >
+
+            펫
+
+          </label>
+
+        </div>
+
+
+        <div class="asc-row">
+
+          <label class="asc-check">
+
+            <input
+              id="new-asc-mount"
+              class="checkbox"
+              type="checkbox"
+            >
+
+            탈
+
+          </label>
+
+        </div>
+
+      </div>
+
+    </td>
+
+
+    <td>
+
+      <input
+        id="new-name"
+        class="name-input"
+        placeholder="닉네임"
+        autocomplete="off"
+      >
+
+    </td>
+
+
+    <td>
+
+      <input
+        id="new-chomul"
+        class="resource-input"
+        placeholder="초물"
+      >
+
+    </td>
+
+
+    <td>
+
+      <div class="dual-cell">
+
+        <div class="dual-top">
+
+          <span>LV</span>
+
+          <input
+            id="new-skill-lv"
+            class="lv-input"
+            type="number"
+            value="0"
+          >
+
+          <input
+            id="new-skill"
+            class="resource-input"
+            placeholder="스킬"
+            oninput="
+              checkColor(
+                this,
+                'skill'
+              )
+            "
+          >
+
+        </div>
+
+      </div>
+
+    </td>
+
+
+    <td>
+
+      <div class="dual-cell">
+
+        <div class="dual-top">
+
+          <input
+            id="new-eggshell-lv"
+            class="lv-input"
+            type="number"
+            value="0"
+          >
+
+          <input
+            id="new-eggshell"
+            class="resource-input"
+            placeholder="알껍질"
+            oninput="
+              checkColor(
+                this,
+                'eggshell'
+              )
+            "
+          >
+
+        </div>
+
+        <div class="dual-bottom">
+
+          <span class="dual-label">
+            합
+          </span>
+
+          <input
+            id="new-eggmerge"
+            class="dual-merge"
+            type="number"
+            value="0"
+          >
+
+        </div>
+
+      </div>
+
+    </td>
+
+
+    <td>
+
+      <div class="dual-cell">
+
+        <div class="dual-top">
+
+          <input
+            id="new-mount-lv"
+            class="lv-input"
+            type="number"
+            value="0"
+          >
+
+          <input
+            id="new-mount"
+            class="resource-input"
+            placeholder="탈것"
+            oninput="
+              checkColor(
+                this,
+                'mount'
+              )
+            "
+          >
+
+        </div>
+
+        <div class="dual-bottom">
+
+          <span class="dual-label">
+            합
+          </span>
+
+          <input
+            id="new-mountmerge"
+            class="dual-merge"
+            type="number"
+            value="0"
+          >
+
+        </div>
+
+      </div>
+
+    </td>
+
+
+    <td>
+      신규
+    </td>
+
+  `;
+
+
+  tbody.appendChild(row);
+
+
+  document.getElementById(
+    "new-name"
+  ).focus();
+
+
+  row.scrollIntoView({
+    behavior:"smooth",
+    block:"center"
+  });
+
+}
+
+
+/* =========================================================
+   SAVE NEW MEMBER
+========================================================= */
+
+async function saveNewMember(){
+
+  if(currentMode !== "admin"){
+
+    alert(
+      "관리자만 클랜원을 추가할 수 있습니다."
+    );
+
+    return;
+
+  }
+
+
+  const nickname =
+    document.getElementById(
+      "new-name"
+    )?.value.trim();
+
+
+  if(!nickname){
+
+    alert(
+      "닉네임을 입력해주세요."
+    );
+
+    document.getElementById(
+      "new-name"
+    )?.focus();
+
+    return;
+
+  }
+
+
+  setStatus(
+    "➕ 새 클랜원 저장 중..."
+  );
+
+
+  try{
+
+    const result =
+      await supabaseClient.rpc(
+        "fm_add_member",
+        {
+
+          p_mode:
+            "admin",
+
+          p_nickname:
+            nickname,
+
+          p_chomul:
+            document.getElementById(
+              "new-chomul"
+            ).value.trim(),
+
+          p_skill_lv:
+            Number(
+              document.getElementById(
+                "new-skill-lv"
+              ).value
+            ) || 0,
+
+          p_skill:
+            document.getElementById(
+              "new-skill"
+            ).value.trim(),
+
+          p_eggshell_lv:
+            Number(
+              document.getElementById(
+                "new-eggshell-lv"
+              ).value
+            ) || 0,
+
+          p_eggshell:
+            document.getElementById(
+              "new-eggshell"
+            ).value.trim(),
+
+          p_eggmerge:
+            Number(
+              document.getElementById(
+                "new-eggmerge"
+              ).value
+            ) || 0,
+
+          p_mount:
+            document.getElementById(
+              "new-mount"
+            ).value.trim(),
+
+          p_mount_lv:
+            Number(
+              document.getElementById(
+                "new-mount-lv"
+              ).value
+            ) || 0,
+
+          p_mountmerge:
+            Number(
+              document.getElementById(
+                "new-mountmerge"
+              ).value
+            ) || 0,
+
+          p_asc_skill:
+            document.getElementById(
+              "new-asc-s"
+            ).checked,
+
+          p_asc_pet:
+            document.getElementById(
+              "new-asc-pet"
+            ).checked,
+
+          p_asc_mount:
+            document.getElementById(
+              "new-asc-mount"
+            ).checked
+
+        }
+      );
+
+
+    if(result.error){
+
+      alert(
+        "클랜원 추가 실패\n\n" +
+        result.error.message
+      );
+
+      setStatus(
+        "❌ 클랜원 추가 실패",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    if(!result.data){
+
+      alert(
+        "새 클랜원 정보를 받지 못했습니다."
+      );
+
+      return;
+
+    }
+
+
+    members.push(
+      normalizeMember(
+        result.data
+      )
+    );
+
+
+    document.getElementById(
+      "member-count"
+    ).textContent =
+      members.length + "명";
+
+
+    render();
+
+
+    setStatus(
+      "✅ " +
+      nickname +
+      " 클랜원 추가 완료",
+      "success"
+    );
+
+  }
+  catch(error){
+
+    alert(
+      "클랜원 추가 실패\n\n" +
+      error.message
+    );
+
+    setStatus(
+      "❌ 클랜원 추가 실패",
+      "error"
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   CANCEL NEW MEMBER
+========================================================= */
+
+function cancelNewMember(){
+
+  const row =
+    document.getElementById(
+      "new-member-row"
+    );
+
+
+  if(row)
+    row.remove();
+
+
+  setStatus(
+    "신규 클랜원 추가를 취소했습니다."
+  );
+
+}
+
+
+/* =========================================================
    COLOR
 ========================================================= */
 
-function checkColor(input,type){
+function checkColor(
+  input,
+  type
+){
 
   if(!input)
     return;
@@ -3789,7 +4747,9 @@ function checkColor(input,type){
     );
 
 
-  input.classList.remove("red");
+  input.classList.remove(
+    "red"
+  );
 
 
   if(
@@ -3797,7 +4757,9 @@ function checkColor(input,type){
     value >= 50000
   ){
 
-    input.classList.add("red");
+    input.classList.add(
+      "red"
+    );
 
   }
 
@@ -3807,7 +4769,9 @@ function checkColor(input,type){
     value >= 50000
   ){
 
-    input.classList.add("red");
+    input.classList.add(
+      "red"
+    );
 
   }
 
@@ -3817,9 +4781,39 @@ function checkColor(input,type){
     value >= 30000
   ){
 
-    input.classList.add("red");
+    input.classList.add(
+      "red"
+    );
 
   }
+
+}
+
+
+function checkAllColors(index){
+
+  checkColor(
+    document.getElementById(
+      "skill-" + index
+    ),
+    "skill"
+  );
+
+
+  checkColor(
+    document.getElementById(
+      "eggshell-" + index
+    ),
+    "eggshell"
+  );
+
+
+  checkColor(
+    document.getElementById(
+      "mount-" + index
+    ),
+    "mount"
+  );
 
 }
 
@@ -3834,8 +4828,11 @@ function toNumber(value){
     value === null ||
     value === undefined ||
     value === ""
-  )
+  ){
+
     return 0;
+
+  }
 
 
   const text =
@@ -3845,22 +4842,29 @@ function toNumber(value){
       .replace(/,/g,"");
 
 
-  let n =
+  let number =
     parseFloat(text);
 
 
-  if(isNaN(n))
+  if(isNaN(number))
     return 0;
 
 
-  if(text.endsWith("m"))
-    n *= 1000000;
+  if(text.endsWith("m")){
 
-  else if(text.endsWith("k"))
-    n *= 1000;
+    number *=
+      1000000;
+
+  }
+  else if(text.endsWith("k")){
+
+    number *=
+      1000;
+
+  }
 
 
-  return n;
+  return number;
 
 }
 
@@ -3869,33 +4873,203 @@ function toNumber(value){
    FORMAT NUMBER
 ========================================================= */
 
-function formatNumber(n){
+function formatNumber(number){
 
-  if(!n)
+  if(!number)
     return "0";
 
 
-  if(n >= 1000000){
+  if(number >= 1000000){
 
-    return Number(
-      (n / 1000000)
-        .toFixed(2)
-    ) + "m";
-
-  }
-
-
-  if(n >= 1000){
-
-    return Number(
-      (n / 1000)
-        .toFixed(2)
-    ) + "k";
+    return (
+      Number(
+        (
+          number /
+          1000000
+        ).toFixed(2)
+      ) +
+      "m"
+    );
 
   }
 
 
-  return Math.round(n).toString();
+  if(number >= 1000){
+
+    return (
+      Number(
+        (
+          number /
+          1000
+        ).toFixed(2)
+      ) +
+      "k"
+    );
+
+  }
+
+
+  return Math.round(
+    number
+  ).toString();
+
+}
+
+
+/* =========================================================
+   TOTAL
+========================================================= */
+
+function updateTotals(){
+
+  const totals = {
+
+    chomul:0,
+
+    skill:0,
+
+    eggshell:0,
+
+    eggmerge:0,
+
+    mount:0,
+
+    mountmerge:0
+
+  };
+
+
+  members.forEach(
+    member => {
+
+      totals.chomul +=
+        toNumber(
+          member.chomul
+        );
+
+
+      totals.skill +=
+        toNumber(
+          member.skill
+        );
+
+
+      totals.eggshell +=
+        toNumber(
+          member.eggshell
+        );
+
+
+      totals.eggmerge +=
+        Number(
+          member.eggmerge || 0
+        );
+
+
+      totals.mount +=
+        toNumber(
+          member.mount
+        );
+
+
+      totals.mountmerge +=
+        Number(
+          member.mountmerge || 0
+        );
+
+    }
+  );
+
+
+  document.getElementById(
+    "total-chomul"
+  ).textContent =
+    formatNumber(
+      totals.chomul
+    );
+
+
+  document.getElementById(
+    "total-skill"
+  ).textContent =
+    formatNumber(
+      totals.skill
+    );
+
+
+  document.getElementById(
+    "total-eggshell"
+  ).textContent =
+    formatNumber(
+      totals.eggshell
+    ) +
+    " / " +
+    totals.eggmerge +
+    "합";
+
+
+  document.getElementById(
+    "total-mount"
+  ).textContent =
+    formatNumber(
+      totals.mount
+    ) +
+    " / " +
+    totals.mountmerge +
+    "합";
+
+
+  document.getElementById(
+    "total-updated"
+  ).textContent =
+    members.length +
+    "명";
+
+
+  document.getElementById(
+    "panel-chomul"
+  ).textContent =
+    formatNumber(
+      totals.chomul
+    );
+
+
+  document.getElementById(
+    "panel-skill"
+  ).textContent =
+    formatNumber(
+      totals.skill
+    );
+
+
+  document.getElementById(
+    "panel-eggshell"
+  ).textContent =
+    formatNumber(
+      totals.eggshell
+    );
+
+
+  document.getElementById(
+    "panel-eggmerge"
+  ).textContent =
+    totals.eggmerge +
+    "개";
+
+
+  document.getElementById(
+    "panel-mount"
+  ).textContent =
+    formatNumber(
+      totals.mount
+    );
+
+
+  document.getElementById(
+    "panel-mountmerge"
+  ).textContent =
+    totals.mountmerge +
+    "개";
 
 }
 
@@ -3910,19 +5084,26 @@ function formatUpdated(value){
     return "-";
 
 
-  const d =
+  const date =
     new Date(value);
 
 
-  if(isNaN(d.getTime()))
+  if(
+    isNaN(
+      date.getTime()
+    )
+  ){
+
     return "-";
+
+  }
 
 
   const minutes =
     Math.floor(
       (
         Date.now() -
-        d.getTime()
+        date.getTime()
       ) / 60000
     );
 
@@ -3936,7 +5117,9 @@ function formatUpdated(value){
 
 
   const hours =
-    Math.floor(minutes / 60);
+    Math.floor(
+      minutes / 60
+    );
 
 
   if(hours < 24)
@@ -3944,7 +5127,9 @@ function formatUpdated(value){
 
 
   const days =
-    Math.floor(hours / 24);
+    Math.floor(
+      hours / 24
+    );
 
 
   if(days < 7)
@@ -3952,10 +5137,10 @@ function formatUpdated(value){
 
 
   return (
-    d.getMonth() + 1
+    date.getMonth() + 1
   ) +
   "/" +
-  d.getDate();
+  date.getDate();
 
 }
 
@@ -3970,142 +5155,43 @@ function formatDate(value){
     return "-";
 
 
-  const d =
+  const date =
     new Date(value);
 
 
-  if(isNaN(d.getTime()))
+  if(
+    isNaN(
+      date.getTime()
+    )
+  ){
+
     return "-";
+
+  }
 
 
   return (
-    d.getFullYear() +
+
+    date.getFullYear() +
     "년 " +
-    (d.getMonth()+1) +
+
+    (date.getMonth() + 1) +
     "월 " +
-    d.getDate() +
+
+    date.getDate() +
     "일 " +
-    String(d.getHours()).padStart(2,"0") +
+
+    String(
+      date.getHours()
+    ).padStart(2,"0") +
+
     ":" +
-    String(d.getMinutes()).padStart(2,"0")
+
+    String(
+      date.getMinutes()
+    ).padStart(2,"0")
+
   );
-
-}
-
-
-/* =========================================================
-   TOTALS
-========================================================= */
-
-function updateTotals(){
-
-  const totals = {
-
-    chomul:0,
-    skill:0,
-    eggshell:0,
-    eggmerge:0,
-    mount:0,
-    mountmerge:0
-
-  };
-
-
-  members.forEach(m => {
-
-    totals.chomul +=
-      toNumber(m.chomul);
-
-    totals.skill +=
-      toNumber(m.skill);
-
-    totals.eggshell +=
-      toNumber(m.eggshell);
-
-    totals.eggmerge +=
-      Number(m.eggmerge || 0);
-
-    totals.mount +=
-      toNumber(m.mount);
-
-    totals.mountmerge +=
-      Number(m.mountmerge || 0);
-
-  });
-
-
-  document.getElementById(
-    "total-chomul"
-  ).textContent =
-    formatNumber(totals.chomul);
-
-
-  document.getElementById(
-    "total-skill"
-  ).textContent =
-    formatNumber(totals.skill);
-
-
-  document.getElementById(
-    "total-eggshell"
-  ).textContent =
-    formatNumber(totals.eggshell) +
-    " / " +
-    totals.eggmerge +
-    "합";
-
-
-  document.getElementById(
-    "total-mount"
-  ).textContent =
-    formatNumber(totals.mount) +
-    " / " +
-    totals.mountmerge +
-    "합";
-
-
-  document.getElementById(
-    "total-combined"
-  ).textContent =
-    totals.eggmerge +
-    " / " +
-    totals.mountmerge;
-
-
-  document.getElementById(
-    "panel-chomul"
-  ).textContent =
-    formatNumber(totals.chomul);
-
-
-  document.getElementById(
-    "panel-skill"
-  ).textContent =
-    formatNumber(totals.skill);
-
-
-  document.getElementById(
-    "panel-eggshell"
-  ).textContent =
-    formatNumber(totals.eggshell);
-
-
-  document.getElementById(
-    "panel-eggmerge"
-  ).textContent =
-    totals.eggmerge + "개";
-
-
-  document.getElementById(
-    "panel-mount"
-  ).textContent =
-    formatNumber(totals.mount);
-
-
-  document.getElementById(
-    "panel-mountmerge"
-  ).textContent =
-    totals.mountmerge + "개";
 
 }
 
@@ -4114,7 +5200,10 @@ function updateTotals(){
    STATUS
 ========================================================= */
 
-function setStatus(message,type=""){
+function setStatus(
+  message,
+  type = ""
+){
 
   const el =
     document.getElementById(
@@ -4125,8 +5214,10 @@ function setStatus(message,type=""){
   el.textContent =
     message;
 
+
   el.className =
-    "status " + type;
+    "status " +
+    type;
 
 }
 
@@ -4137,11 +5228,25 @@ function setStatus(message,type=""){
 
 function escapeHtml(value){
 
-  return String(value ?? "")
-    .replace(/&/g,"&amp;")
-    .replace(/"/g,"&quot;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;");
+  return String(
+    value ?? ""
+  )
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+    .replace(
+      /</g,
+      "&lt;"
+    )
+    .replace(
+      />/g,
+      "&gt;"
+    );
 
 }
 
@@ -4152,12 +5257,17 @@ function escapeHtml(value){
 
 function logout(){
 
-  if(addingMember){
+  if(
+    document.getElementById(
+      "new-member-row"
+    )
+  ){
 
     const ok =
       confirm(
         "신규 클랜원 입력이 취소됩니다.\n로그아웃하시겠습니까?"
       );
+
 
     if(!ok)
       return;
@@ -4165,45 +5275,66 @@ function logout(){
   }
 
 
-  currentMode = "";
+  currentMode =
+    "";
 
-  currentMemberId = null;
+  currentMemberId =
+    null;
 
-  currentNickname = "";
+  currentNickname =
+    "";
 
-  members = [];
+  members =
+    [];
 
-  currentView = new Set();
-
-
-  totalOpen = true;
-
-  addingMember = false;
+  currentView.clear();
 
 
-  document.getElementById("app").style.display =
+  document.getElementById(
+    "app"
+  ).style.display =
     "none";
 
-  document.getElementById("admin-login-screen").style.display =
+
+  document.getElementById(
+    "admin-login-screen"
+  ).style.display =
     "none";
 
-  document.getElementById("login-screen").style.display =
+
+  document.getElementById(
+    "login-screen"
+  ).style.display =
     "flex";
 
 
-  document.getElementById("login-nickname").value =
+  document.getElementById(
+    "login-nickname"
+  ).value =
     "";
 
-  document.getElementById("login-password").value =
+
+  document.getElementById(
+    "login-password"
+  ).value =
     "";
 
-  document.getElementById("admin-password").value =
+
+  document.getElementById(
+    "admin-password"
+  ).value =
     "";
 
-  document.getElementById("login-status").textContent =
+
+  document.getElementById(
+    "login-status"
+  ).textContent =
     "";
 
-  document.getElementById("admin-login-status").textContent =
+
+  document.getElementById(
+    "admin-login-status"
+  ).textContent =
     "";
 
 }
@@ -4217,7 +5348,9 @@ document.addEventListener(
   "keydown",
   event => {
 
-    if(event.key !== "Enter")
+    if(
+      event.key !== "Enter"
+    )
       return;
 
 
@@ -4226,6 +5359,7 @@ document.addEventListener(
         "admin-login-screen"
       );
 
+
     const memberScreen =
       document.getElementById(
         "login-screen"
@@ -4233,7 +5367,8 @@ document.addEventListener(
 
 
     if(
-      adminScreen.style.display === "flex"
+      adminScreen.style.display ===
+      "flex"
     ){
 
       adminLogin();
@@ -4244,7 +5379,8 @@ document.addEventListener(
 
 
     if(
-      memberScreen.style.display !== "none"
+      memberScreen.style.display !==
+      "none"
     ){
 
       memberLogin();
@@ -4256,7 +5392,7 @@ document.addEventListener(
 
 
 /* =========================================================
-   START
+   INITIAL
 ========================================================= */
 
 document.getElementById(
@@ -4267,4 +5403,5 @@ document.getElementById(
 </script>
 
 </body>
+
 </html>
