@@ -21,6 +21,10 @@
 
 <style>
 
+/* =========================================================
+   RESET
+========================================================= */
+
 *{
   box-sizing:border-box;
 }
@@ -44,9 +48,9 @@ body{
 }
 
 
-/* =========================
+/* =========================================================
    LOGIN
-========================= */
+========================================================= */
 
 #login-screen,
 #admin-login-screen{
@@ -95,6 +99,7 @@ body{
   background:#080d18;
   color:white;
   font-size:15px;
+  text-align:left;
 }
 
 .login-box input:focus{
@@ -132,9 +137,9 @@ body{
 }
 
 
-/* =========================
+/* =========================================================
    APP
-========================= */
+========================================================= */
 
 #app{
   display:none;
@@ -147,9 +152,9 @@ body{
 }
 
 
-/* =========================
+/* =========================================================
    HEADER
-========================= */
+========================================================= */
 
 .header{
   position:relative;
@@ -177,6 +182,7 @@ h1{
   top:5px;
   display:flex;
   gap:5px;
+  align-items:center;
 }
 
 .logout-btn,
@@ -191,6 +197,7 @@ h1{
   background:#111a2b;
   border:1px solid #334155;
   color:#cbd5e1;
+  cursor:pointer;
 }
 
 .admin-badge{
@@ -200,9 +207,9 @@ h1{
 }
 
 
-/* =========================
+/* =========================================================
    NOTICE
-========================= */
+========================================================= */
 
 .notice{
   background:#111a2b;
@@ -220,9 +227,9 @@ h1{
 }
 
 
-/* =========================
+/* =========================================================
    MY INFO
-========================= */
+========================================================= */
 
 .my-info{
   background:
@@ -231,7 +238,6 @@ h1{
       #172554,
       #111a2b
     );
-
   border:1px solid #334155;
   border-radius:12px;
   padding:11px;
@@ -257,9 +263,9 @@ h1{
 }
 
 
-/* =========================
-   VIEW BUTTONS
-========================= */
+/* =========================================================
+   VIEW
+========================================================= */
 
 .view-buttons{
   display:flex;
@@ -278,6 +284,7 @@ h1{
   color:#cbd5e1;
   font-size:10px;
   font-weight:900;
+  cursor:pointer;
 }
 
 .view-btn.active{
@@ -287,9 +294,9 @@ h1{
 }
 
 
-/* =========================
+/* =========================================================
    TOOLBAR
-========================= */
+========================================================= */
 
 .toolbar{
   display:flex;
@@ -313,9 +320,9 @@ h1{
 }
 
 
-/* =========================
+/* =========================================================
    STATUS
-========================= */
+========================================================= */
 
 .status{
   min-height:17px;
@@ -333,9 +340,9 @@ h1{
 }
 
 
-/* =========================
+/* =========================================================
    TABLE
-========================= */
+========================================================= */
 
 .table-wrap{
   overflow-x:auto;
@@ -372,9 +379,9 @@ td{
 }
 
 
-/* =========================
-   COLUMN WIDTH
-========================= */
+/* =========================================================
+   COLUMN
+========================================================= */
 
 th:nth-child(1),
 td:nth-child(1){
@@ -422,24 +429,9 @@ td:nth-child(9){
 }
 
 
-/* =========================
-   NAME
-========================= */
-
-.name-cell{
-  text-align:center;
-}
-
-.name-input{
-  width:65px;
-  min-width:65px;
-  text-align:center;
-}
-
-
-/* =========================
+/* =========================================================
    INPUT
-========================= */
+========================================================= */
 
 input{
   border:1px solid #334155;
@@ -470,29 +462,15 @@ input:focus{
   min-width:32px;
 }
 
-
-/* =========================
-   RESOURCE STACK
-========================= */
-
-.resource-main{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:2px;
-}
-
-.resource-sub{
-  margin-top:2px;
-  color:#fbbf24;
-  font-size:9px;
-  font-weight:900;
+.name-input{
+  width:75px;
+  min-width:75px;
 }
 
 
-/* =========================
+/* =========================================================
    ASCENSION
-========================= */
+========================================================= */
 
 .ascension-box{
   display:flex;
@@ -549,9 +527,9 @@ input:focus{
 }
 
 
-/* =========================
-   COMBINED CELL
-========================= */
+/* =========================================================
+   DUAL
+========================================================= */
 
 .dual-cell{
   display:flex;
@@ -588,9 +566,9 @@ input:focus{
 }
 
 
-/* =========================
+/* =========================================================
    RED
-========================= */
+========================================================= */
 
 .red{
   color:#ff4d4d !important;
@@ -600,9 +578,9 @@ input:focus{
 }
 
 
-/* =========================
+/* =========================================================
    BUTTONS
-========================= */
+========================================================= */
 
 .edit-btn,
 .save-btn{
@@ -612,6 +590,7 @@ input:focus{
   font-size:9px;
   font-weight:900;
   color:white;
+  cursor:pointer;
 }
 
 .edit-btn{
@@ -624,9 +603,9 @@ input:focus{
 }
 
 
-/* =========================
+/* =========================================================
    TOTAL
-========================= */
+========================================================= */
 
 .total{
   background:#1e293b;
@@ -646,9 +625,9 @@ input:focus{
 }
 
 
-/* =========================
+/* =========================================================
    TOTAL PANEL
-========================= */
+========================================================= */
 
 .total-panel{
   margin-top:8px;
@@ -667,8 +646,7 @@ input:focus{
 
 .total-grid{
   display:grid;
-  grid-template-columns:
-    repeat(3,minmax(0,1fr));
+  grid-template-columns:repeat(3,minmax(0,1fr));
   gap:5px;
 }
 
@@ -693,9 +671,9 @@ input:focus{
 }
 
 
-/* =========================
-   PASSWORD PANEL
-========================= */
+/* =========================================================
+   PASSWORD
+========================================================= */
 
 .password-panel{
   margin-bottom:8px;
@@ -726,9 +704,9 @@ input:focus{
 }
 
 
-/* =========================
+/* =========================================================
    EMPTY
-========================= */
+========================================================= */
 
 .empty{
   padding:25px !important;
@@ -736,9 +714,9 @@ input:focus{
 }
 
 
-/* =========================
+/* =========================================================
    MOBILE
-========================= */
+========================================================= */
 
 @media(max-width:600px){
 
@@ -782,16 +760,15 @@ input:focus{
   }
 
   .total-grid{
-    grid-template-columns:
-      repeat(2,minmax(0,1fr));
+    grid-template-columns:repeat(2,minmax(0,1fr));
   }
 
 }
 
 
-/* =========================
+/* =========================================================
    HIDDEN
-========================= */
+========================================================= */
 
 .hidden{
   display:none !important;
@@ -800,7 +777,6 @@ input:focus{
 </style>
 
 </head>
-
 
 <body>
 
@@ -824,6 +800,8 @@ input:focus{
       type="text"
       placeholder="닉네임"
       autocomplete="off"
+      autocapitalize="none"
+      spellcheck="false"
     >
 
     <input
@@ -832,7 +810,7 @@ input:focus{
       inputmode="text"
       placeholder="공동비밀번호"
       autocomplete="off"
-      autocapitalize="characters"
+      autocapitalize="none"
       spellcheck="false"
     >
 
@@ -864,9 +842,7 @@ input:focus{
      ADMIN LOGIN
 ========================================================= -->
 
-<div
-  id="admin-login-screen"
->
+<div id="admin-login-screen">
 
   <div class="login-box">
 
@@ -882,7 +858,7 @@ input:focus{
       inputmode="text"
       placeholder="관리자 비밀번호"
       autocomplete="off"
-      autocapitalize="characters"
+      autocapitalize="none"
       spellcheck="false"
       lang="en"
     >
@@ -966,8 +942,6 @@ input:focus{
   </div>
 
 
-  <!-- MY INFO -->
-
   <div
     id="my-info"
     class="my-info"
@@ -994,8 +968,6 @@ input:focus{
   </div>
 
 
-  <!-- ADMIN PASSWORD -->
-
   <div
     id="password-panel"
     class="password-panel hidden"
@@ -1021,8 +993,6 @@ input:focus{
 
   </div>
 
-
-  <!-- VIEW -->
 
   <div class="view-buttons">
 
@@ -1093,8 +1063,6 @@ input:focus{
   </div>
 
 
-  <!-- TOOLBAR -->
-
   <div class="toolbar">
 
     <input
@@ -1150,8 +1118,6 @@ input:focus{
     데이터를 불러오는 중...
   </div>
 
-
-  <!-- TABLE -->
 
   <div class="table-wrap">
 
@@ -1230,8 +1196,6 @@ input:focus{
 
   </div>
 
-
-  <!-- TOTAL PANEL -->
 
   <div
     id="total-panel"
@@ -1351,12 +1315,14 @@ function showAdminLogin(){
     "admin-login-screen"
   ).style.display = "flex";
 
+  document.getElementById(
+    "admin-login-status"
+  ).textContent = "";
+
   setTimeout(() => {
 
     document
-      .getElementById(
-        "admin-password"
-      )
+      .getElementById("admin-password")
       .focus();
 
   },100);
@@ -1374,6 +1340,10 @@ function backToMemberLogin(){
     "login-screen"
   ).style.display = "flex";
 
+  document.getElementById(
+    "admin-login-status"
+  ).textContent = "";
+
 }
 
 
@@ -1385,24 +1355,18 @@ async function memberLogin(){
 
   const nickname =
     document
-      .getElementById(
-        "login-nickname"
-      )
+      .getElementById("login-nickname")
       .value
       .trim();
 
   const password =
     document
-      .getElementById(
-        "login-password"
-      )
+      .getElementById("login-password")
       .value
       .trim();
 
   const status =
-    document.getElementById(
-      "login-status"
-    );
+    document.getElementById("login-status");
 
 
   if(!nickname){
@@ -1429,56 +1393,65 @@ async function memberLogin(){
     "접속 중...";
 
 
-  const result =
-    await supabaseClient.rpc(
-      "fm_login",
-      {
-        p_nickname:nickname,
-        p_password:password,
-        p_mode:"member"
-      }
-    );
+  try{
+
+    const result =
+      await supabaseClient.rpc(
+        "fm_login",
+        {
+          p_nickname:nickname,
+          p_password:password,
+          p_mode:"member"
+        }
+      );
 
 
-  if(result.error){
+    if(result.error){
 
-    status.textContent =
-      "❌ " +
-      result.error.message;
+      status.textContent =
+        "❌ " +
+        result.error.message;
 
-    return;
+      return;
+
+    }
+
+
+    const data =
+      result.data;
+
+
+    if(!data || !data.success){
+
+      status.textContent =
+        data?.message ||
+        "접속할 수 없습니다.";
+
+      return;
+
+    }
+
+
+    currentMode = "member";
+
+    currentMemberId =
+      Number(data.member_id);
+
+    currentNickname =
+      data.nickname || nickname;
+
+
+    await startApp();
 
   }
+  catch(error){
 
-
-  if(
-    !result.data ||
-    !result.data.success
-  ){
+    console.error(error);
 
     status.textContent =
-      result.data?.message ||
-      "접속할 수 없습니다.";
-
-    return;
+      "❌ 서버 연결에 실패했습니다.";
 
   }
-
-
-  currentMode =
-    "member";
-
-  currentMemberId =
-    Number(
-      result.data.member_id
-    );
-
-  currentNickname =
-    result.data.nickname ||
-    nickname;
-
-
-  await startApp();
 
 }
 
@@ -1491,9 +1464,7 @@ async function adminLogin(){
 
   const password =
     document
-      .getElementById(
-        "admin-password"
-      )
+      .getElementById("admin-password")
       .value
       .trim();
 
@@ -1517,53 +1488,63 @@ async function adminLogin(){
     "확인 중...";
 
 
-  const result =
-    await supabaseClient.rpc(
-      "fm_login",
-      {
-        p_nickname:"",
-        p_password:password,
-        p_mode:"admin"
-      }
-    );
+  try{
+
+    const result =
+      await supabaseClient.rpc(
+        "fm_login",
+        {
+          p_nickname:"",
+          p_password:password,
+          p_mode:"admin"
+        }
+      );
 
 
-  if(result.error){
+    if(result.error){
 
-    status.textContent =
-      "❌ " +
-      result.error.message;
+      status.textContent =
+        "❌ " +
+        result.error.message;
 
-    return;
+      return;
+
+    }
+
+
+    const data =
+      result.data;
+
+
+    if(!data || !data.success){
+
+      status.textContent =
+        data?.message ||
+        "관리자 로그인 실패";
+
+      return;
+
+    }
+
+
+    currentMode = "admin";
+
+    currentMemberId = null;
+
+    currentNickname = "관리자";
+
+
+    await startApp();
 
   }
+  catch(error){
 
-
-  if(
-    !result.data ||
-    !result.data.success
-  ){
+    console.error(error);
 
     status.textContent =
-      result.data?.message ||
-      "관리자 로그인 실패";
-
-    return;
+      "❌ 서버 연결에 실패했습니다.";
 
   }
-
-
-  currentMode =
-    "admin";
-
-  currentMemberId =
-    null;
-
-  currentNickname =
-    "관리자";
-
-
-  await startApp();
 
 }
 
@@ -1576,18 +1557,15 @@ async function startApp(){
 
   document.getElementById(
     "login-screen"
-  ).style.display =
-    "none";
+  ).style.display = "none";
 
   document.getElementById(
     "admin-login-screen"
-  ).style.display =
-    "none";
+  ).style.display = "none";
 
   document.getElementById(
     "app"
-  ).style.display =
-    "block";
+  ).style.display = "block";
 
 
   updateModeUI();
@@ -1611,19 +1589,13 @@ async function startApp(){
 function updateModeUI(){
 
   const badge =
-    document.getElementById(
-      "mode-badge"
-    );
+    document.getElementById("mode-badge");
 
   const myName =
-    document.getElementById(
-      "my-name"
-    );
+    document.getElementById("my-name");
 
   const myMode =
-    document.getElementById(
-      "my-mode"
-    );
+    document.getElementById("my-mode");
 
 
   if(currentMode === "admin"){
@@ -1642,12 +1614,8 @@ function updateModeUI(){
       "전체 클랜원의 정보를 확인하고 수정할 수 있습니다.";
 
     document
-      .getElementById(
-        "password-panel"
-      )
-      .classList.remove(
-        "hidden"
-      );
+      .getElementById("password-panel")
+      .classList.remove("hidden");
 
   }
   else{
@@ -1661,12 +1629,8 @@ function updateModeUI(){
       "본인의 정보만 표시됩니다.";
 
     document
-      .getElementById(
-        "password-panel"
-      )
-      .classList.add(
-        "hidden"
-      );
+      .getElementById("password-panel")
+      .classList.add("hidden");
 
   }
 
@@ -1679,62 +1643,70 @@ function updateModeUI(){
 
 async function loadGeneralPassword(){
 
-  const result =
-    await supabaseClient.rpc(
-      "fm_get_general_password",
-      {
-        p_admin_password:
-          document
-            .getElementById(
-              "admin-password"
-            )
-            .value
-            .trim()
-      }
-    );
+  try{
+
+    const adminPassword =
+      document
+        .getElementById("admin-password")
+        .value
+        .trim();
 
 
-  if(result.error){
+    const result =
+      await supabaseClient.rpc(
+        "fm_get_general_password",
+        {
+          p_admin_password:
+            adminPassword
+        }
+      );
 
-    console.error(
-      result.error
-    );
 
-    return;
+    if(result.error){
+
+      console.error(result.error);
+
+      return;
+
+    }
+
+
+    if(
+      !result.data ||
+      !result.data.success
+    ){
+
+      return;
+
+    }
+
+
+    document
+      .getElementById("general-password")
+      .textContent =
+        result.data.password;
+
+
+    document
+      .getElementById("password-next")
+      .textContent =
+        "다음 비밀번호 변경: " +
+        formatDate(
+          result.data.next_change
+        );
 
   }
+  catch(error){
 
+    console.error(error);
 
-  if(
-    !result.data ||
-    !result.data.success
-  )
-    return;
-
-
-  document
-    .getElementById(
-      "general-password"
-    )
-    .textContent =
-      result.data.password;
-
-
-  document
-    .getElementById(
-      "password-next"
-    )
-    .textContent =
-      "다음 비밀번호 변경: " +
-      formatDate(
-        result.data.next_change
-      );
+  }
 
 }
 
 
 /* =========================================================
-   LOAD
+   LOAD MEMBERS
 ========================================================= */
 
 async function loadMembers(){
@@ -1744,43 +1716,59 @@ async function loadMembers(){
   );
 
 
-  const result =
-    await supabaseClient.rpc(
-      "fm_get_members",
-      {
-        p_mode:currentMode,
-        p_member_id:currentMemberId
-      }
-    );
+  try{
+
+    const result =
+      await supabaseClient.rpc(
+        "fm_get_members",
+        {
+          p_mode:currentMode,
+          p_member_id:currentMemberId
+        }
+      );
 
 
-  if(result.error){
+    if(result.error){
+
+      console.error(result.error);
+
+      setStatus(
+        "❌ 데이터를 불러오지 못했습니다: " +
+        result.error.message,
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    members =
+      (result.data || [])
+        .map(normalizeMember);
+
+
+    render();
+
 
     setStatus(
-      "❌ 데이터를 불러오지 못했습니다: " +
-      result.error.message,
+      currentMode === "admin"
+        ? "✅ 전체 클랜원 불러오기 완료"
+        : "✅ 내 정보 불러오기 완료",
+      "success"
+    );
+
+  }
+  catch(error){
+
+    console.error(error);
+
+    setStatus(
+      "❌ 서버 연결 실패",
       "error"
     );
 
-    return;
-
   }
-
-
-  members =
-    (result.data || [])
-      .map(normalizeMember);
-
-
-  render();
-
-
-  setStatus(
-    currentMode === "admin"
-      ? "✅ 전체 클랜원 불러오기 완료"
-      : "✅ 내 정보 불러오기 완료",
-    "success"
-  );
 
 }
 
@@ -1852,9 +1840,7 @@ function normalizeMember(row){
 function render(){
 
   const tbody =
-    document.getElementById(
-      "members"
-    );
+    document.getElementById("members");
 
 
   tbody.innerHTML = "";
@@ -1866,9 +1852,7 @@ function render(){
 
   const search =
     document
-      .getElementById(
-        "search"
-      )
+      .getElementById("search")
       .value
       .trim()
       .toLowerCase();
@@ -1876,9 +1860,7 @@ function render(){
 
   const sort =
     document
-      .getElementById(
-        "sort"
-      )
+      .getElementById("sort")
       .value;
 
 
@@ -1906,14 +1888,7 @@ function render(){
   }
 
 
-  /*
-    승천대기:
-    체크한 사람만 표시
-  */
-
-  if(
-    currentView === "ascension"
-  ){
+  if(currentView === "ascension"){
 
     list =
       list.filter(
@@ -1922,6 +1897,72 @@ function render(){
           m.asc_pet ||
           m.asc_mount
       );
+
+  }
+
+
+  if(currentView === "chomul"){
+
+    list.sort(
+      (a,b) =>
+        toNumber(b.chomul) -
+        toNumber(a.chomul)
+    );
+
+  }
+
+
+  if(currentView === "skill"){
+
+    list.sort(
+      (a,b) =>
+        toNumber(b.skill) -
+        toNumber(a.skill)
+    );
+
+  }
+
+
+  if(currentView === "eggshell"){
+
+    list.sort(
+      (a,b) =>
+        toNumber(b.eggshell) -
+        toNumber(a.eggshell)
+    );
+
+  }
+
+
+  if(currentView === "eggmerge"){
+
+    list.sort(
+      (a,b) =>
+        Number(b.eggmerge || 0) -
+        Number(a.eggmerge || 0)
+    );
+
+  }
+
+
+  if(currentView === "mount"){
+
+    list.sort(
+      (a,b) =>
+        toNumber(b.mount) -
+        toNumber(a.mount)
+    );
+
+  }
+
+
+  if(currentView === "mountmerge"){
+
+    list.sort(
+      (a,b) =>
+        Number(b.mountmerge || 0) -
+        Number(a.mountmerge || 0)
+    );
 
   }
 
@@ -1942,41 +1983,41 @@ function render(){
 
     updateTotals();
 
+    applyTotalState();
+
     return;
 
   }
 
 
-  list.forEach(
-    (member,index) => {
+  list.forEach(member => {
 
-      const realIndex =
-        members.findIndex(
-          x =>
-            x.id === member.id
-        );
-
-
-      const tr =
-        document.createElement(
-          "tr"
-        );
+    const realIndex =
+      members.findIndex(
+        x =>
+          x.id === member.id
+      );
 
 
-      tr.innerHTML =
-        buildRow(
-          member,
-          realIndex
-        );
+    const tr =
+      document.createElement("tr");
 
 
-      tbody.appendChild(tr);
+    tr.innerHTML =
+      buildRow(
+        member,
+        realIndex
+      );
 
-    }
-  );
+
+    tbody.appendChild(tr);
+
+  });
 
 
   updateTotals();
+
+  applyTotalState();
 
 }
 
@@ -2356,9 +2397,7 @@ function setView(view){
 
 
   document
-    .querySelectorAll(
-      ".view-btn"
-    )
+    .querySelectorAll(".view-btn")
     .forEach(
       btn =>
         btn.classList.toggle(
@@ -2367,12 +2406,6 @@ function setView(view){
         )
     );
 
-
-  /*
-    종합 버튼:
-    한 번 누르면 접힘
-    다시 누르면 펼침
-  */
 
   if(view === "all"){
 
@@ -2402,31 +2435,19 @@ function setView(view){
 function applyTotalState(){
 
   const tbody =
-    document.getElementById(
-      "members"
-    );
+    document.getElementById("members");
 
   const totalRow =
-    document.getElementById(
-      "total-row"
-    );
+    document.getElementById("total-row");
 
   const totalPanel =
-    document.getElementById(
-      "total-panel"
-    );
+    document.getElementById("total-panel");
 
 
   if(
     currentView === "all" &&
     !totalOpen
   ){
-
-    /*
-      접힘:
-      클랜원 전부 숨김
-      합계행만 표시
-    */
 
     tbody.style.display =
       "none";
@@ -2442,22 +2463,15 @@ function applyTotalState(){
   }
 
 
-  tbody.style.display =
-    "";
+  tbody.style.display = "";
 
   totalRow.style.display =
     "table-row";
 
   totalPanel.style.display =
-    "block";
-
-
-  if(currentView !== "all"){
-
-    totalPanel.style.display =
-      "none";
-
-  }
+    currentView === "all"
+      ? "block"
+      : "none";
 
 }
 
@@ -2506,21 +2520,17 @@ function editMember(index){
   ];
 
 
-  fields.forEach(
-    field => {
+  fields.forEach(field => {
 
-      const el =
-        document.getElementById(
-          field +
-          "-" +
-          index
-        );
+    const el =
+      document.getElementById(
+        field + "-" + index
+      );
 
-      if(el)
-        el.disabled = false;
+    if(el)
+      el.disabled = false;
 
-    }
-  );
+  });
 
 
   document.getElementById(
@@ -2556,9 +2566,7 @@ async function saveMember(index){
 
       const el =
         document.getElementById(
-          field +
-          "-" +
-          index
+          field + "-" + index
         );
 
       return el
@@ -2573,9 +2581,7 @@ async function saveMember(index){
 
       const el =
         document.getElementById(
-          id +
-          "-" +
-          index
+          id + "-" + index
         );
 
       return el
@@ -2590,109 +2596,124 @@ async function saveMember(index){
   );
 
 
-  const result =
-    await supabaseClient.rpc(
-      "fm_update_member",
-      {
+  try{
 
-        p_mode:
-          currentMode,
+    const result =
+      await supabaseClient.rpc(
+        "fm_update_member",
+        {
 
-        p_member_id:
-          member.id,
+          p_mode:
+            currentMode,
 
-        p_nickname:
-          value("name"),
+          p_member_id:
+            member.id,
 
-        p_chomul:
-          value("chomul"),
+          p_nickname:
+            value("name"),
 
-        p_skill:
-          value("skill"),
+          p_chomul:
+            value("chomul"),
 
-        p_skill_lv:
-          Number(
-            value("skill_lv")
-          ) || 0,
+          p_skill:
+            value("skill"),
 
-        p_eggshell:
-          value("eggshell"),
+          p_skill_lv:
+            Number(
+              value("skill_lv")
+            ) || 0,
 
-        p_eggshell_lv:
-          Number(
-            value("eggshell_lv")
-          ) || 0,
+          p_eggshell:
+            value("eggshell"),
 
-        p_eggmerge:
-          Number(
-            value("eggmerge")
-          ) || 0,
+          p_eggshell_lv:
+            Number(
+              value("eggshell_lv")
+            ) || 0,
 
-        p_mount:
-          value("mount"),
+          p_eggmerge:
+            Number(
+              value("eggmerge")
+            ) || 0,
 
-        p_mount_lv:
-          Number(
-            value("mount_lv")
-          ) || 0,
+          p_mount:
+            value("mount"),
 
-        p_mountmerge:
-          Number(
-            value("mountmerge")
-          ) || 0,
+          p_mount_lv:
+            Number(
+              value("mount_lv")
+            ) || 0,
 
-        p_s:
-          check("check_s"),
+          p_mountmerge:
+            Number(
+              value("mountmerge")
+            ) || 0,
 
-        p_pet:
-          check("check_pet"),
+          p_s:
+            check("check_s"),
 
-        p_tal:
-          check("check_tal")
+          p_pet:
+            check("check_pet"),
 
-      }
+          p_tal:
+            check("check_tal")
+
+        }
+      );
+
+
+    if(result.error){
+
+      alert(
+        "저장 실패\n\n" +
+        result.error.message
+      );
+
+      setStatus(
+        "❌ 저장 실패",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    members[index] =
+      normalizeMember(
+        result.data
+      );
+
+
+    if(
+      member.id === currentMemberId
+    ){
+
+      currentNickname =
+        members[index].name;
+
+    }
+
+
+    render();
+
+
+    setStatus(
+      "✅ 저장 완료",
+      "success"
     );
 
+  }
+  catch(error){
 
-  if(result.error){
-
-    alert(
-      "저장 실패\n\n" +
-      result.error.message
-    );
+    console.error(error);
 
     setStatus(
       "❌ 저장 실패",
       "error"
     );
 
-    return;
-
   }
-
-
-  members[index] =
-    normalizeMember(
-      result.data
-    );
-
-
-  if(
-    member.id === currentMemberId
-  ){
-
-    currentNickname =
-      members[index].name;
-
-  }
-
-
-  render();
-
-  setStatus(
-    "✅ 저장 완료",
-    "success"
-  );
 
 }
 
@@ -2716,14 +2737,9 @@ async function toggleCheck(
 
   const checkboxId = {
 
-    skill:
-      "check_s-",
-
-    pet:
-      "check_pet-",
-
-    mount:
-      "check_tal-"
+    skill:"check_s-",
+    pet:"check_pet-",
+    mount:"check_tal-"
 
   }[type];
 
@@ -2742,94 +2758,101 @@ async function toggleCheck(
     member.asc_skill =
       checkbox.checked;
 
-
   if(type === "pet")
     member.asc_pet =
       checkbox.checked;
-
 
   if(type === "mount")
     member.asc_mount =
       checkbox.checked;
 
 
-  /*
-    체크 변경은 즉시 저장
-  */
+  try{
 
-  const result =
-    await supabaseClient.rpc(
-      "fm_update_member",
-      {
+    const result =
+      await supabaseClient.rpc(
+        "fm_update_member",
+        {
 
-        p_mode:
-          currentMode,
+          p_mode:
+            currentMode,
 
-        p_member_id:
-          member.id,
+          p_member_id:
+            member.id,
 
-        p_nickname:
-          member.name,
+          p_nickname:
+            member.name,
 
-        p_chomul:
-          member.chomul,
+          p_chomul:
+            member.chomul,
 
-        p_skill:
-          member.skill,
+          p_skill:
+            member.skill,
 
-        p_skill_lv:
-          member.skill_lv,
+          p_skill_lv:
+            member.skill_lv,
 
-        p_eggshell:
-          member.eggshell,
+          p_eggshell:
+            member.eggshell,
 
-        p_eggshell_lv:
-          member.eggshell_lv,
+          p_eggshell_lv:
+            member.eggshell_lv,
 
-        p_eggmerge:
-          member.eggmerge,
+          p_eggmerge:
+            member.eggmerge,
 
-        p_mount:
-          member.mount,
+          p_mount:
+            member.mount,
 
-        p_mount_lv:
-          member.mount_lv,
+          p_mount_lv:
+            member.mount_lv,
 
-        p_mountmerge:
-          member.mountmerge,
+          p_mountmerge:
+            member.mountmerge,
 
-        p_s:
-          member.asc_skill,
+          p_s:
+            member.asc_skill,
 
-        p_pet:
-          member.asc_pet,
+          p_pet:
+            member.asc_pet,
 
-        p_tal:
-          member.asc_mount
+          p_tal:
+            member.asc_mount
 
-      }
-    );
+        }
+      );
 
 
-  if(result.error){
+    if(result.error){
 
-    alert(
-      "체크 저장 실패\n\n" +
-      result.error.message
-    );
+      alert(
+        "체크 저장 실패\n\n" +
+        result.error.message
+      );
 
-    return;
+      return;
+
+    }
+
+
+    members[index] =
+      normalizeMember(
+        result.data
+      );
+
+
+    render();
 
   }
+  catch(error){
 
+    console.error(error);
 
-  members[index] =
-    normalizeMember(
-      result.data
+    alert(
+      "체크 저장 중 오류가 발생했습니다."
     );
 
-
-  render();
+  }
 
 }
 
@@ -2938,7 +2961,7 @@ function toNumber(value){
 
 
 /* =========================================================
-   FORMAT
+   FORMAT NUMBER
 ========================================================= */
 
 function formatNumber(n){
@@ -3090,29 +3113,27 @@ function updateTotals(){
   };
 
 
-  members.forEach(
-    m => {
+  members.forEach(m => {
 
-      totals.chomul +=
-        toNumber(m.chomul);
+    totals.chomul +=
+      toNumber(m.chomul);
 
-      totals.skill +=
-        toNumber(m.skill);
+    totals.skill +=
+      toNumber(m.skill);
 
-      totals.eggshell +=
-        toNumber(m.eggshell);
+    totals.eggshell +=
+      toNumber(m.eggshell);
 
-      totals.eggmerge +=
-        Number(m.eggmerge || 0);
+    totals.eggmerge +=
+      Number(m.eggmerge || 0);
 
-      totals.mount +=
-        toNumber(m.mount);
+    totals.mount +=
+      toNumber(m.mount);
 
-      totals.mountmerge +=
-        Number(m.mountmerge || 0);
+    totals.mountmerge +=
+      Number(m.mountmerge || 0);
 
-    }
-  );
+  });
 
 
   document.getElementById(
@@ -3156,13 +3177,9 @@ function updateTotals(){
   document.getElementById(
     "total-combined"
   ).textContent =
-    formatNumber(
-      totals.eggmerge
-    ) +
+    totals.eggmerge +
     " / " +
-    formatNumber(
-      totals.mountmerge
-    );
+    totals.mountmerge;
 
 
   document.getElementById(
@@ -3247,22 +3264,10 @@ function escapeHtml(value){
   return String(
     value ?? ""
   )
-  .replace(
-    /&/g,
-    "&amp;"
-  )
-  .replace(
-    /"/g,
-    "&quot;"
-  )
-  .replace(
-    /</g,
-    "&lt;"
-  )
-  .replace(
-    />/g,
-    "&gt;"
-  );
+  .replace(/&/g,"&amp;")
+  .replace(/"/g,"&quot;")
+  .replace(/</g,"&lt;")
+  .replace(/>/g,"&gt;");
 
 }
 
@@ -3319,11 +3324,21 @@ function logout(){
   ).value =
     "";
 
+  document.getElementById(
+    "login-status"
+  ).textContent =
+    "";
+
+  document.getElementById(
+    "admin-login-status"
+  ).textContent =
+    "";
+
 }
 
 
 /* =========================================================
-   ENTER
+   ENTER KEY
 ========================================================= */
 
 document.addEventListener(
@@ -3334,10 +3349,20 @@ document.addEventListener(
       return;
 
 
-    if(
+    const adminScreen =
       document.getElementById(
         "admin-login-screen"
-      ).style.display === "flex"
+      );
+
+
+    const memberScreen =
+      document.getElementById(
+        "login-screen"
+      );
+
+
+    if(
+      adminScreen.style.display === "flex"
     ){
 
       adminLogin();
@@ -3348,9 +3373,7 @@ document.addEventListener(
 
 
     if(
-      document.getElementById(
-        "login-screen"
-      ).style.display !== "none"
+      memberScreen.style.display !== "none"
     ){
 
       memberLogin();
