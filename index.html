@@ -1096,23 +1096,37 @@ input:focus{
 
     <table>
 
-      <thead>
+<thead id="table-head">
 
-        <tr>
+  <tr>
 
-          <th>관리</th>
-          <th>승천대기</th>
-          <th>닉네임</th>
-          <th>초물</th>
-          <th>스킬</th>
-          <th>알껍질<br>+합</th>
-          <th>탈것<br>+합</th>
+    <th>관리</th>
 
-          <th>수정일</th>
+    <th>승천대기</th>
 
-        </tr>
+    <th>닉네임</th>
 
-      </thead>
+    <th data-column="chomul">
+      초물
+    </th>
+
+    <th data-column="skill">
+      스킬
+    </th>
+
+    <th data-column="eggshell">
+      알껍질<br>+합
+    </th>
+
+    <th data-column="mount">
+      탈것<br>+합
+    </th>
+
+    <th>수정일</th>
+
+  </tr>
+
+</thead>
 
       <tbody id="members"></tbody>
 
@@ -1998,7 +2012,7 @@ function buildRow(member,index){
      SHOW COLUMNS
   ========================================================= */
 
-  const showAscension =
+   const showAscension =
     isAll ||
     selected.has("ascension");
 
@@ -2015,16 +2029,14 @@ function buildRow(member,index){
     selected.has("eggshell");
 
   const showEggmerge =
-    isAll ||
-    selected.has("eggmerge");
+    showEggshell;
 
   const showMount =
     isAll ||
     selected.has("mount");
 
   const showMountmerge =
-    isAll ||
-    selected.has("mountmerge");
+    showMount;
 
 
   /* =========================================================
