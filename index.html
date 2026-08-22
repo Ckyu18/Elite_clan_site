@@ -1967,35 +1967,7 @@ function render(){
 }
 
 
-list.forEach(member => {
 
-  const realIndex =
-    members.findIndex(
-      x =>
-        Number(x.id) ===
-        Number(member.id)
-    );
-
-  const tr =
-    document.createElement("tr");
-
-  tr.innerHTML =
-    buildRow(
-      member,
-      realIndex
-    );
-
-  tbody.appendChild(tr);
-
-});
-
-
-updateTotals();
-
-applyTotalState();
-
-
-}
 
 
 /* =========================================================
@@ -3210,7 +3182,14 @@ function updateViewButtons(){
         → 여러 개 동시에 선택 가능
       */
 
-  
+      btn.classList.toggle(
+        "active",
+        currentView.has(view)
+      );
+
+    });
+
+}
 
 
 /* =========================================================
