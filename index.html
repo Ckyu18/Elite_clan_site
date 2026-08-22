@@ -1228,7 +1228,7 @@ let currentMemberId = null;
 
 let currentNickname = "";
 
-let currentView = "all";
+let currentView = new Set();
 
 let totalOpen = true;
 
@@ -1783,7 +1783,16 @@ function render(){
   }
 
 
-  if(currentView === "ascension"){
+/* =========================================================
+   MULTI VIEW FILTER
+========================================================= */
+
+const selectedViews = currentView;
+
+if(selectedViews.size > 0){
+
+  /* 승천대기 */
+  if(selectedViews.has("ascension")){
 
     list =
       list.filter(
@@ -1794,6 +1803,74 @@ function render(){
       );
 
   }
+
+  /* 초물 */
+  if(selectedViews.has("chomul")){
+
+    list =
+      list.filter(
+        m =>
+          toNumber(m.chomul) > 0
+      );
+
+  }
+
+  /* 스킬 */
+  if(selectedViews.has("skill")){
+
+    list =
+      list.filter(
+        m =>
+          toNumber(m.skill) > 0
+      );
+
+  }
+
+  /* 알껍질 */
+  if(selectedViews.has("eggshell")){
+
+    list =
+      list.filter(
+        m =>
+          toNumber(m.eggshell) > 0
+      );
+
+  }
+
+  /* 알합치기 */
+  if(selectedViews.has("eggmerge")){
+
+    list =
+      list.filter(
+        m =>
+          Number(m.eggmerge || 0) > 0
+      );
+
+  }
+
+  /* 탈것 */
+  if(selectedViews.has("mount")){
+
+    list =
+      list.filter(
+        m =>
+          toNumber(m.mount) > 0
+      );
+
+  }
+
+  /* 탈것합치기 */
+  if(selectedViews.has("mountmerge")){
+
+    list =
+      list.filter(
+        m =>
+          Number(m.mountmerge || 0) > 0
+      );
+
+  }
+
+}
 
 
   if(list.length === 0){
@@ -2784,7 +2861,7 @@ function cancelNewMember(){
 
 
 /* =========================================================
-   VIEW
+   MULTI VIEW
 ========================================================= */
 
 function setView(view){
@@ -2800,34 +2877,124 @@ function setView(view){
   }
 
 
-  currentView =
-    view;
+  /* =====================================================
+     종합 버튼
+     → 모든 선택 해제
+  ===================================================== */
 
+  if(view === "all"){
+
+    currentView.clear();
+
+    totalOpen = true;
+
+  }
+
+
+  /* =====================================================
+     개별 항목 버튼
+  ===================================================== */
+
+  else{
+
+    /*
+      이미 선택되어 있으면 선택 해제
+    */
+
+    if(currentView.has(view)){
+
+      currentView.delete(view);
+
+    }
+
+    /*
+      선택되어 있지 않으면 추가
+    */
+
+    else{
+
+      currentView.add(view);
+
+    }
+
+
+    /*
+      아무 항목도 선택하지 않았으면
+      종합 상태로 돌아감
+    */
+
+    if(currentView.size === 0){
+
+      totalOpen = true;
+
+    }
+
+  }
+
+
+  /*
+    버튼 색상 갱신
+  */
+
+  updateViewButtons();
+
+
+  /*
+    테이블 다시 그리기
+  */
+
+  render();
+
+}
+
+
+/* =========================================================
+   VIEW BUTTON UI
+========================================================= */
+
+function updateViewButtons(){
 
   document
     .querySelectorAll(".view-btn")
     .forEach(btn => {
 
+      const view =
+        btn.dataset.view;
+
+
+      /*
+        종합 버튼
+        → 아무것도 선택되지 않았을 때 활성화
+      */
+
+      if(view === "all"){
+
+        btn.classList.toggle(
+          "active",
+          currentView.size === 0
+        );
+
+        return;
+
+      }
+
+
+      /*
+        개별 버튼
+        → 선택되어 있으면 파란색
+      */
+
       btn.classList.toggle(
         "active",
-        btn.dataset.view === view
+        currentView.has(view)
       );
 
     });
 
+}
 
-  if(view === "all"){
 
-    totalOpen =
-      !totalOpen;
 
-    applyTotalState();
-
-    render();
-
-    return;
-
-  }
 
 
   totalOpen = true;
@@ -3806,7 +3973,8 @@ function logout(){
 
   members = [];
 
-  currentView = "all";
+  currentView = new Set();
+
 
   totalOpen = true;
 
