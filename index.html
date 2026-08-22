@@ -257,6 +257,23 @@ h1{
   margin-bottom:7px;
 }
 
+.add-member-btn{
+  width:100%;
+  padding:10px;
+  margin-bottom:8px;
+  border:1px solid #22c55e;
+  border-radius:8px;
+  background:#14532d;
+  color:#bbf7d0;
+  font-size:11px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.add-member-btn:hover{
+  background:#166534;
+}
+
 .admin-panel-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -281,22 +298,7 @@ h1{
   font-size:14px;
   margin-top:2px;
 }
-.add-member-btn{
-  width:100%;
-  padding:10px;
-  margin-bottom:8px;
-  border:1px solid #22c55e;
-  border-radius:8px;
-  background:#14532d;
-  color:#bbf7d0;
-  font-size:11px;
-  font-weight:900;
-  cursor:pointer;
-}
 
-.add-member-btn:hover{
-  background:#166534;
-}
 /* VIEW */
 
 .view-buttons{
@@ -410,7 +412,9 @@ input{
   font-size:10px;
 }
 
-input:disabled{opacity:1}
+input:disabled{
+  opacity:1;
+}
 
 input:focus{
   outline:none;
@@ -521,6 +525,47 @@ input:focus{
 .dual-merge{
   width:52px;
   min-width:52px;
+}
+
+/* ADD ROW */
+
+.add-row{
+  background:#0f1f18;
+}
+
+.add-row td{
+  border-top:2px solid #22c55e;
+}
+
+.add-row-title{
+  color:#4ade80;
+  font-weight:900;
+  font-size:10px;
+}
+
+.add-actions{
+  display:flex;
+  gap:4px;
+  justify-content:center;
+}
+
+.add-save-btn,
+.add-cancel-btn{
+  border:0;
+  border-radius:5px;
+  padding:7px 8px;
+  font-size:9px;
+  font-weight:900;
+  color:white;
+  cursor:pointer;
+}
+
+.add-save-btn{
+  background:#16a34a;
+}
+
+.add-cancel-btn{
+  background:#475569;
 }
 
 /* RED */
@@ -651,7 +696,9 @@ input:focus{
 
   .my-name{font-size:19px}
 
-  .toolbar{flex-direction:column}
+  .toolbar{
+    flex-direction:column;
+  }
 
   .search,
   .sort{
@@ -860,8 +907,6 @@ input:focus{
   </div>
 
 
-  <!-- 관리자용 일반 비밀번호 -->
-
   <div
     id="password-panel"
     class="password-panel hidden"
@@ -888,8 +933,6 @@ input:focus{
   </div>
 
 
-  <!-- 관리자 -->
-
   <div
     id="admin-panel"
     class="admin-panel hidden"
@@ -898,12 +941,15 @@ input:focus{
     <div class="admin-panel-title">
       👑 관리자 기능
     </div>
-<button
-  class="add-member-btn"
-  onclick="addMember()"
->
-  ＋ 클랜원 추가
-</button>
+
+    <button
+      id="add-member-button"
+      class="add-member-btn"
+      onclick="addMemberRow()"
+    >
+      ＋ 클랜원 추가
+    </button>
+
     <div class="admin-panel-grid">
 
       <div class="admin-info">
@@ -940,8 +986,6 @@ input:focus{
 
   </div>
 
-
-  <!-- VIEW -->
 
   <div class="view-buttons">
 
@@ -1012,8 +1056,6 @@ input:focus{
   </div>
 
 
-  <!-- TOOLBAR -->
-
   <div class="toolbar">
 
     <input
@@ -1049,8 +1091,6 @@ input:focus{
     데이터를 불러오는 중...
   </div>
 
-
-  <!-- TABLE -->
 
   <div class="table-wrap">
 
@@ -1107,8 +1147,6 @@ input:focus{
 
   </div>
 
-
-  <!-- TOTAL PANEL -->
 
   <div
     id="total-panel"
@@ -1194,9 +1232,11 @@ let currentView = "all";
 
 let totalOpen = true;
 
+let addingMember = false;
+
 
 /* =========================================================
-   ADMIN LOGIN 화면
+   ADMIN LOGIN
 ========================================================= */
 
 function showAdminLogin(){
@@ -1743,10 +1783,6 @@ function render(){
   }
 
 
-  /* =====================================================
-     승천대기
-  ===================================================== */
-
   if(currentView === "ascension"){
 
     list =
@@ -1814,7 +1850,7 @@ function render(){
 
 
 /* =========================================================
-   BUILD ROW
+   BUILD EXISTING ROW
 ========================================================= */
 
 function buildRow(member,index){
@@ -1876,9 +1912,6 @@ currentMode === "admin"
 
 <div class="ascension-box">
 
-
-<!-- 스킬 -->
-
 <div class="asc-row">
 
 <label class="asc-check">
@@ -1915,8 +1948,6 @@ member.asc_skill
 
 </div>
 
-
-<!-- 펫 -->
 
 <div class="asc-row">
 
@@ -1963,8 +1994,6 @@ member.asc_pet
 </div>
 
 
-<!-- 탈 -->
-
 <div class="asc-row">
 
 <label class="asc-check">
@@ -2008,7 +2037,6 @@ member.asc_mount
 }
 
 </div>
-
 
 </div>
 
@@ -2186,10 +2214,594 @@ ${formatUpdated(member.updated_at)}
 
 
 /* =========================================================
+   ADD MEMBER ROW
+========================================================= */
+
+function addMemberRow(){
+
+  if(currentMode !== "admin"){
+
+    alert("관리자만 클랜원을 추가할 수 있습니다.");
+
+    return;
+
+  }
+
+
+  if(addingMember){
+
+    alert("이미 추가 입력 중인 행이 있습니다.");
+
+    return;
+
+  }
+
+
+  addingMember = true;
+
+
+  const tbody =
+    document.getElementById("members");
+
+
+  const row =
+    document.createElement("tr");
+
+
+  row.id =
+    "new-member-row";
+
+  row.className =
+    "add-row";
+
+
+  row.innerHTML = `
+
+<td>
+
+<div class="add-actions">
+
+<button
+  class="add-save-btn"
+  onclick="saveNewMember()"
+>
+저장
+</button>
+
+<button
+  class="add-cancel-btn"
+  onclick="cancelNewMember()"
+>
+취소
+</button>
+
+</div>
+
+</td>
+
+
+<td>
+
+<div class="ascension-box">
+
+<div class="asc-row">
+
+<label class="asc-check">
+
+<input
+  id="new-asc-s"
+  class="checkbox"
+  type="checkbox"
+>
+
+스
+
+</label>
+
+</div>
+
+
+<div class="asc-row">
+
+<label class="asc-check">
+
+<input
+  id="new-asc-pet"
+  class="checkbox"
+  type="checkbox"
+>
+
+펫
+
+</label>
+
+</div>
+
+
+<div class="asc-row">
+
+<label class="asc-check">
+
+<input
+  id="new-asc-mount"
+  class="checkbox"
+  type="checkbox"
+>
+
+탈
+
+</label>
+
+</div>
+
+</div>
+
+</td>
+
+
+<td>
+
+<input
+  id="new-name"
+  class="name-input"
+  placeholder="닉네임"
+  autocomplete="off"
+>
+
+</td>
+
+
+<td>
+
+<input
+  id="new-chomul"
+  class="resource-input"
+  placeholder="초물"
+  autocomplete="off"
+>
+
+</td>
+
+
+<td>
+
+<div class="dual-cell">
+
+<div class="dual-top">
+
+<span>LV</span>
+
+<input
+  id="new-skill-lv"
+  class="lv-input"
+  type="number"
+  value="0"
+>
+
+<input
+  id="new-skill"
+  class="resource-input"
+  placeholder="스킬"
+  oninput="checkColor(this,'skill')"
+>
+
+</div>
+
+</div>
+
+</td>
+
+
+<td>
+
+<div class="dual-cell">
+
+<div class="dual-top">
+
+<input
+  id="new-eggshell-lv"
+  class="lv-input"
+  type="number"
+  value="0"
+>
+
+<input
+  id="new-eggshell"
+  class="resource-input"
+  placeholder="알껍질"
+  oninput="checkColor(this,'eggshell')"
+>
+
+</div>
+
+<div class="dual-bottom">
+
+<span class="dual-label">
+합
+</span>
+
+<input
+  id="new-eggmerge"
+  class="dual-merge"
+  type="number"
+  value="0"
+>
+
+</div>
+
+</div>
+
+</td>
+
+
+<td>
+
+<div class="dual-cell">
+
+<div class="dual-top">
+
+<input
+  id="new-mount-lv"
+  class="lv-input"
+  type="number"
+  value="0"
+>
+
+<input
+  id="new-mount"
+  class="resource-input"
+  placeholder="탈것"
+  oninput="checkColor(this,'mount')"
+>
+
+</div>
+
+<div class="dual-bottom">
+
+<span class="dual-label">
+합
+</span>
+
+<input
+  id="new-mountmerge"
+  class="dual-merge"
+  type="number"
+  value="0"
+>
+
+</div>
+
+</div>
+
+</td>
+
+
+<td>
+
+<span id="new-total">
+0
+</span>
+
+</td>
+
+
+<td>
+신규
+</td>
+
+`;
+
+
+  tbody.appendChild(row);
+
+
+  document.getElementById(
+    "new-name"
+  ).focus();
+
+
+  row.scrollIntoView({
+    behavior:"smooth",
+    block:"center"
+  });
+
+}
+
+
+/* =========================================================
+   NEW ROW TOTAL
+========================================================= */
+
+document.addEventListener(
+  "input",
+  function(event){
+
+    if(!addingMember)
+      return;
+
+
+    if(
+      !event.target.id ||
+      !event.target.id.startsWith("new-")
+    )
+      return;
+
+
+    const total =
+      toNumber(
+        document.getElementById("new-chomul")?.value
+      ) +
+      toNumber(
+        document.getElementById("new-skill")?.value
+      ) +
+      toNumber(
+        document.getElementById("new-eggshell")?.value
+      ) +
+      toNumber(
+        document.getElementById("new-mount")?.value
+      );
+
+
+    const totalEl =
+      document.getElementById("new-total");
+
+
+    if(totalEl){
+
+      totalEl.textContent =
+        formatNumber(total);
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   SAVE NEW MEMBER
+========================================================= */
+
+async function saveNewMember(){
+
+  if(currentMode !== "admin"){
+
+    alert(
+      "관리자만 클랜원을 추가할 수 있습니다."
+    );
+
+    return;
+
+  }
+
+
+  const nickname =
+    document.getElementById(
+      "new-name"
+    )?.value.trim();
+
+
+  if(!nickname){
+
+    alert(
+      "닉네임을 입력해주세요."
+    );
+
+    document.getElementById(
+      "new-name"
+    )?.focus();
+
+    return;
+
+  }
+
+
+  setStatus(
+    "➕ 새 클랜원 저장 중..."
+  );
+
+
+  try{
+
+    const result =
+      await supabaseClient.rpc(
+        "fm_add_member",
+        {
+
+          p_mode:
+            "admin",
+
+          p_nickname:
+            nickname,
+
+          p_chomul:
+            document.getElementById(
+              "new-chomul"
+            ).value.trim(),
+
+          p_skill_lv:
+            Number(
+              document.getElementById(
+                "new-skill-lv"
+              ).value
+            ) || 0,
+
+          p_skill:
+            document.getElementById(
+              "new-skill"
+            ).value.trim(),
+
+          p_eggshell_lv:
+            Number(
+              document.getElementById(
+                "new-eggshell-lv"
+              ).value
+            ) || 0,
+
+          p_eggmerge:
+            Number(
+              document.getElementById(
+                "new-eggmerge"
+              ).value
+            ) || 0,
+
+          p_mount:
+            document.getElementById(
+              "new-mount"
+            ).value.trim(),
+
+          p_mount_lv:
+            Number(
+              document.getElementById(
+                "new-mount-lv"
+              ).value
+            ) || 0,
+
+          p_mountmerge:
+            Number(
+              document.getElementById(
+                "new-mountmerge"
+              ).value
+            ) || 0,
+
+          p_asc_skill:
+            document.getElementById(
+              "new-asc-s"
+            ).checked,
+
+          p_asc_pet:
+            document.getElementById(
+              "new-asc-pet"
+            ).checked,
+
+          p_asc_mount:
+            document.getElementById(
+              "new-asc-mount"
+            ).checked
+
+        }
+      );
+
+
+    if(result.error){
+
+      alert(
+        "클랜원 추가 실패\n\n" +
+        result.error.message
+      );
+
+      setStatus(
+        "❌ 클랜원 추가 실패",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    if(!result.data){
+
+      alert(
+        "새 클랜원 정보를 받지 못했습니다."
+      );
+
+      return;
+
+    }
+
+
+    const newMember =
+      normalizeMember(
+        result.data
+      );
+
+
+    members.push(
+      newMember
+    );
+
+
+    addingMember =
+      false;
+
+
+    document.getElementById(
+      "member-count"
+    ).textContent =
+      members.length + "명";
+
+
+    render();
+
+
+    setStatus(
+      "✅ " +
+      newMember.name +
+      " 클랜원 추가 완료",
+      "success"
+    );
+
+  }
+  catch(error){
+
+    alert(
+      "클랜원 추가 실패\n\n" +
+      error.message
+    );
+
+    setStatus(
+      "❌ 클랜원 추가 실패",
+      "error"
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   CANCEL NEW MEMBER
+========================================================= */
+
+function cancelNewMember(){
+
+  const row =
+    document.getElementById(
+      "new-member-row"
+    );
+
+
+  if(row)
+    row.remove();
+
+
+  addingMember =
+    false;
+
+
+  setStatus(
+    "신규 클랜원 추가를 취소했습니다."
+  );
+
+}
+
+
+/* =========================================================
    VIEW
 ========================================================= */
 
 function setView(view){
+
+  if(addingMember){
+
+    alert(
+      "현재 신규 클랜원 입력 중입니다.\n먼저 저장 또는 취소해주세요."
+    );
+
+    return;
+
+  }
+
 
   currentView =
     view;
@@ -2288,7 +2900,9 @@ function editMember(index){
     Number(currentMemberId)
   ){
 
-    alert("수정 권한이 없습니다.");
+    alert(
+      "수정 권한이 없습니다."
+    );
 
     return;
 
@@ -2339,7 +2953,7 @@ function editMember(index){
 
 
 /* =========================================================
-   SAVE
+   SAVE EXISTING MEMBER
 ========================================================= */
 
 async function saveMember(index){
@@ -2382,7 +2996,9 @@ async function saveMember(index){
     };
 
 
-  setStatus("💾 저장 중...");
+  setStatus(
+    "💾 저장 중..."
+  );
 
 
   try{
@@ -2408,25 +3024,35 @@ async function saveMember(index){
             value("skill"),
 
           p_skill_lv:
-            Number(value("skill_lv")) || 0,
+            Number(
+              value("skill_lv")
+            ) || 0,
 
           p_eggshell:
             value("eggshell"),
 
           p_eggshell_lv:
-            Number(value("eggshell_lv")) || 0,
+            Number(
+              value("eggshell_lv")
+            ) || 0,
 
           p_eggmerge:
-            Number(value("eggmerge")) || 0,
+            Number(
+              value("eggmerge")
+            ) || 0,
 
           p_mount:
             value("mount"),
 
           p_mount_lv:
-            Number(value("mount_lv")) || 0,
+            Number(
+              value("mount_lv")
+            ) || 0,
 
           p_mountmerge:
-            Number(value("mountmerge")) || 0,
+            Number(
+              value("mountmerge")
+            ) || 0,
 
           p_s:
             check("check_s"),
@@ -2459,7 +3085,9 @@ async function saveMember(index){
 
 
     members[index] =
-      normalizeMember(result.data);
+      normalizeMember(
+        result.data
+      );
 
 
     if(
@@ -2479,6 +3107,7 @@ async function saveMember(index){
 
 
     render();
+
 
     setStatus(
       "✅ 저장 완료",
@@ -2538,7 +3167,9 @@ async function deleteMember(index){
     return;
 
 
-  setStatus("🗑️ 삭제 중...");
+  setStatus(
+    "🗑️ 삭제 중..."
+  );
 
 
   try{
@@ -2605,6 +3236,7 @@ async function deleteMember(index){
 
 
     render();
+
 
     setStatus(
       "✅ 삭제 완료",
@@ -2757,7 +3389,9 @@ async function toggleCheck(index,type){
 
 
     members[index] =
-      normalizeMember(result.data);
+      normalizeMember(
+        result.data
+      );
 
 
     render();
@@ -2786,7 +3420,9 @@ function checkColor(input,type){
 
 
   const value =
-    toNumber(input.value);
+    toNumber(
+      input.value
+    );
 
 
   input.classList.remove("red");
@@ -3117,7 +3753,9 @@ function updateTotals(){
 function setStatus(message,type=""){
 
   const el =
-    document.getElementById("status");
+    document.getElementById(
+      "status"
+    );
 
 
   el.textContent =
@@ -3150,6 +3788,19 @@ function escapeHtml(value){
 
 function logout(){
 
+  if(addingMember){
+
+    const ok =
+      confirm(
+        "신규 클랜원 입력이 취소됩니다.\n로그아웃하시겠습니까?"
+      );
+
+    if(!ok)
+      return;
+
+  }
+
+
   currentMode = "";
 
   currentMemberId = null;
@@ -3161,6 +3812,8 @@ function logout(){
   currentView = "all";
 
   totalOpen = true;
+
+  addingMember = false;
 
 
   document.getElementById("app").style.display =
