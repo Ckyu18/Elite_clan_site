@@ -1895,12 +1895,68 @@ if(selectedViews.size > 0){
   }
 
 }
-      
+
+
+/* =========================================================
+   LIST EMPTY
+========================================================= */
+
+if(list.length === 0){
+
+  tbody.innerHTML = `
+    <tr>
+      <td colspan="8" class="empty">
+        표시할 클랜원이 없습니다.
+      </td>
+    </tr>
+  `;
+
+  updateTotals();
+  applyTotalState();
+
+  return;
+
+}
+
+
+/* =========================================================
+   BUILD ROWS
+========================================================= */
+
+list.forEach(member => {
+
+  const realIndex =
+    members.findIndex(
+      x =>
+        Number(x.id) ===
+        Number(member.id)
+    );
+
+  const tr =
+    document.createElement("tr");
+
+  tr.innerHTML =
+    buildRow(
+      member,
+      realIndex
+    );
+
+  tbody.appendChild(tr);
+
+});
+
+
+updateTotals();
+
+applyTotalState();
+
+
+}
+
 
 /* =========================================================
    BUILD EXISTING ROW
 ========================================================= */
-
 function buildRow(member,index){
 
   const canEdit =
