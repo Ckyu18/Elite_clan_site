@@ -1782,16 +1782,36 @@ function render(){
 
   }
 
+  if(sort !== "default"){
+
+    list.sort(
+      (a,b) =>
+        toNumber(b[sort]) -
+        toNumber(a[sort])
+    );
+
+  }
+
+
+  /* 여기에 코드 */
+
+
+  /* =========================================================
+     MULTI VIEW FILTER
+  ========================================================= */
 
 /* =========================================================
    MULTI VIEW FILTER
+   여러 버튼 중복 선택 가능
 ========================================================= */
 
 const selectedViews = currentView;
 
 if(selectedViews.size > 0){
 
-  /* 승천대기 */
+  /*
+    승천대기
+  */
   if(selectedViews.has("ascension")){
 
     list =
@@ -1804,7 +1824,10 @@ if(selectedViews.size > 0){
 
   }
 
-  /* 초물 */
+
+  /*
+    초물
+  */
   if(selectedViews.has("chomul")){
 
     list =
@@ -1815,116 +1838,15 @@ if(selectedViews.size > 0){
 
   }
 
-  /* 스킬 */
+
+  /*
+    스킬
+  */
   if(selectedViews.has("skill")){
 
     list =
       list.filter(
-        m =>
-          toNumber(m.skill) > 0
-      );
-
-  }
-
-  /* 알껍질 */
-  if(selectedViews.has("eggshell")){
-
-    list =
-      list.filter(
-        m =>
-          toNumber(m.eggshell) > 0
-      );
-
-  }
-
-  /* 알합치기 */
-  if(selectedViews.has("eggmerge")){
-
-    list =
-      list.filter(
-        m =>
-          Number(m.eggmerge || 0) > 0
-      );
-
-  }
-
-  /* 탈것 */
-  if(selectedViews.has("mount")){
-
-    list =
-      list.filter(
-        m =>
-          toNumber(m.mount) > 0
-      );
-
-  }
-
-  /* 탈것합치기 */
-  if(selectedViews.has("mountmerge")){
-
-    list =
-      list.filter(
-        m =>
-          Number(m.mountmerge || 0) > 0
-      );
-
-  }
-
-}
-
-
-  if(list.length === 0){
-
-    tbody.innerHTML =
-      `
-      <tr>
-        <td colspan="9" class="empty">
-          표시할 클랜원이 없습니다.
-        </td>
-      </tr>
-      `;
-
-    updateTotals();
-
-    applyTotalState();
-
-    return;
-
-  }
-
-
-  list.forEach(member => {
-
-    const realIndex =
-      members.findIndex(
-        x =>
-          Number(x.id) ===
-          Number(member.id)
-      );
-
-
-    const tr =
-      document.createElement("tr");
-
-
-    tr.innerHTML =
-      buildRow(
-        member,
-        realIndex
-      );
-
-
-    tbody.appendChild(tr);
-
-  });
-
-
-  updateTotals();
-
-  applyTotalState();
-
-}
-
+      
 
 /* =========================================================
    BUILD EXISTING ROW
@@ -1938,8 +1860,58 @@ function buildRow(member,index){
     Number(currentMemberId);
 
 
-  return `
+  const selected =
+    currentView;
 
+
+  /*
+    아무것도 선택하지 않았으면 종합
+  */
+
+  const isAll =
+    selected.size === 0;
+
+
+  /*
+    어떤 열을 보여줄지 결정
+  */
+
+  const showAscension =
+    isAll ||
+    selected.has("ascension");
+
+  const showChomul =
+    isAll ||
+    selected.has("chomul");
+
+  const showSkill =
+    isAll ||
+    selected.has("skill");
+
+  const showEggshell =
+    isAll ||
+    selected.has("eggshell");
+
+  const showEggmerge =
+    isAll ||
+    selected.has("eggmerge");
+
+  const showMount =
+    isAll ||
+    selected.has("mount");
+
+  const showMountmerge =
+    isAll ||
+    selected.has("mountmerge");
+
+
+  /*
+    관리자 / 수정 버튼
+  */
+
+  const manageCell = isAll || selected.size > 0
+    ?
+`
 <td>
 
 ${
@@ -1983,8 +1955,19 @@ currentMode === "admin"
 }
 
 </td>
+`
+    :
+    "";
 
 
+  /*
+    승천대기
+  */
+
+  const ascensionCell =
+    showAscension
+    ?
+`
 <td>
 
 <div class="ascension-box">
@@ -2118,8 +2101,18 @@ member.asc_mount
 </div>
 
 </td>
+`
+    :
+    "";
 
 
+  /*
+    닉네임
+    → 항상 표시
+  */
+
+  const nameCell =
+`
 <td>
 
 <input
@@ -2130,8 +2123,17 @@ member.asc_mount
 >
 
 </td>
+`;
 
 
+  /*
+    초물
+  */
+
+  const chomulCell =
+    showChomul
+    ?
+`
 <td>
 
 <input
@@ -2142,8 +2144,19 @@ member.asc_mount
 >
 
 </td>
+`
+    :
+    "";
 
 
+  /*
+    스킬
+  */
+
+  const skillCell =
+    showSkill
+    ?
+`
 <td>
 
 <div class="dual-cell">
@@ -2173,12 +2186,27 @@ member.asc_mount
 </div>
 
 </td>
+`
+    :
+    "";
 
 
+  /*
+    알껍질
+  */
+
+  const eggshellCell =
+    showEggshell || showEggmerge
+    ?
+`
 <td>
 
 <div class="dual-cell">
 
+${
+showEggshell
+?
+`
 <div class="dual-top">
 
 <input
@@ -2198,7 +2226,15 @@ member.asc_mount
 >
 
 </div>
+`
+:
+""
+}
 
+${
+showEggmerge
+?
+`
 <div class="dual-bottom">
 
 <span class="dual-label">
@@ -2214,16 +2250,35 @@ member.asc_mount
 >
 
 </div>
+`
+:
+""
+}
 
 </div>
 
 </td>
+`
+    :
+    "";
 
 
+  /*
+    탈것
+  */
+
+  const mountCell =
+    showMount || showMountmerge
+    ?
+`
 <td>
 
 <div class="dual-cell">
 
+${
+showMount
+?
+`
 <div class="dual-top">
 
 <input
@@ -2243,7 +2298,15 @@ member.asc_mount
 >
 
 </div>
+`
+:
+""
+}
 
+${
+showMountmerge
+?
+`
 <div class="dual-bottom">
 
 <span class="dual-label">
@@ -2259,23 +2322,51 @@ member.asc_mount
 >
 
 </div>
+`
+:
+""
+}
 
 </div>
 
 </td>
+`
+    :
+    "";
 
 
-<td>
+  /*
+    수정일
+    → 항상 표시
+  */
 
-
-</td>
-
-
+  const updatedCell =
+`
 <td>
 
 ${formatUpdated(member.updated_at)}
 
 </td>
+`;
+
+
+  return `
+
+${manageCell}
+
+${ascensionCell}
+
+${nameCell}
+
+${chomulCell}
+
+${skillCell}
+
+${eggshellCell}
+
+${mountCell}
+
+${updatedCell}
 
 `;
 
@@ -2864,6 +2955,10 @@ function cancelNewMember(){
    MULTI VIEW
 ========================================================= */
 
+/* =========================================================
+   MULTI VIEW
+========================================================= */
+
 function setView(view){
 
   if(addingMember){
@@ -2878,7 +2973,7 @@ function setView(view){
 
 
   /* =====================================================
-     종합 버튼
+     종합
      → 모든 선택 해제
   ===================================================== */
 
@@ -2892,25 +2987,17 @@ function setView(view){
 
 
   /* =====================================================
-     개별 항목 버튼
+     개별 항목
+     → 여러 개 동시 선택 가능
   ===================================================== */
 
   else{
-
-    /*
-      이미 선택되어 있으면 선택 해제
-    */
 
     if(currentView.has(view)){
 
       currentView.delete(view);
 
     }
-
-    /*
-      선택되어 있지 않으면 추가
-    */
-
     else{
 
       currentView.add(view);
@@ -2918,30 +3005,21 @@ function setView(view){
     }
 
 
-    /*
-      아무 항목도 선택하지 않았으면
-      종합 상태로 돌아감
-    */
-
-    if(currentView.size === 0){
-
-      totalOpen = true;
-
-    }
+    totalOpen = true;
 
   }
 
 
-  /*
-    버튼 색상 갱신
-  */
+  /* =====================================================
+     버튼 색상 갱신
+  ===================================================== */
 
   updateViewButtons();
 
 
-  /*
-    테이블 다시 그리기
-  */
+  /* =====================================================
+     화면 갱신
+  ===================================================== */
 
   render();
 
@@ -2964,7 +3042,7 @@ function updateViewButtons(){
 
       /*
         종합 버튼
-        → 아무것도 선택되지 않았을 때 활성화
+        → 아무것도 선택하지 않았을 때만 활성화
       */
 
       if(view === "all"){
@@ -2981,27 +3059,11 @@ function updateViewButtons(){
 
       /*
         개별 버튼
-        → 선택되어 있으면 파란색
+        → 선택되어 있으면 활성화
+        → 여러 개 동시에 선택 가능
       */
 
-      btn.classList.toggle(
-        "active",
-        currentView.has(view)
-      );
-
-    });
-
-}
-
-
-
-
-
-  totalOpen = true;
-
-  render();
-
-}
+  
 
 
 /* =========================================================
