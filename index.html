@@ -1809,9 +1809,7 @@ const selectedViews = currentView;
 
 if(selectedViews.size > 0){
 
-  /*
-    승천대기
-  */
+  /* 승천대기 */
   if(selectedViews.has("ascension")){
 
     list =
@@ -1825,9 +1823,7 @@ if(selectedViews.size > 0){
   }
 
 
-  /*
-    초물
-  */
+  /* 초물 */
   if(selectedViews.has("chomul")){
 
     list =
@@ -1839,13 +1835,66 @@ if(selectedViews.size > 0){
   }
 
 
-  /*
-    스킬
-  */
+  /* 스킬 */
   if(selectedViews.has("skill")){
 
     list =
       list.filter(
+        m =>
+          toNumber(m.skill) > 0
+      );
+
+  }
+
+
+  /* 알껍질 */
+  if(selectedViews.has("eggshell")){
+
+    list =
+      list.filter(
+        m =>
+          toNumber(m.eggshell) > 0
+      );
+
+  }
+
+
+  /* 알합치기 */
+  if(selectedViews.has("eggmerge")){
+
+    list =
+      list.filter(
+        m =>
+          toNumber(m.eggmerge) > 0
+      );
+
+  }
+
+
+  /* 탈것 */
+  if(selectedViews.has("mount")){
+
+    list =
+      list.filter(
+        m =>
+          toNumber(m.mount) > 0
+      );
+
+  }
+
+
+  /* 탈것합치기 */
+  if(selectedViews.has("mountmerge")){
+
+    list =
+      list.filter(
+        m =>
+          toNumber(m.mountmerge) > 0
+      );
+
+  }
+
+}
       
 
 /* =========================================================
